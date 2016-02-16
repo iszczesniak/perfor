@@ -1,0 +1,4 @@
+args.o: args.cc args.hpp
+availa.o: availa.cc availa.hpp args.hpp graph.hpp progress.hpp utils.hpp \
+ utils_netgen.hpp
+progress.o: progress.cc progress.hpp
