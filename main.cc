@@ -35,9 +35,12 @@ typedef map <sim_input, double_pair> results;
 results m;
 std::mutex m_mutex;
 
+// An object of this class calculates the performance.
 class calc
 {
   args m_a;
+
+  // Reference to the progress bar.
   progress &m_pb;
 
 public:
@@ -51,13 +54,12 @@ public:
     // Random number generator.
     mt19937 gen (m_a.seed);
 
-    // Generate PONs.
-    graph pon1, pon2;
-    generate_pon (pon1, m_a, gen);
-    generate_pon (pon2, m_a, gen);
+    // Generate PON.
+    graph pon;
+    generate_pon (pon, m_a, gen);
 
     // Calculate the mean ONU performance.
-    double_pair perfor = calc_mean_ (g);
+    double_pair perfors = calc_mean_perfor (pon);
 
     m_mutex.lock ();
     m[m_a.r][m_a.q].push_back (availa);
@@ -67,14 +69,16 @@ public:
   }
 };
 
+// This function runs the simulations, multithreading them.
 void
-run (args a, const std::list <dblp> &rqs, double seeds)
+run (args a, const std::list <dblp> &rqs, int seeds)
 {
   as::io_service ios;
   auto_ptr <as::io_service::work>
     work (new as::io_service::work (ios));
   boost::thread_group threads;
 
+  // The number of threads supported by hardware.
   int noth = boost::thread::hardware_concurrency (); 
   for (int i = 0; i < noth; ++i)
     threads.create_thread (boost::bind (&as::io_service::run, &ios));
@@ -102,7 +106,8 @@ run (args a, const std::list <dblp> &rqs, double seeds)
 int
 main (int argc, const char* argv[])
 {
-  args a = process_args (argc, argv);
+  // Arguments that we pass around.
+  args a;
 
   // The splitting probability.
   a.s = 0.3;

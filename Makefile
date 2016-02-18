@@ -1,4 +1,4 @@
-TARGETS = perfor
+TARGETS = main
 TARGET_OBJS = $(addsuffix .o, $(TARGETS))
 LINK.o = $(LINK.cc)
 
