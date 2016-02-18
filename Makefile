@@ -1,8 +1,6 @@
-TARGETS = main
-TARGET_OBJS = $(addsuffix .o, $(TARGETS))
 LINK.o = $(LINK.cc)
 
-OBJS = args.o progress.o
+OBJS = progress.o simulation.o
 
 CXXFLAGS = -g
 #CXXFLAGS = -O3
@@ -10,14 +8,10 @@ CXXFLAGS = -g
 CXXFLAGS := $(CXXFLAGS) -Wall -std=c++11 -Wno-deprecated
 
 # Boost
-LDFLAGS := $(LDFLAGS) -l boost_program_options
-LDFLAGS := $(LDFLAGS) -l boost_system
 LDFLAGS := $(LDFLAGS) -l boost_thread
 LDFLAGS := $(LDFLAGS) -l boost_timer
 
-all: $(TARGETS)
-
-availa: $(OBJS)
+perfor: $(OBJS)
 
 .PHONY: clean count depend test
 
