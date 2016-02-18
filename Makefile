@@ -1,4 +1,4 @@
-TARGETS = availa
+TARGETS = perfor
 TARGET_OBJS = $(addsuffix .o, $(TARGETS))
 
 OBJS = args.o progress.o

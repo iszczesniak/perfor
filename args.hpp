@@ -14,27 +14,6 @@ struct args
   /// Splitting ratio.
   int sratio;
 
-  /// OLT availability;
-  double olta;
-
-  /// ONU availability;
-  double onua;
-
-  /// Passive RN availability;
-  double prna;
-
-  /// Active RN availability;
-  double arna;
-
-  /// The availability of the feeder fiber.
-  double ffa;
-
-  /// The availability of the distribution fiber.
-  double dfa;
-
-  /// The availability of the last-mile fiber.
-  double lfa;
-
   /// The probability that a remote node is active.
   double q;
 

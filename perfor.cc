@@ -96,59 +96,28 @@ main (int argc, const char* argv[])
 {
   args a = process_args (argc, argv);
 
-  // Fiber availability per km.
-  const double fapkm = 0.9999429;
-
-  // The availability of an OLT;
-  a.olta = 0.9999485;
-  // The availability of an ONU;
-  a.onua = 0.9999645;
-  // The availability of a passive RN, specifically of the 1:32 power
-  // splitter.
-  a.prna = 0.9999987;
-  // The availability of an active RN, specifically of an OLT.
-  a.arna = a.olta;
-  a.ffa = pow(fapkm, 10);
-  a.dfa = pow(fapkm, 3);
-  a.lfa = pow(fapkm, 0.7);
-
   // The splitting probability.
   a.s = 0.3;
 
   // Integer parameters.
   a.stages = 3;
+
+  // The splitting ratio.
   a.sratio = 32;
 
-  double rs[] = {0.00, 0.001, 0.002, 0.003, 0.004, 0.005, 0.006, 0.007, 0.008, 0.009,
-                 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09,
-                 0.1, 0.15,
-                 0.2, 0.25,
-                 0.3, 0.35,
-                 0.4, 0.45,
-                 0.5, 0.55,
-                 0.6, 0.65,
-                 0.7, 0.75,
-                 0.8, 0.85,
-                 0.9, 0.95,
-                 1.0};
+  // Utilization of operator 1.
+  double o1us[] = {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0,
+                   1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0}
 
-  double qs[] = {0.0, 0.05,
-                 0.1, 0.15,
-                 0.2, 0.25,
-                 0.3, 0.35,
-                 0.4, 0.45,
-                 0.5, 0.55,
-                 0.6, 0.65,
-                 0.7, 0.75,
-                 0.8, 0.85,
-                 0.9, 0.95,
-                 1.0};
+  // Utilization of operator 2.
+  double o2us[] = {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0,
+                   1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0}
 
   int seeds = 100;
   std::list <dblp> rqs;
 
-  for (auto r: rs)
-    for (auto q: qs)
+  for (auto o1u: o1us)
+    for (auto o2u: o1us)
       rqs.push_back (dblp (r, q));
 
   run(a, rqs, seeds);
