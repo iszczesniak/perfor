@@ -1,5 +1,6 @@
 TARGETS = perfor
 TARGET_OBJS = $(addsuffix .o, $(TARGETS))
+LINK.o = $(LINK.cc)
 
 OBJS = args.o progress.o
 
@@ -9,13 +10,10 @@ CXXFLAGS = -g
 CXXFLAGS := $(CXXFLAGS) -Wall -std=c++11 -Wno-deprecated
 
 # Boost
-#BOOSTPATH := /usr/local/boost-1.43
-#CXXFLAGS := $(CXXFLAGS) -I $(BOOSTPATH)/include
-#LDFLAGS := $(LDFLAGS) -L $(BOOSTPATH)/lib
-LDFLAGS := $(LDFLAGS) -l boost_program_options-mt
-LDFLAGS := $(LDFLAGS) -l boost_system-mt
-LDFLAGS := $(LDFLAGS) -l boost_thread-mt
-LDFLAGS := $(LDFLAGS) -l boost_timer-mt
+LDFLAGS := $(LDFLAGS) -l boost_program_options
+LDFLAGS := $(LDFLAGS) -l boost_system
+LDFLAGS := $(LDFLAGS) -l boost_thread
+LDFLAGS := $(LDFLAGS) -l boost_timer
 
 all: $(TARGETS)
 
