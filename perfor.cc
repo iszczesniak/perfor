@@ -1,3 +1,6 @@
+#include "args.hpp"
+#include "simulation.hpp"
+
 int
 main (int argc, const char* argv[])
 {
