@@ -6,8 +6,7 @@
 using namespace std;
 
 /**
- * These are the program arguments.  In this single class we store all
- * information passed at the command line.
+ * These are the simulation arguments.
  */
 struct args
 {
@@ -30,10 +29,4 @@ struct args
   int stages;
 };
 
-/**
- * This function parses the command-line arguments.
- */
-args
-process_args(int argc, const char* argv[]);
-
-#endif /* SDI_ARGS_HPP */
+#endif /* ARGS_HPP */

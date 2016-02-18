@@ -22,8 +22,14 @@ using namespace std;
 namespace ba = boost::accumulators;
 namespace as = boost::asio;
 
-typedef pair <double, double> dblp;
-typedef map <double, map <double, list <double>>> results;
+// Double pair.
+typedef pair <double, double> double_pair;
+
+// The simulation input.
+typedef pair <double_pair, int> sim_input;
+
+// Result type of a single simulation run.
+typedef map <sim_input, double_pair> results;
 
 // Here the threads store their solutions.
 results m;
@@ -45,11 +51,13 @@ public:
     // Random number generator.
     mt19937 gen (m_a.seed);
 
-    graph g;
-    generate_pon (g, m_a, gen);
+    // Generate PONs.
+    graph pon1, pon2;
+    generate_pon (pon1, m_a, gen);
+    generate_pon (pon2, m_a, gen);
 
-    // Calculate the mean ONU availability.
-    double availa = calc_mean_availa (g);
+    // Calculate the mean ONU performance.
+    double_pair perfor = calc_mean_ (g);
 
     m_mutex.lock ();
     m[m_a.r][m_a.q].push_back (availa);
