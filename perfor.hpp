@@ -1,5 +1,5 @@
-#ifndef AVAILA_HPP
-#define AVAILA_HPP
+#ifndef PERFOR_HPP
+#define PERFOR_HPP
 
 #include "args.hpp"
 #include "graph.hpp"
@@ -272,4 +272,4 @@ calc_mean_availa (const G &g)
   return mean_availa (g, va);
 }
 
-#endif /* AVAILA_HPP */
+#endif /* PERFOR_HPP */
