@@ -1,9 +1,7 @@
 #ifndef ARGS_HPP
 #define ARGS_HPP
 
-#include <string>
-
-using namespace std;
+#include <vector>
 
 /**
  * These are the simulation arguments.
@@ -22,11 +20,14 @@ struct args
   /// The probability that a fiber from a RN leads to the next stage.
   double s;
 
-  /// The seed.
-  int seed;
+  /// The number of seeds.
+  int seeds;
 
   /// The number of stages of the PON.
   int stages;
+
+  // The utilization values;
+  std::vector<double> uvs;
 };
 
 #endif /* ARGS_HPP */
