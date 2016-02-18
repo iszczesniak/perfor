@@ -21,9 +21,10 @@ class simulation
   std::mutex m_mutex;
 
 public:
-  simulation(const args &a);
-  void run();
-  void print();
+  simulation (const args &a);
+  void run ();
+  void report (double uv, int seed, double perfor);
+  void print ();
 };
 
 #endif /* SIMULATION_HPP */

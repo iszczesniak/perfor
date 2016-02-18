@@ -1,9 +1,13 @@
 #ifndef GRAPH_HPP
 #define GRAPH_HPP
 
+#include <set>
 #include <string>
 
 #include <boost/graph/adjacency_list.hpp>
+
+// The set of ONUs.
+typedef std::set<int> SOO;
 
 // Vertex types:
 // OLT - well, OLT
@@ -15,9 +19,9 @@ enum VERTEX_T {OLT, ONU, ICO, PRN, ARN};
 
 namespace boost {
   enum vertex_type_t {vertex_type};
-  enum edge_users_t {edge_availa};
+  enum edge_onus_t {edge_onus};
   BOOST_INSTALL_PROPERTY(vertex, type);
-  BOOST_INSTALL_PROPERTY(edge, availa);
+  BOOST_INSTALL_PROPERTY(edge, onus);
 }
 
 /**
@@ -27,7 +31,7 @@ typedef
 boost::adjacency_list<boost::vecS, boost::vecS, boost::bidirectionalS,
                       boost::property<boost::vertex_name_t, std::string,
                       boost::property<boost::vertex_type_t, VERTEX_T> >,
-                      boost::property<boost::edge_availa_t, double> >
+                      boost::property<boost::edge_onus_t, SOO> >
 graph;
 
 typedef graph::edge_descriptor edge;
