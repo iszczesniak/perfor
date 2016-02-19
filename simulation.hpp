@@ -1,25 +1,31 @@
 #ifndef SIMULATION_HPP
 #define SIMULATION_HPP
 
+#include "args.hpp"
+#include "progress.hpp"
+
 #include <map>
 #include <mutex>
 #include <utility>
 
 class simulation
 {
-  // Double pair.
-  typedef std::pair <double, double> double_pair;
+  // Simulation arguments.
+  args m_a;
 
-  // The simulation input.
-  typedef std::pair <double_pair, int> sim_input;
+  // Result type for different seeds.
+  typedef std::map <int, double> rfds_type;
 
-  // Result type of a single simulation run.
-  typedef std::pair <sim_input, double_pair> results;
+  // Result type for dirretent utilization values.
+  typedef std::map <double, rfds_type> results_type;
 
   // Here the threads store their solutions.
-  results m;
-  std::mutex m_mutex;
+  results_type m_results;
+  std::mutex m_results_mutex;
 
+  // Progress indicator;
+  progress m_pi;
+  
 public:
   simulation (const args &a);
   void run ();

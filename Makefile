@@ -1,6 +1,6 @@
 LINK.o = $(LINK.cc)
 
-OBJS = progress.o simulation.o
+OBJS = calc.o perfor.o progress.o simulation.o
 
 CXXFLAGS = -g
 #CXXFLAGS = -O3
@@ -8,6 +8,7 @@ CXXFLAGS = -g
 CXXFLAGS := $(CXXFLAGS) -Wall -std=c++11 -Wno-deprecated
 
 # Boost
+LDFLAGS := $(LDFLAGS) -l boost_system
 LDFLAGS := $(LDFLAGS) -l boost_thread
 LDFLAGS := $(LDFLAGS) -l boost_timer
 
