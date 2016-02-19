@@ -1,3 +1,4 @@
+TARGETS = perfor
 LINK.o = $(LINK.cc)
 
 OBJS = calc.o perfor.o progress.o simulation.o
@@ -19,7 +20,6 @@ perfor: $(OBJS)
 clean:
 	rm -f *~
 	rm -f $(OBJS)
-	rm -f $(TARGET_OBJS)
 	rm -f $(TARGETS)
 
 count:
