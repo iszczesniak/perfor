@@ -40,7 +40,7 @@ simulation::run ()
   // Queue the tasks.
   for (double uv: m_a.uvs)
     for (int seed = 1; seed <= m_a.seeds; ++seed)
-      ios.post (calc (*this, m_a, uv, seed));
+      ios.post (calc (*this, m_a, seed, uv));
 
   // This is needed here, so that all tasks finish.
   work.reset ();
