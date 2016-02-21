@@ -28,9 +28,7 @@ print_pon(const G &g, std::ostream &out, Vertex<G> cn)
 
   out << names [boost::get (boost::vertex_type, g, cn)]
       << " (" << boost::get (boost::vertex_name, g, cn)
-      << ") availability = "
-      << boost::get(boost::vertex_availa, g, cn)
-      << std::endl;
+      << ")" << std::endl;
 
   typename G::out_edge_iterator ei, ee;
   for (tie (ei, ee) = out_edges (cn, g); ei != ee; ++ei)
@@ -40,9 +38,7 @@ print_pon(const G &g, std::ostream &out, Vertex<G> cn)
 
       out << "Edge to ("
           << boost::get (boost::vertex_name, g, nn)
-          << ") availability = "
-          << boost::get(boost::edge_availa, g, e)
-          << std::endl;
+          << ")" << std::endl;
 
       print_pon(g, out, nn);
     }
@@ -53,7 +49,7 @@ void
 print_pon(const G &g, std::ostream &out)
 {
   Vertex<G> olt = *vertices(g).first;
-  assert(boost::get(boost::vertex_type, g, olt) == OLT);
+  assert(boost::get(boost::vertex_type, g, olt) == VERTEX_T::OLT);
   print_pon(g, out, olt);
 }
 

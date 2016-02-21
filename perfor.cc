@@ -26,10 +26,10 @@ main (int argc, const char* argv[])
   // Integer parameters.
   a.stages = 3;
 
-  /// The down rate in bps.
+  // The down rate in bps.
   a.drate = 10 * 1e9;
 
-  /// The up rate in bps.
+  // The up rate in bps.
   a.urate = 2.5 * 1e9;
 
   // The number of seeds, i.e., simulation runs for the given

@@ -3,6 +3,7 @@
 #include "graph.hpp"
 #include "simulation.hpp"
 #include "utils_netgen.hpp"
+#include "utils_tragen.hpp"
 
 #include <random>
 
@@ -22,7 +23,7 @@ calc::operator()()
   generate_pon (pon, m_a, gen);
 
   // Generate traffic.
-  //  generate_traffic(pon, gen);
+  generate_traffic(pon, m_a, gen, m_uv);
 
   // Calculate the mean ONU performance.
   double perfor = m_uv + m_seed;

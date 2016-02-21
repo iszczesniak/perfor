@@ -49,12 +49,12 @@ generate_further(G &g, args &a, T &gen, int stage, Vertex<G> pn)
     {
       // We reached the end.  It's not a stage, but just an ONU.
       // Choose the type of the ONU.
-      nt = rd(gen) ? ICO : ONU;
+      nt = rd(gen) ? VERTEX_T::ICO : VERTEX_T::ONU;
     }
   else
     {
       // It's a new stage, and so set the type of the RN.
-      nt = qd(gen) ? ARN : PRN;
+      nt = qd(gen) ? VERTEX_T::ARN : VERTEX_T::PRN;
 
       for (int i = 0; i < a.sratio; ++i)
         {
@@ -72,7 +72,7 @@ generate_pon(G &g, args &a, T &gen)
 {
   assert(num_vertices(g) == 0);
   Vertex<G> olt = add_vertex(g);
-  boost::get(boost::vertex_type, g, olt) = OLT;
+  boost::get(boost::vertex_type, g, olt) = VERTEX_T::OLT;
   generate_further(g, a, gen, 0, olt);
 }
 
