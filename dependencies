@@ -1,4 +1,5 @@
-args.o: args.cc args.hpp
-availa.o: availa.cc availa.hpp args.hpp graph.hpp progress.hpp utils.hpp \
+calc.o: calc.cc calc.hpp args.hpp simulation.hpp progress.hpp graph.hpp \
  utils_netgen.hpp
+perfor.o: perfor.cc args.hpp simulation.hpp progress.hpp
 progress.o: progress.cc progress.hpp
+simulation.o: simulation.cc simulation.hpp args.hpp progress.hpp calc.hpp

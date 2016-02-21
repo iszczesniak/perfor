@@ -15,7 +15,7 @@ typedef std::set<int> SOO;
 // ICO - IC ONU (Interoperator Communication ONU)
 // ARN - active remote node
 // PRN - passive remote node
-enum VERTEX_T {OLT, ONU, ICO, PRN, ARN};
+enum class VERTEX_T {OLT, ONU, ICO, PRN, ARN};
 
 namespace boost {
   enum vertex_type_t {vertex_type};
