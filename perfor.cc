@@ -1,11 +1,24 @@
 #include "args.hpp"
 #include "simulation.hpp"
 
+#include <iostream>
+
+using namespace std;
+
 int
 main (int argc, const char* argv[])
 {
   // Arguments that we pass around.
   args a;
+
+  // The splitting ratio.
+  a.sratio = 32;
+
+  // The probability that a remote node is active.
+  a.q = 0.1;
+
+  // The probability that an ONU is connected to the other operator.
+  a.r = 0.05;
 
   // The splitting probability.
   a.s = 0.3;
@@ -13,8 +26,11 @@ main (int argc, const char* argv[])
   // Integer parameters.
   a.stages = 3;
 
-  // The splitting ratio.
-  a.sratio = 32;
+  /// The down rate in bps.
+  a.drate = 10 * 1e9;
+
+  /// The up rate in bps.
+  a.urate = 2.5 * 1e9;
 
   // The number of seeds, i.e., simulation runs for the given
   // parameters.

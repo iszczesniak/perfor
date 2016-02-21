@@ -20,14 +20,20 @@ struct args
   /// The probability that a fiber from a RN leads to the next stage.
   double s;
 
-  /// The number of seeds.
-  int seeds;
-
   /// The number of stages of the PON.
   int stages;
 
+  /// The down rate in bps.
+  double drate;
+
+  /// The up rate in bps.
+  double urate;
+
   // The utilization values;
   std::vector<double> uvs;
+
+  /// The number of seeds.
+  int seeds;
 };
 
 #endif /* ARGS_HPP */
