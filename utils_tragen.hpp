@@ -21,7 +21,7 @@ generate_traffic(G &g, args &a, T &gen, double uv)
   int onus = count_node_types(g, VERTEX_T::ONU);
   onus += count_node_types(g, VERTEX_T::ICO);
 
-  // The bitrate for ONU.
+  // The average bitrate for ONU.
   double bfo = a.drate * uv / onus;
 
   Viter<G> vi, ve;
