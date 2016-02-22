@@ -4,6 +4,7 @@
 #include <set>
 #include <string>
 
+#include <boost/optional.hpp>
 #include <boost/graph/adjacency_list.hpp>
 
 // The set of ONUs.
@@ -19,8 +20,10 @@ enum class VERTEX_T {OLT, ONU, ICO, PRN, ARN};
 
 namespace boost {
   enum vertex_type_t {vertex_type};
+  enum vertex_drate_t {vertex_drate};
   enum edge_onus_t {edge_onus};
   BOOST_INSTALL_PROPERTY(vertex, type);
+  BOOST_INSTALL_PROPERTY(vertex, drate);
   BOOST_INSTALL_PROPERTY(edge, onus);
 }
 
@@ -30,7 +33,9 @@ namespace boost {
 typedef
 boost::adjacency_list<boost::vecS, boost::vecS, boost::bidirectionalS,
                       boost::property<boost::vertex_name_t, std::string,
-                      boost::property<boost::vertex_type_t, VERTEX_T> >,
+                      boost::property<boost::vertex_type_t, VERTEX_T,
+                      boost::property<boost::vertex_drate_t,
+                                      boost::optional<double> > > >,
                       boost::property<boost::edge_onus_t, SOO> >
 graph;
 
