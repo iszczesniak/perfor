@@ -42,7 +42,8 @@ generate_further (G &g, args &a, T &gen, int stage, Vertex<G> pn)
   // This is the first node.  It can be an ONU or a RN.
   Vertex<G> n = add_vertex(g);
   // The first fiber.
-  Edge<G> f = add_edge(pn, n, g).first;
+  bool status = add_edge(pn, n, g).second;
+  assert(status);
 
   // The type of the first node.
   VERTEX_T nt;
@@ -76,7 +77,7 @@ generate_pon(G &g, args &a, T &gen)
 
 template<typename G, typename T>
 void
-interconnect_pons (G &pon1, G &pon2, double r)
+interconnect_pons (G &pon1, G &pon2, double r, T &gen)
 {
   // The number of ONUs in pon1.
   int onus = count_node_types(pon1, VERTEX_T::ONU);
@@ -84,14 +85,14 @@ interconnect_pons (G &pon1, G &pon2, double r)
   int icos = onus * r;
 
   // The set of ONUs in pon1.
-  auto soo1 = get_nodes (g, VERTEX_T::ONU);
+  auto soo1 = get_nodes (pon1, VERTEX_T::ONU);
   // The set of ONUs in pon2.
-  auto soo2 = get_nodes (g, VERTEX_T::ONU);
+  auto soo2 = get_nodes (pon2, VERTEX_T::ONU);
 
   for (int i = 0; i < icos; ++i)
     {
       Vertex<G> v1 = get_random_element (soo1, gen);
-      Vertex<G> v2 = get_random_element (soo1, gen);
+      Vertex<G> v2 = get_random_element (soo2, gen);
       
       soo1.erase (v1);
       soo2.erase (v2);

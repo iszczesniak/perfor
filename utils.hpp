@@ -26,6 +26,7 @@ get_nodes (const G &g, VERTEX_T t)
 {
   std::set<Vertex<G>> soo;
 
+  Viter<G> vi, ve;
   for (tie(vi, ve) = vertices (g); vi != ve; ++vi)
     if (boost::get (boost::vertex_type, g, *vi) == t)
       soo.insert (*vi);
@@ -45,7 +46,7 @@ get_random_element(const C &c, T &gen)
   std::uniform_int_distribution<> dist (0, c.size() - 1);
   int value = dist (gen);
   typename C::const_iterator i = c.begin();
-  std::advance(i, rand_gen());
+  std::advance(i, value);
 
   return *i;
 }
