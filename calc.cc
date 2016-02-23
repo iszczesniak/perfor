@@ -19,9 +19,13 @@ calc::operator()()
   std::mt19937 gen (m_seed);
 
   // Generate PON.
-  graph pon;
-  generate_pon (pon, m_a, gen);
+  graph pon1, pon2;
+  generate_pon (pon1, m_a, gen);
+  generate_pon (pon2, m_a, gen);
 
+  // Interconnect PONs.
+  interconnect_pons (pon1, pon2, m_a.r);
+  
   // Generate traffic.
   generate_traffic (pon, m_a, gen, m_uv);
 

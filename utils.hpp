@@ -5,6 +5,8 @@
 
 #include <iomanip>
 #include <iostream>
+#include <random>
+#include <set>
 
 template<typename G>
 int
@@ -15,6 +17,37 @@ count_node_types(const G &g, VERTEX_T t)
   for (tie(vi, ve) = vertices(g); vi != ve; ++vi)
     count += (boost::get(boost::vertex_type, g, *vi) == t);
   return count;
+}
+
+// The set of nodes of given type in a pon.
+template<typename G>
+std::set<Vertex<G>>
+get_nodes (const G &g, VERTEX_T t)
+{
+  std::set<Vertex<G>> soo;
+
+  for (tie(vi, ve) = vertices (g); vi != ve; ++vi)
+    if (boost::get (boost::vertex_type, g, *vi) == t)
+      soo.insert (*vi);
+
+  return soo;
+}
+
+/**
+ * Get a random element from a container.
+ */
+template <typename C, typename T>
+typename C::value_type
+get_random_element(const C &c, T &gen)
+{
+  assert(!c.empty());
+
+  std::uniform_int_distribution<> dist (0, c.size() - 1);
+  int value = dist (gen);
+  typename C::const_iterator i = c.begin();
+  std::advance(i, rand_gen());
+
+  return *i;
 }
 
 /// Prints out the stage for the current node, cn, ignoring the
