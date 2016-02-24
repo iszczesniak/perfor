@@ -75,28 +75,4 @@ generate_pon(G &g, args &a, T &gen)
   generate_further(g, a, gen, 0, olt);
 }
 
-template<typename G, typename T>
-void
-interconnect_pons (G &pon1, G &pon2, double r, T &gen)
-{
-  // The number of ONUs in pon1.
-  int onus = count_node_types(pon1, VERTEX_T::ONU);
-  // The number of ICOs in pon1 to generate.
-  int icos = onus * r;
-
-  // The set of ONUs in pon1.
-  auto soo1 = get_nodes (pon1, VERTEX_T::ONU);
-  // The set of ONUs in pon2.
-  auto soo2 = get_nodes (pon2, VERTEX_T::ONU);
-
-  for (int i = 0; i < icos; ++i)
-    {
-      Vertex<G> v1 = get_random_element (soo1, gen);
-      Vertex<G> v2 = get_random_element (soo2, gen);
-      
-      soo1.erase (v1);
-      soo2.erase (v2);
-    }
-}
-
 #endif /* UTILS_NETGEN_HPP */
