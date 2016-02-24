@@ -37,6 +37,7 @@ void
 generate_further (G &g, args &a, T &gen, int stage, Vertex<G> pn)
 {
   std::bernoulli_distribution qd(a.q);
+  std::bernoulli_distribution rd(a.r);
   std::bernoulli_distribution sd(a.s);
 
   // This is the first node.  It can be an ONU or a RN.
@@ -49,7 +50,9 @@ generate_further (G &g, args &a, T &gen, int stage, Vertex<G> pn)
   VERTEX_T nt;
 
   if (stage == a.stages)
-    nt = VERTEX_T::ONU;
+    // We reached the end.  It's not a stage, but just an ONU.  Choose
+    // the type of the ONU.
+    nt = rd(gen) ? VERTEX_T::ICO : VERTEX_T::ONU;
   else
     {
       // It's a new stage, and so set the type of the RN.
