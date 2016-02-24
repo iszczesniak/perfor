@@ -23,7 +23,7 @@ calc::operator()()
   generate_pon (pon, m_a, gen);
   
   // Generate traffic.
-  generate_traffic (pon1, m_a, gen, m_uv);
+  generate_traffic (pon, m_a, gen, m_uv);
 
   // Calculate the mean ONU performance.
   double perfor = m_uv + m_seed;
