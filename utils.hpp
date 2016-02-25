@@ -21,17 +21,27 @@ count_node_types(const G &g, VERTEX_T t)
 
 // The set of nodes of given type in a pon.
 template<typename G>
-std::set<Vertex<G>>
+std::set<Vertex<G> >
 get_nodes (const G &g, VERTEX_T t)
 {
-  std::set<Vertex<G>> soo;
+  std::set<Vertex<G> > s;
 
   Viter<G> vi, ve;
   for (tie(vi, ve) = vertices (g); vi != ve; ++vi)
     if (boost::get (boost::vertex_type, g, *vi) == t)
-      soo.insert (*vi);
+      s.insert (*vi);
 
-  return soo;
+  return s;
+}
+
+template<typename G>
+std::set<Vertex<G> >
+get_onus (const G &g)
+{
+  std::set<Vertex<G> > s1 = get_nodes (g, VERTEX_T::ONU);
+  std::set<Vertex<G> > s2 = get_nodes (g, VERTEX_T::ICO);
+  s1.insert (s2.begin (), s2.end ());
+  return s1;
 }
 
 /**
