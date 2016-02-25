@@ -96,7 +96,7 @@ parallel_availa (const G &g, Vertex <G> cv, Vertex <G> pv, bool fu = true)
 // a different ONU.
 template<typename G>
 double
-calc_onu_availa (const G &g, Vertex <G> cn, Vertex <G> pn)
+process_onu (const G &g, Vertex <G> cn, Vertex <G> pn)
 {
   assert (boost::get (boost::vertex_type, g, cn) == ONU);
 
@@ -118,7 +118,7 @@ calc_onu_availa (const G &g, Vertex <G> cn, Vertex <G> pn)
 // pn vertex.
 template <typename G>
 double
-calc_arn_availa (const G &g, Vertex <G> cn, Vertex <G> pn)
+process_arn (const G &g, Vertex <G> cn, Vertex <G> pn)
 {
   assert (boost::get (boost::vertex_type, g, cn) == ARN);
 
@@ -170,7 +170,7 @@ trace_prns (const G &g, Vertex <G> cn, Vertex <G> pn)
 // when we reach this node from a downstream node.
 template <typename G>
 double
-calc_prn_availa (const G &g, Vertex <G> cn, Vertex <G> pn)
+find_prn_availa (const G &g, Vertex <G> cn, Vertex <G> pn)
 {
   assert (boost::get (boost::vertex_type, g, cn) == PRN);
 
@@ -193,26 +193,32 @@ calc_prn_availa (const G &g, Vertex <G> cn, Vertex <G> pn)
   return availa;
 }
 
+template <typename G>
+double
+process_olt (const G &g, Vertex <G> cn, Vertex <G> pn)
+{
+  assert (boost::get (boost::vertex_type, g, cn) == PRN);
+}
+
 // Calculate the availability for the given node.
 template <typename G>
 double
-calc_availa (const G &g, Vertex <G> cn, Vertex <G> pn)
+find_paths (const G &g, Vertex <G> cn, Vertex <G> pn)
 {
   VERTEX_T t = boost::get (boost::vertex_type, g, cn);
-  double availa;
 
   if (t == ONU)
-    availa = calc_onu_availa (g, cn, pn);
+    availa = process_onu (g, cn, pn);
   else if (t == ICO)
-    availa = boost::get (boost::vertex_availa, g, cn);
+    availa = process_ico (g, cn, pn);
   else if (t == PRN)
-    availa = calc_prn_availa (g, cn, pn);
+    availa = process_prn (g, cn, pn);
   else if (t == ARN)
-    availa = calc_arn_availa (g, cn, pn);
+    availa = process_arn (g, cn, pn);
   else if (t == OLT)
-    availa = boost::get (boost::vertex_availa, g, cn);
+    availa = process_olt (g, cn, pn);
   else
-    assert (false);
+    abort ();
 
   return availa;
 }
@@ -222,14 +228,18 @@ template <typename G>
 void
 calc_perfors (const G &g, vmap <G> &va)
 {
-  // Iterate over all the ONUs.
-  Viter <G> vi, ve;
-  for (tie (vi, ve) = vertices (g); vi != ve; ++vi)
+  auto onus = get_onus (g);
+
+  // Iterate over every ONU, and find its paths.
+  for(const auto v: get_onus (g))
     {
-      Vertex <G> v = *vi;
-      VERTEX_T t = boost::get (boost::vertex_type, g, v);
-      if (t == VERTEX_T::ONU || t == VERTEX_T::ICO)
-        va[v] = calc_perfor (g, v, G::null_vertex ());
+      
+    }
+
+  // Choose a path for an ONU, and calculate its performance.
+  for(const auto v: onus)
+    {
+
     }
 }
 
@@ -237,39 +247,33 @@ calc_perfors (const G &g, vmap <G> &va)
 // performance values have been calculated for all ONUs.
 template <typename G>
 double
-mean_perfor (const G &g, const vmap <G> &va)
+mean_perfor (const G &g, const vmap <G> &p)
 {
-  ba::accumulator_set <double, ba::stats <ba::tag::mean> > N_acc;
+  // The performance accumulator.
+  ba::accumulator_set <double, ba::stats <ba::tag::mean> > pa;
 
-  Viter <G> vi, ve;
-  for (tie (vi, ve) = vertices (g); vi != ve; ++vi)
+  for(const auto v: get_onus (g))
     {
-      Vertex <G> v = *vi;
-      VERTEX_T t = boost::get (boost::vertex_type, g, v);
-
-      if (t == VERTEX_T::ONU || t == VERTEX_T::ICO)
-        {
-          // We want to make sure that all ONUs have the performance.
-          typename vmap <G>::const_iterator i = va.find (v);
-          assert (i != va.end ());
-          N_acc (i->second);
-        }
+      // We want to make sure that all ONUs have the performance.
+      typename vmap <G>::const_iterator i = p.find (v);
+      assert (i != p.end ());
+      pa (i->second);
     }
 
-  return ba::mean (N_acc);
+  return ba::mean (pa);
 }
 
 /**
- * Calculates the mean performance of ONUs.
+ * Calculates the mean performance of ONUs, including ICOs.
  */
 template <typename G>
 double
 calc_mean_perfor (const G &g)
 {
-  // Vertex performance values.
-  vmap <G> va;
-  calc_perfors (g, va);
-  return mean_perfor (g, va);
+  // Vertex performance.
+  vmap <G> p;
+  calc_perfors (g, p);
+  return mean_perfor (g, p);
 }
 
 #endif /* PERFOR_HPP */
