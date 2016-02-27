@@ -23,20 +23,14 @@ namespace boost {
   enum vertex_type_t {vertex_type};
   // Downstream datarate required for vertex.
   enum vertex_drate_t {vertex_drate};
-  // ONUs allocated downstream on the edge.
-  enum edge_donus_t {edge_donus};
-  // ONUs allocated upstream on the edge.
-  enum edge_uonus_t {edge_uonus};
-  // Available downstream datarate of an edge.
-  enum edge_drate_t {edge_drate};
-  // Available upstream datarate of an edge.
-  enum edge_urate_t {edge_urate};
+  // ONUs allocated on the edge.
+  enum edge_onus_t {edge_onus};
+  // Available datarate of an edge.
+  enum edge_rate_t {edge_rate};
   BOOST_INSTALL_PROPERTY(vertex, type);
   BOOST_INSTALL_PROPERTY(vertex, drate);
-  BOOST_INSTALL_PROPERTY(edge, donus);
-  BOOST_INSTALL_PROPERTY(edge, uonus);
-  BOOST_INSTALL_PROPERTY(edge, drate);
-  BOOST_INSTALL_PROPERTY(edge, urate);
+  BOOST_INSTALL_PROPERTY(edge, onus);
+  BOOST_INSTALL_PROPERTY(edge, rate);
 }
 
 /**
@@ -47,10 +41,8 @@ boost::adjacency_list<boost::vecS, boost::vecS, boost::bidirectionalS,
                       boost::property<boost::vertex_name_t, std::string,
                       boost::property<boost::vertex_type_t, VERTEX_T,
                       boost::property<boost::vertex_drate_t, double> > >,
-                      boost::property<boost::edge_drate_t, double,
-                      boost::property<boost::edge_urate_t, double,
-                      boost::property<boost::edge_donus_t, SOO,
-                      boost::property<boost::edge_uonus_t, SOO> > > > >
+                      boost::property<boost::edge_rate_t, double,
+                      boost::property<boost::edge_onus_t, SOO> > >
 graph;
 
 typedef graph::edge_descriptor edge;

@@ -31,6 +31,17 @@ name_vertices (G &g)
     }
 }
 
+template<typename G, typename T>
+void
+add_edge_and_rate(G &g, Vertex<G> pn, Vertex<G> n, T rate)
+{
+  bool s;
+  Edge<G> e;
+  tie(e, s) = boost::add_edge(pn, n, g);
+  assert(s);
+  boost::get(boost::edge_rate, g, e) = rate;
+}
+
 // We start counting stages from 0. pn is the previous node.
 template<typename G, typename T>
 void
@@ -42,10 +53,12 @@ generate_further (G &g, args &a, T &gen, int stage, Vertex<G> pn)
 
   // This is the first node.  It can be an ONU or a RN.
   Vertex<G> n = add_vertex(g);
-  // The first fiber.
-  bool status = add_edge(pn, n, g).second;
-  assert(status);
 
+  // The downstream edge.
+  add_edge_and_rate (g, pn, n, a.drate);
+  // The upstream edge.
+  add_edge_and_rate (g, n, pn, a.urate);
+  
   // The type of the first node.
   VERTEX_T nt;
 
