@@ -67,10 +67,7 @@ template<typename G>
 void
 print_pon(const G &g, std::ostream &out, Vertex<G> cn)
 {
-  const static char *names[] = {"OLT", "ONU", "ICO",
-                              "PRN", "ARN"};
-
-  out << names [boost::get (boost::vertex_type, g, cn)]
+  out << to_string (boost::get (boost::vertex_type, g, cn))
       << " (" << boost::get (boost::vertex_name, g, cn)
       << ")" << std::endl;
 

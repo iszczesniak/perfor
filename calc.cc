@@ -6,6 +6,9 @@
 #include "utils_tragen.hpp"
 
 #include <random>
+#include <sstream>
+
+using namespace std;
 
 calc::calc(simulation &sim, const args &a, int seed, double uv):
   m_sim (sim), m_a (a), m_seed (seed), m_uv (uv)
@@ -16,7 +19,7 @@ void
 calc::operator()()
 {
   // Random number generator.
-  std::mt19937 gen (m_seed);
+  mt19937 gen (m_seed);
 
   // Generate PON.
   graph pon;
@@ -27,6 +30,10 @@ calc::operator()()
 
   // Calculate the mean ONU performance.
   double perfor = m_uv + m_seed;
+
+  ostringstream o;
+  print_pon (pon, cout);
+  string text = o.str ();
 
   // Report the result back to the simulation object.
   m_sim.report (m_uv, m_seed, perfor);

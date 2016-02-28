@@ -57,4 +57,7 @@ using Viter = typename G::vertex_iterator;
 template <typename G>
 using Vertex = typename G::vertex_descriptor;
 
+std::string
+to_string (VERTEX_T t);
+
 #endif /* GRAPH_HPP */
