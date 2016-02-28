@@ -61,11 +61,11 @@ get_random_element(const C &c, T &gen)
   return *i;
 }
 
-/// Prints out the stage for the current node, cn, ignoring the
-/// previous node, pn.
+/// Prints out the stage for the current node, cn, given the previous
+/// node pn.
 template<typename G>
 void
-print_pon(const G &g, std::ostream &out, Vertex<G> cn)
+print_pon(const G &g, std::ostream &out, Vertex<G> cn, Vertex<G> pn)
 {
   out << to_string (boost::get (boost::vertex_type, g, cn))
       << " (" << boost::get (boost::vertex_name, g, cn)
@@ -77,11 +77,15 @@ print_pon(const G &g, std::ostream &out, Vertex<G> cn)
       Edge<G> e = *ei;
       Vertex<G> nn = boost::target(e, g);
 
-      out << "Edge to ("
-          << boost::get (boost::vertex_name, g, nn)
-          << ")" << std::endl;
+      // Don't follow upstream.
+      if (nn != pn)
+        {
+          out << "Edge to ("
+              << boost::get (boost::vertex_name, g, nn)
+              << ")" << std::endl;
 
-      print_pon(g, out, nn);
+          print_pon(g, out, nn, cn);
+        }
     }
 }
 
@@ -91,7 +95,7 @@ print_pon(const G &g, std::ostream &out)
 {
   Vertex<G> olt = *vertices(g).first;
   assert(boost::get(boost::vertex_type, g, olt) == VERTEX_T::OLT);
-  print_pon(g, out, olt);
+  print_pon(g, out, olt, G::null_vertex ());
 }
 
 #endif /* UTILS_HPP */

@@ -24,7 +24,8 @@ calc::operator()()
   // Generate PON.
   graph pon;
   generate_pon (pon, m_a, gen);
-  
+  name_vertices(pon);
+
   // Generate traffic.
   generate_traffic (pon, m_a, gen, m_uv);
 
@@ -34,6 +35,7 @@ calc::operator()()
   ostringstream o;
   print_pon (pon, cout);
   string text = o.str ();
+  text += "------------------------------------------\n";
 
   // Report the result back to the simulation object.
   m_sim.report (m_uv, m_seed, perfor);
