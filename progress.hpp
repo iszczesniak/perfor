@@ -4,6 +4,7 @@
 #include <boost/timer/timer.hpp>
 
 #include <mutex>
+#include <string>
 
 class progress
 {
@@ -15,7 +16,7 @@ class progress
 public:
   progress (int target);
   void
-  report ();
+  report (const std::string &text = "");
 };
 
 #endif /* PROGRESS_HPP */
