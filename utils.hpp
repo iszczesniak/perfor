@@ -67,10 +67,6 @@ template<typename G>
 void
 print_pon(const G &g, std::ostream &out, Vertex<G> cn, Vertex<G> pn)
 {
-  out << to_string (boost::get (boost::vertex_type, g, cn))
-      << " (" << boost::get (boost::vertex_name, g, cn)
-      << ")" << std::endl;
-
   typename G::out_edge_iterator ei, ee;
   for (tie (ei, ee) = out_edges (cn, g); ei != ee; ++ei)
     {
@@ -80,9 +76,25 @@ print_pon(const G &g, std::ostream &out, Vertex<G> cn, Vertex<G> pn)
       // Don't follow upstream.
       if (nn != pn)
         {
-          out << "Edge to ("
-              << boost::get (boost::vertex_name, g, nn)
+          out << to_string (boost::get (boost::vertex_type, g, cn))
+              << " (" << boost::get (boost::vertex_name, g, cn)
+              << ") -> " << to_string (boost::get (boost::vertex_type, g, nn))
+              << " (" << boost::get (boost::vertex_name, g, nn)
               << ")" << std::endl;
+
+          out << "Downstream: rate = "
+              << boost::get (boost::edge_rate, g, e)
+              << std::endl;
+
+          // The reverse edge.
+          Edge<G> re;
+          bool rs;
+          tie(re, rs) = boost::edge(nn, cn, g);
+          assert(rs);
+          
+          out << "Upstream: rate = "
+              << boost::get (boost::edge_rate, g, re)
+              << std::endl;
 
           print_pon(g, out, nn, cn);
         }
