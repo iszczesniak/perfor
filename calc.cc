@@ -33,10 +33,10 @@ calc::operator()()
   double perfor = m_uv + m_seed;
 
   ostringstream o;
-  print_pon (pon, cout);
+  print_pon (pon, o);
+  o << "------------------------------------------" << endl;
   string text = o.str ();
-  text += "------------------------------------------\n";
 
   // Report the result back to the simulation object.
-  m_sim.report (m_uv, m_seed, perfor);
+  m_sim.report (m_uv, m_seed, perfor, text);
 }

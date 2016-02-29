@@ -6,6 +6,7 @@
 
 #include <map>
 #include <mutex>
+#include <string>
 #include <utility>
 
 class simulation
@@ -29,7 +30,7 @@ class simulation
 public:
   simulation (const args &a);
   void run ();
-  void report (double uv, int seed, double perfor);
+  void report (double uv, int seed, double perfor, const std::string &text);
   void print ();
 };
 

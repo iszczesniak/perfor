@@ -49,14 +49,14 @@ simulation::run ()
 }
 
 void
-simulation::report(double uv, int seed, double perfor)
+simulation::report(double uv, int seed, double perfor, const string &text)
 {
   m_results_mutex.lock ();
   m_results[uv][seed] = perfor;
   m_results_mutex.unlock ();
 
   // Update the progress indicator.
-  m_pi.report ();
+  m_pi.report (text);
 }
 
 void
