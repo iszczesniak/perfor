@@ -7,7 +7,9 @@
 #include <boost/accumulators/accumulators.hpp>
 #include <boost/accumulators/statistics/stats.hpp>
 #include <boost/accumulators/statistics/mean.hpp>
-#include <boost/graph/dijkstra_shortest_paths.hpp>
+
+#include <boost/graph/breadth_first_search.hpp>
+#include <boost/graph/visitors.hpp>
 
 #include <iomanip>
 #include <map>
@@ -26,9 +28,15 @@ void
 calc_perfors (const G &g, vmap <G> &va)
 {
   // Iterate over OLT and ICOs, and find paths to all other nodes.
-  for(const auto v: get_nodes (g, VERTEX_T::OLT, VERTEX_T::ICO))
+  for(const auto s: get_nodes (g, VERTEX_T::OLT, VERTEX_T::ICO))
     {
-      std::vector<edge_descriptor> pred_vec(num_vertices(g));
+      std::vector<Vertex<G> > pred (num_vertices (g));
+      pred[s] = s;
+
+      auto rp = boost::record_predecessors(pred, boost::on_tree_edge());
+      auto visitor = boost::make_bfs_visitor (rp);
+
+      boost::breadth_first_search (g, s, boost::visitor (visitor));
     }
 }
 
