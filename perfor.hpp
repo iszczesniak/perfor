@@ -27,16 +27,19 @@ template <typename G>
 void
 calc_perfors (const G &g, vmap <G> &va)
 {
+  auto im = get (boost::vertex_index_t(), g);
+  std::vector<Vertex<G> > pred_vec (num_vertices (g));
+  auto pred = make_iterator_property_map (pred_vec.begin(), im);
+
   // Iterate over OLT and ICOs, and find paths to all other nodes.
   for(const auto s: get_nodes (g, VERTEX_T::OLT, VERTEX_T::ICO))
     {
-      std::vector<Vertex<G> > pred (num_vertices (g));
-      pred[s] = s;
+      put (pred, s, s);
 
-      auto rp = boost::record_predecessors(pred, boost::on_tree_edge());
-      auto visitor = boost::make_bfs_visitor (rp);
+      auto rp = boost::record_predecessors (pred, boost::on_tree_edge ());
+      auto vis = boost::make_bfs_visitor (rp);
 
-      boost::breadth_first_search (g, s, boost::visitor (visitor));
+      boost::breadth_first_search (g, s, boost::visitor (vis));
     }
 }
 
