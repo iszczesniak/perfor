@@ -7,6 +7,7 @@
 #include <boost/accumulators/accumulators.hpp>
 #include <boost/accumulators/statistics/stats.hpp>
 #include <boost/accumulators/statistics/mean.hpp>
+#include <boost/graph/dijkstra_shortest_paths.hpp>
 
 #include <iomanip>
 #include <map>
@@ -24,11 +25,10 @@ template <typename G>
 void
 calc_perfors (const G &g, vmap <G> &va)
 {
-  // Iterate over every ONU, and find all its paths.
+  // Iterate over OLT and ICOs, and find paths to all other nodes.
   for(const auto v: get_nodes (g, VERTEX_T::OLT, VERTEX_T::ICO))
     {
-      // The source vertex.
-      Vertex<G> s = v;
+      std::vector<edge_descriptor> pred_vec(num_vertices(g));
     }
 }
 
