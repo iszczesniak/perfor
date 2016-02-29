@@ -36,10 +36,10 @@ get_nodes (const G &g, VERTEX_T t)
 
 template<typename G>
 std::set<Vertex<G> >
-get_onus (const G &g)
+get_nodes (const G &g, VERTEX_T t1, VERTEX_T t2)
 {
-  std::set<Vertex<G> > s1 = get_nodes (g, VERTEX_T::ONU);
-  std::set<Vertex<G> > s2 = get_nodes (g, VERTEX_T::ICO);
+  std::set<Vertex<G> > s1 = get_nodes (g, t1);
+  std::set<Vertex<G> > s2 = get_nodes (g, t2);
   s1.insert (s2.begin (), s2.end ());
   return s1;
 }
