@@ -15,12 +15,42 @@
 #include <map>
 #include <random>
 #include <sstream>
+#include <tuple>
 
 namespace ba = boost::accumulators;
 
 // The type where the calculated performance values are stored.
 template <typename G>
 using vmap = std::map <Vertex <G>, double>;
+
+// Trace path
+template <typename G, typename M>
+Path<G>
+trace_path (const G &g, const M &m, Vertex<G> t)
+{
+  Path<G> path;
+
+  Vertex<G> c = t;
+
+  while(true)
+    {
+      // Predecessing node.
+      Vertex<G> p = get(m, c);
+
+      if (p == c)
+        break;
+
+      Edge<G> e;
+      bool s;
+      std::tie(e, s) = boost::edge(p, c, g);
+      assert(s);
+      path.push_front(e);
+
+      c = p;
+    }
+
+  return path;
+}
 
 // Calculate performance values for all ONUs.
 template <typename G>
@@ -39,8 +69,12 @@ calc_perfors (const G &g, vmap <G> &va)
       auto vis = boost::make_bfs_visitor (rp);
       boost::breadth_first_search (g, s, boost::visitor (vis));
 
-      // Find a path to a given ONU or ICO.
-      for(const auto t: get_nodes (g, VERTEX_T::OLT, VERTEX_T::ICO))      
+      // Find a path to a given target: ONU or ICO.
+      for(const auto t: get_nodes (g, VERTEX_T::ONU, VERTEX_T::ICO))
+        {
+          auto p = trace_path (g, pred, t);
+          
+        }
     }
 }
 
