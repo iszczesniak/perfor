@@ -35,11 +35,12 @@ calc_perfors (const G &g, vmap <G> &va)
   for(const auto s: get_nodes (g, VERTEX_T::OLT, VERTEX_T::ICO))
     {
       put (pred, s, s);
-
       auto rp = boost::record_predecessors (pred, boost::on_tree_edge ());
       auto vis = boost::make_bfs_visitor (rp);
-
       boost::breadth_first_search (g, s, boost::visitor (vis));
+
+      // Find a path to a given ONU or ICO.
+      for(const auto t: get_nodes (g, VERTEX_T::OLT, VERTEX_T::ICO))      
     }
 }
 
