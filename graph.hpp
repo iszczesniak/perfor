@@ -1,6 +1,7 @@
 #ifndef GRAPH_HPP
 #define GRAPH_HPP
 
+#include <list>
 #include <set>
 #include <string>
 
@@ -56,6 +57,9 @@ using Viter = typename G::vertex_iterator;
 
 template <typename G>
 using Vertex = typename G::vertex_descriptor;
+
+template <typename G>
+using Path = std::list <Edge<G> >;
 
 std::string
 to_string (VERTEX_T t);
