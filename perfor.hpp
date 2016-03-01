@@ -21,7 +21,7 @@ namespace ba = boost::accumulators;
 
 // The type where the calculated performance values are stored.
 template <typename G>
-using vmap = std::map <Vertex <G>, double>;
+using v2d = std::map <Vertex <G>, double>;
 
 // Trace path
 template <typename G, typename M>
@@ -55,8 +55,14 @@ trace_path (const G &g, const M &m, Vertex<G> t)
 // Calculate performance values for all ONUs.
 template <typename G>
 void
-calc_perfors (const G &g, vmap <G> &va)
+calc_perfors (const G &g, v2d <G> &va)
 {
+  // The Vertex to list of paths.
+  typedef typename std::map <Vertex <G>, std::list<Path <G> > > v2lp;
+
+  // The shortest paths.
+  v2lp paths;
+
   auto im = get (boost::vertex_index_t(), g);
   std::vector<Vertex<G> > pred_vec (num_vertices (g));
   auto pred = make_iterator_property_map (pred_vec.begin(), im);
@@ -73,7 +79,7 @@ calc_perfors (const G &g, vmap <G> &va)
       for(const auto t: get_nodes (g, VERTEX_T::ONU, VERTEX_T::ICO))
         {
           auto p = trace_path (g, pred, t);
-          
+          paths[t].push_back(p);
         }
     }
 }
@@ -82,7 +88,7 @@ calc_perfors (const G &g, vmap <G> &va)
 // performance values have been calculated for all ONUs.
 template <typename G>
 double
-mean_perfor (const G &g, const vmap <G> &p)
+mean_perfor (const G &g, const v2d <G> &p)
 {
   // The performance accumulator.
   ba::accumulator_set <double, ba::stats <ba::tag::mean> > pa;
@@ -90,7 +96,7 @@ mean_perfor (const G &g, const vmap <G> &p)
   for(const auto v: get_nodes (g, VERTEX_T::ONU, VERTEX_T::ICO))
     {
       // We want to make sure that all ONUs have the performance.
-      typename vmap <G>::const_iterator i = p.find (v);
+      typename v2d <G>::const_iterator i = p.find (v);
       assert (i != p.end ());
       pa (i->second);
     }
@@ -106,7 +112,7 @@ double
 calc_mean_perfor (const G &g)
 {
   // Vertex performance.
-  vmap <G> p;
+  v2d <G> p;
   calc_perfors (g, p);
   return mean_perfor (g, p);
 }
