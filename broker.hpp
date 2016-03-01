@@ -4,6 +4,7 @@
 #include <boost/graph/breadth_first_search.hpp>
 #include <boost/graph/visitors.hpp>
 
+#include <list>
 #include <map>
 #include <tuple>
 
@@ -15,6 +16,9 @@ class broker
 
   // The shortest paths.
   v2lp paths;
+
+  // Nodes that need service.
+  std::list <Vertex <G> > nodes;
 
   // The graph we're working on.
   const G &m_g;
@@ -46,6 +50,7 @@ public:
   void
   push (Vertex<G> v)
   {
+    nodes.push_back (v);
   }
 
   void

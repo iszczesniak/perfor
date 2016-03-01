@@ -1,5 +1,5 @@
 calc.o: calc.cc calc.hpp args.hpp simulation.hpp progress.hpp graph.hpp \
- perfor.hpp utils_netgen.hpp utils.hpp utils_tragen.hpp
+ perfor.hpp broker.hpp utils_netgen.hpp utils.hpp utils_tragen.hpp
 graph.o: graph.cc graph.hpp
 perfor.o: perfor.cc args.hpp simulation.hpp progress.hpp
 progress.o: progress.cc progress.hpp
