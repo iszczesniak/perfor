@@ -30,7 +30,7 @@ generate_traffic(G &g, args &a, T &gen, double uv)
       VERTEX_T vt = boost::get(boost::vertex_type, g, *vi);
 
       if (vt == VERTEX_T::ONU || vt == VERTEX_T::ICO)
-        boost::get(boost::vertex_drate, g, *vi) = bfo; 
+        boost::get(boost::vertex_dr_req, g, *vi) = bfo; 
     }
 }
 

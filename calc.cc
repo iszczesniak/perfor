@@ -30,6 +30,9 @@ calc::operator()()
   // Generate traffic.
   generate_traffic (pon, m_a, gen, m_uv);
 
+  // Allocate the traffic.
+  allocate (pon);
+  
   // Calculate the mean ONU performance.
   double perfor = calc_mean_perfor (pon);
 

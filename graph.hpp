@@ -22,14 +22,17 @@ enum class VERTEX_T {OLT, ONU, ICO, PRN, ARN};
 namespace boost {
   // Vertex type.
   enum vertex_type_t {vertex_type};
-  // Downstream datarate required for vertex.
-  enum vertex_drate_t {vertex_drate};
+  // Downstream datarate requested for vertex.
+  enum vertex_dr_req_t {vertex_dr_req};
+  // Downstream datarate allocated for vertex.
+  enum vertex_dr_all_t {vertex_dr_all};
   // ONUs allocated on the edge.
   enum edge_onus_t {edge_onus};
   // Available datarate of an edge.
   enum edge_rate_t {edge_rate};
   BOOST_INSTALL_PROPERTY(vertex, type);
-  BOOST_INSTALL_PROPERTY(vertex, drate);
+  BOOST_INSTALL_PROPERTY(vertex, dr_req);
+  BOOST_INSTALL_PROPERTY(vertex, dr_all);
   BOOST_INSTALL_PROPERTY(edge, onus);
   BOOST_INSTALL_PROPERTY(edge, rate);
 }
@@ -41,7 +44,8 @@ typedef
 boost::adjacency_list<boost::vecS, boost::vecS, boost::bidirectionalS,
                       boost::property<boost::vertex_name_t, std::string,
                       boost::property<boost::vertex_type_t, VERTEX_T,
-                      boost::property<boost::vertex_drate_t, double> > >,
+                      boost::property<boost::vertex_dr_req_t, double,
+                      boost::property<boost::vertex_dr_all_t, double> > > >,
                       boost::property<boost::edge_rate_t, double,
                       boost::property<boost::edge_onus_t, SOO> > >
 graph;
