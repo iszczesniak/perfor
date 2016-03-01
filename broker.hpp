@@ -47,12 +47,14 @@ public:
       }
   }
 
+  // Insert nodes that need service.
   void
   push (Vertex<G> v)
   {
     nodes.push_back (v);
   }
 
+  // Service the nodes now.
   void
   service ()
   {
