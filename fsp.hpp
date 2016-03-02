@@ -8,12 +8,6 @@
 #include <random>
 #include <sstream>
 
-namespace ba = boost::accumulators;
-
-// The type where the calculated availabilities are stored.
-template <typename G>
-using vmap = std::map <Vertex <G>, double>;
-
 // The pair of an edge and a vertex.
 template <typename G>
 using evp = std::pair <Edge <G>, Vertex <G>>;
@@ -58,59 +52,17 @@ get_downstream (const G &g, Vertex <G> v)
   return s;
 }
 
-// Calculate the product which is used to calculate the parallel
-// availability for the node cv and all neighbour nodes except node pv
-// and the upstream node (if requested).  The parallel availability is
-// then: (1 - product).
-template <typename G>
-double
-parallel_availa (const G &g, Vertex <G> cv, Vertex <G> pv, bool fu = true)
-{
-  // The set of evps to consider.
-  evpset <G> s = get_downstream (g, cv);
-  if (fu)
-    s.insert (get_upstream (g, cv));
-
-  double product = 1;
-  for (const auto &p: s)
-    if (p.second != pv)
-      {
-        // Edge evailability.
-        double ea = boost::get (boost::edge_availa, g, p.first);
-        // Next vertex availability.
-        double nva = calc_availa (g, p.second, cv);
-        product *= (1 - ea * nva);
-      }
-
-  return product;
-}
-
-// It's called when we reach an ONU.
 template<typename G>
 double
-fsp_onu (const G &g, Vertex <G> cn, Vertex <G> pn, )
+fsp_onu (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> &p, v2lp <G> &r)
 {
   assert (boost::get (boost::vertex_type, g, cn) == ONU);
-
-  if (pn == G::null_vertex ())
-    {
-      // The first case (see above).
-      evp <G> p = get_upstream (g, cn);
-      double availa = boost::get (boost::vertex_availa, g, cn);
-      availa *= boost::get (boost::edge_availa, g, p.first);
-      availa *= calc_availa (g, p.second, cn);
-      return availa;
-    }
-  else
-    // The second case (see above).
-    return 0;
+  r[cn].push_back(r);
 }
 
-// Calculate the availability for the given ARN.  Don't consider the
-// pn vertex.
 template <typename G>
 double
-calc_arn_availa (const G &g, Vertex <G> cn, Vertex <G> pn)
+fsp_arn (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> &p, v2lp <G> &r)
 {
   assert (boost::get (boost::vertex_type, g, cn) == ARN);
 
@@ -119,7 +71,6 @@ calc_arn_availa (const G &g, Vertex <G> cn, Vertex <G> pn)
   return availa;
 }
 
-// Returns a pair of availabilities.
 template <typename G>
 std::pair <double, double>
 trace_prns (const G &g, Vertex <G> cn, Vertex <G> pn)
@@ -146,12 +97,9 @@ trace_prns (const G &g, Vertex <G> cn, Vertex <G> pn)
   return ap;
 }
 
-// There are two cases we deal with in this function.  The first case
-// is when we reach this node from an upstream node.  The second case
-// when we reach this node from a downstream node.
 template <typename G>
 double
-calc_prn_availa (const G &g, Vertex <G> cn, Vertex <G> pn)
+fsp_prn (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> &p, v2lp <G> &r)
 {
   assert (boost::get (boost::vertex_type, g, cn) == PRN);
 
