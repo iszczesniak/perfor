@@ -1,6 +1,8 @@
 #ifndef BROKER_HPP
 #define BROKER_HPP
 
+#include "graph.hpp"
+
 #include <boost/graph/breadth_first_search.hpp>
 #include <boost/graph/visitors.hpp>
 
@@ -12,11 +14,8 @@
 template <typename G>
 class broker
 {
-  // The Vertex to list of paths.
-  typedef typename std::map <Vertex <G>, std::list<Path <G> > > v2lp;
-
   // The shortest paths.
-  v2lp m_paths;
+  v2lp <G> m_paths;
 
   // Nodes that need service.
   std::deque <Vertex <G> > nodes;
@@ -81,9 +80,9 @@ private:
   {
     struct ver_cmp
     {
-      const v2lp &m_paths;
+      const v2lp <G> &m_paths;
 
-      ver_cmp(const v2lp &paths): m_paths(paths)
+      ver_cmp(const v2lp <G> &paths): m_paths(paths)
       {
       }
 

@@ -1,6 +1,7 @@
 #ifndef GRAPH_HPP
 #define GRAPH_HPP
 
+#include <deque>
 #include <list>
 #include <set>
 #include <string>
@@ -64,6 +65,9 @@ using Vertex = typename G::vertex_descriptor;
 
 template <typename G>
 using Path = std::list <Edge<G> >;
+
+template <typename G>
+using v2lp = std::map <Vertex <G>, std::deque<Path <G> > >;
 
 std::string
 to_string (VERTEX_T t);
