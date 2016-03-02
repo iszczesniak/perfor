@@ -7,6 +7,7 @@
 #include <deque>
 #include <map>
 #include <tuple>
+#include <iostream>
 
 template <typename G>
 class broker
@@ -69,7 +70,10 @@ private:
   void
   service(Vertex<G> v)
   {
-    
+    auto i = m_paths.find(v);
+    assert(i != m_paths.end());
+    std::cout << "servicing node with the number of paths = "
+              << i->second.size () << std::endl;
   }
 
   void
