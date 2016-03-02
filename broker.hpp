@@ -58,24 +58,45 @@ public:
   void
   service ()
   {
+    sort();
+    for(const auto v: nodes)
+      service(v);
+    nodes.clear();
+  }
+
+private:
+  // Service a single node.
+  void
+  service(Vertex<G> v)
+  {
+    
+  }
+
+  void
+  sort()
+  {
     struct ver_cmp
     {
-      v2lp &m_paths;
+      const v2lp &m_paths;
 
-      ver_cmp(v2lp &paths): m_paths(paths)
+      ver_cmp(const v2lp &paths): m_paths(paths)
       {
       }
 
       bool operator () (Vertex<G> a, Vertex<G> b)
       {
-        return m_paths[a].size() < m_paths[b].size();
+        auto ai = m_paths.find(a);
+        assert(ai != m_paths.end());
+        auto bi = m_paths.find(b);
+        assert(bi != m_paths.end());
+
+        return ai->second.size() < bi->second.size();
       }
     };
-    
+
     std::sort(nodes.begin(), nodes.end(), ver_cmp(m_paths));
   }
-
-private:
+  
   // Trace path
   template <typename M>
   Path<G>
