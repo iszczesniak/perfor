@@ -36,11 +36,11 @@ calc::operator()()
   // Calculate the mean ONU performance.
   double perfor = calc_mean_perfor (pon);
 
-  ostringstream o;
-  print_pon (pon, o);
-  o << "------------------------------------------" << endl;
-  string text = o.str ();
+  // ostringstream o;
+  // print_pon (pon, o);
+  // o << "------------------------------------------" << endl;
+  // string text = o.str ();
 
   // Report the result back to the simulation object.
-  m_sim.report (m_uv, m_seed, perfor, text);
+  m_sim.report (m_uv, m_seed, perfor);
 }

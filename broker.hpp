@@ -4,7 +4,7 @@
 #include <boost/graph/breadth_first_search.hpp>
 #include <boost/graph/visitors.hpp>
 
-#include <list>
+#include <deque>
 #include <map>
 #include <tuple>
 
@@ -15,10 +15,10 @@ class broker
   typedef typename std::map <Vertex <G>, std::list<Path <G> > > v2lp;
 
   // The shortest paths.
-  v2lp paths;
+  v2lp m_paths;
 
   // Nodes that need service.
-  std::list <Vertex <G> > nodes;
+  std::deque <Vertex <G> > nodes;
 
   // The graph we're working on.
   const G &m_g;
@@ -42,7 +42,7 @@ public:
         for(const auto t: get_nodes (g, VERTEX_T::ONU, VERTEX_T::ICO))
           {
             auto p = trace_path (g, pred, t);
-            paths[t].push_back(p);
+            m_paths[t].push_back(p);
           }
       }
   }
@@ -58,6 +58,21 @@ public:
   void
   service ()
   {
+    struct ver_cmp
+    {
+      v2lp &m_paths;
+
+      ver_cmp(v2lp &paths): m_paths(paths)
+      {
+      }
+
+      bool operator () (Vertex<G> a, Vertex<G> b)
+      {
+        return m_paths[a].size() < m_paths[b].size();
+      }
+    };
+    
+    std::sort(nodes.begin(), nodes.end(), ver_cmp(m_paths));
   }
 
 private:

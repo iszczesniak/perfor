@@ -30,7 +30,8 @@ class simulation
 public:
   simulation (const args &a);
   void run ();
-  void report (double uv, int seed, double perfor, const std::string &text);
+  void report (double uv, int seed, double perfor,
+               const std::string &text = "");
   void print ();
 };
 
