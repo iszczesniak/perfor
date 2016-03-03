@@ -1,12 +1,10 @@
-#ifndef BFS_HPP
-#define BFS_HPP
+#ifndef FSP_HPP
+#define FSP_HPP
 
-#include "args.hpp"
 #include "graph.hpp"
 
-#include <map>
-#include <random>
-#include <sstream>
+#include <set>
+#include <utility>
 
 // The pair of an edge and a vertex.
 template <typename G>
@@ -57,7 +55,15 @@ double
 fsp_onu (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> &p, v2lp <G> &r)
 {
   assert (boost::get (boost::vertex_type, g, cn) == ONU);
-  r[cn].push_back(r);
+  r[cn].push_back(p);
+}
+
+template<typename G>
+double
+fsp_ico (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> &p, v2lp <G> &r)
+{
+  assert (boost::get (boost::vertex_type, g, cn) == ICO);
+  r[cn].push_back(p);
 }
 
 template <typename G>
@@ -65,10 +71,7 @@ double
 fsp_arn (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> &p, v2lp <G> &r)
 {
   assert (boost::get (boost::vertex_type, g, cn) == ARN);
-
-  double availa = boost::get (boost::vertex_availa, g, cn);
-  availa *= (1 - parallel_availa (g, cn, pn));
-  return availa;
+  
 }
 
 template <typename G>
@@ -122,27 +125,34 @@ fsp_prn (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> &p, v2lp <G> &r)
   return availa;
 }
 
-// Breadth-first search, which takes into account PON.
+// Find shortest paths in a PON.
 template <typename G>
-double
-fsp (const G &g, Vertex <G> cn, Vertex <G> pn)
+void
+fsp (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> &p, v2lp <G> &r)
 {
   VERTEX_T t = boost::get (boost::vertex_type, g, cn);
 
-  if (t == ONU)
-    availa = fsp_onu (g, cn, pn);
-  else if (t == ICO)
-    availa = boost::get (boost::vertex_availa, g, cn);
-  else if (t == PRN)
-    availa = calc_prn_availa (g, cn, pn);
-  else if (t == ARN)
-    availa = calc_arn_availa (g, cn, pn);
-  else if (t == OLT)
-    availa = boost::get (boost::vertex_availa, g, cn);
-  else
-    assert (false);
+  switch (t)
+    {
+      VERTEX_T::ONU:
+      return fsp_onu (g, cn, pn, p, r);
 
-  return availa;
+      VERTEX_T::ICO:
+      return fsp_ico (g, cn, pn, p, r);
+
+      VERTEX_T::PRN:
+      return fsp_prn (g, cn, pn, p, r);
+
+      VERTEX_T::ARN:
+      return fsp_arn (g, cn, pn, p, r);
+
+      VERTEX_T::OLT:
+      return fsp_olt (g, cn, pn, p, r);
+    }
+
+  abort();
 }
 
-#endif /* BFS_HPP */
+fsp (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> &p, v2lp <G> &r)
+
+#endif /* FSP_HPP */
