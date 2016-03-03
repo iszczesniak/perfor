@@ -52,7 +52,7 @@ get_downstream (const G &g, Vertex <G> v)
 
 template<typename G>
 double
-fsp_onu (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> &p, v2lp <G> &r)
+fsp_onu (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
 {
   assert (boost::get (boost::vertex_type, g, cn) == ONU);
   r[cn].push_back(p);
@@ -60,7 +60,7 @@ fsp_onu (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> &p, v2lp <G> &r)
 
 template<typename G>
 double
-fsp_ico (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> &p, v2lp <G> &r)
+fsp_ico (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
 {
   assert (boost::get (boost::vertex_type, g, cn) == ICO);
   r[cn].push_back(p);
@@ -68,7 +68,7 @@ fsp_ico (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> &p, v2lp <G> &r)
 
 template <typename G>
 double
-fsp_arn (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> &p, v2lp <G> &r)
+fsp_arn (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
 {
   assert (boost::get (boost::vertex_type, g, cn) == ARN);
   
@@ -102,7 +102,7 @@ trace_prns (const G &g, Vertex <G> cn, Vertex <G> pn)
 
 template <typename G>
 double
-fsp_prn (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> &p, v2lp <G> &r)
+fsp_prn (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
 {
   assert (boost::get (boost::vertex_type, g, cn) == PRN);
 
@@ -128,7 +128,7 @@ fsp_prn (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> &p, v2lp <G> &r)
 // Find shortest paths in a PON.
 template <typename G>
 void
-fsp (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> &p, v2lp <G> &r)
+fsp (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
 {
   VERTEX_T t = boost::get (boost::vertex_type, g, cn);
 
@@ -153,6 +153,11 @@ fsp (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> &p, v2lp <G> &r)
   abort();
 }
 
-fsp (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> &p, v2lp <G> &r)
+// Find shortest paths in a PON from the given cn to all ONUs and
+// ICOs.
+fsp (const G &g, Vertex <G> cn, v2lp <G> &r)
+{
+  fsp (g, cn, G::null_vertex(), Path <G>(), r);
+}
 
 #endif /* FSP_HPP */

@@ -2,8 +2,10 @@
 #define BROKER_HPP
 
 #include "graph.hpp"
+#include "exclude_filter.hpp"
 
 #include <boost/graph/breadth_first_search.hpp>
+#include <boost/graph/filtered_graph.hpp>
 #include <boost/graph/visitors.hpp>
 
 #include <deque>
@@ -26,24 +28,22 @@ class broker
 public:
   broker(const G &g): m_g (g)
   {
-    auto im = get (boost::vertex_index_t(), g);
-    std::vector<Vertex<G> > pred_vec (num_vertices (g));
-    auto pred = make_iterator_property_map (pred_vec.begin(), im);
+    // Excluded edges.
+    std::set<Vertex<G>> ev;
+    // The filter for excluding edges.
+    exclude_filter <Vertex<G>> evf (ev);
+
+    // The filtered graph.
+    boost::filtered_graph<Graph, eef_type, evf_type> fg;
+
+    // The filtered graph.
+    fg_type fg(g, ef, vf);
 
     // Iterate over OLT and ICOs, and find paths to all other nodes.
     for(const auto s: get_nodes (g, VERTEX_T::OLT, VERTEX_T::ICO))
       {
-        put (pred, s, s);
-        auto rp = boost::record_predecessors (pred, boost::on_tree_edge ());
-        auto vis = boost::make_bfs_visitor (rp);
-        boost::breadth_first_search (g, s, boost::visitor (vis));
-
-        // Find a path to a given target: ONU or ICO.
-        for(const auto t: get_nodes (g, VERTEX_T::ONU, VERTEX_T::ICO))
-          {
-            auto p = trace_path (g, pred, t);
-            m_paths[t].push_back(p);
-          }
+        fsp (g, s, m_paths);
+        ev.insert (s);
       }
   }
 
@@ -98,35 +98,6 @@ private:
     };
 
     std::sort(nodes.begin(), nodes.end(), ver_cmp(m_paths));
-  }
-  
-  // Trace path
-  template <typename M>
-  Path<G>
-  trace_path (const G &g, const M &m, Vertex<G> t)
-  {
-    Path<G> path;
-
-    Vertex<G> c = t;
-
-    while(true)
-      {
-        // Predecessing node.
-        Vertex<G> p = get(m, c);
-
-        if (p == c)
-          break;
-
-        Edge<G> e;
-        bool s;
-        std::tie(e, s) = boost::edge(p, c, g);
-        assert(s);
-        path.push_front(e);
-
-        c = p;
-      }
-
-    return path;
   }
 };
 
