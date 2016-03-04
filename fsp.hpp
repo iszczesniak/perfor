@@ -54,7 +54,7 @@ template<typename G>
 double
 fsp_onu (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
 {
-  assert (boost::get (boost::vertex_type, g, cn) == ONU);
+  assert (boost::get (boost::vertex_type, g, cn) == VERTEX_T::ONU);
   r[cn].push_back(p);
 }
 
@@ -62,7 +62,7 @@ template<typename G>
 double
 fsp_ico (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
 {
-  assert (boost::get (boost::vertex_type, g, cn) == ICO);
+  assert (boost::get (boost::vertex_type, g, cn) == VERTEX_T::ICO);
   r[cn].push_back(p);
 }
 
@@ -70,7 +70,7 @@ template <typename G>
 double
 fsp_arn (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
 {
-  assert (boost::get (boost::vertex_type, g, cn) == ARN);
+  assert (boost::get (boost::vertex_type, g, cn) == VERTEX_T::ARN);
   
 }
 
@@ -81,21 +81,13 @@ trace_prns (const G &g, Vertex <G> cn, Vertex <G> pn)
   evp <G> p = get_upstream (g, cn);
   VERTEX_T nvt = boost::get (boost::vertex_type, g, p.second);
 
-  if (nvt != PRN)
+  if (nvt != VERTEX_T::PRN)
     {
       // It must be an OLT or an ARN.
-      assert (nvt == OLT || nvt == ARN);
-
+      assert (nvt == VERTEX_T::OLT || nvt == VERTEX_T::ARN);
     }
   else
-    ap = trace_prns (g, p.second, cn);
-
-  // The availability of the upstream edge.
-  ap.first *= boost::get (boost::edge_availa, g, p.first);
-  // The availability of the current vertex.
-  ap.first *= boost::get (boost::vertex_availa, g, cn);
-
-  ap.second *= parallel_availa (g, cn, pn, false);
+    trace_prns (g, p.second, cn);
 
   return ap;
 }
@@ -104,22 +96,17 @@ template <typename G>
 double
 fsp_prn (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
 {
-  assert (boost::get (boost::vertex_type, g, cn) == PRN);
+  assert (boost::get (boost::vertex_type, g, cn) == VERTEX_T::PRN);
 
-  double availa;
   evp <G> p = get_upstream (g, cn);
 
   if (p.second == pn)
     {
       // The first case (see above), we are going downstream.
-      availa = (1 - parallel_availa (g, cn, pn));
-      availa *= boost::get (boost::vertex_availa, g, cn);
     }
   else
-    { 
+    {
       // The second case (see above), we are climbing upstream.
-      std::pair<double, double> ap = trace_prns (g, cn, pn);
-      availa = ap.first * (1 - ap.second);
     }
 
   return availa;

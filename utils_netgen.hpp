@@ -33,13 +33,14 @@ name_vertices (G &g)
 
 template<typename G, typename T>
 void
-add_edge_and_rate(G &g, Vertex<G> pn, Vertex<G> n, T rate)
+add_edge_and_rate(G &g, Vertex<G> pn, Vertex<G> n, T rate, EDGE_T type)
 {
   bool s;
   Edge<G> e;
   tie(e, s) = boost::add_edge(pn, n, g);
   assert(s);
   boost::get(boost::edge_rate, g, e) = rate;
+  boost::get(boost::edge_type, g, e) = type;
 }
 
 // We start counting stages from 0. pn is the previous node.
@@ -55,9 +56,9 @@ generate_further (G &g, args &a, T &gen, int stage, Vertex<G> pn)
   Vertex<G> n = add_vertex(g);
 
   // The downstream edge.
-  add_edge_and_rate (g, pn, n, a.drate);
+  add_edge (g, pn, n, a.drate, EDGE_T::DOWN);
   // The upstream edge.
-  add_edge_and_rate (g, n, pn, a.urate);
+  add_edge (g, n, pn, a.urate, EDGE_T::UP);
   
   // The type of the first node.
   VERTEX_T nt;

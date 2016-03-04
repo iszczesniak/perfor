@@ -20,6 +20,8 @@ typedef std::set<int> SOO;
 // PRN - passive remote node
 enum class VERTEX_T {OLT, ONU, ICO, PRN, ARN};
 
+enum class EDGE_T {UNDEF, DOWN, UP};
+
 namespace boost {
   // Vertex type.
   enum vertex_type_t {vertex_type};
@@ -27,6 +29,8 @@ namespace boost {
   enum vertex_dr_req_t {vertex_dr_req};
   // Downstream datarate allocated for vertex.
   enum vertex_dr_all_t {vertex_dr_all};
+  // Edge type.
+  enum edge_type_t {edge_type};
   // ONUs allocated on the edge.
   enum edge_onus_t {edge_onus};
   // Available datarate of an edge.
@@ -34,6 +38,7 @@ namespace boost {
   BOOST_INSTALL_PROPERTY(vertex, type);
   BOOST_INSTALL_PROPERTY(vertex, dr_req);
   BOOST_INSTALL_PROPERTY(vertex, dr_all);
+  BOOST_INSTALL_PROPERTY(edge, type);
   BOOST_INSTALL_PROPERTY(edge, onus);
   BOOST_INSTALL_PROPERTY(edge, rate);
 }
@@ -47,8 +52,9 @@ boost::adjacency_list<boost::vecS, boost::vecS, boost::bidirectionalS,
                       boost::property<boost::vertex_type_t, VERTEX_T,
                       boost::property<boost::vertex_dr_req_t, double,
                       boost::property<boost::vertex_dr_all_t, double> > > >,
+                      boost::property<boost::edge_type_t, EDGE_T,
                       boost::property<boost::edge_rate_t, double,
-                      boost::property<boost::edge_onus_t, SOO> > >
+                      boost::property<boost::edge_onus_t, SOO> > > >
 graph;
 
 typedef graph::edge_descriptor edge;
