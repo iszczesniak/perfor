@@ -69,17 +69,24 @@ double
 fsp_arn (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
 {
   assert (boost::get (boost::vertex_type, g, cn) == VERTEX_T::ARN);
+
+  for(const auto &e: make_iterator_range (out_edges (cn, g)))
+    {
+      // The downstream vertex.
+      Vertex <G> t = boost::target (e, g);
+      fsp (g, t, cn, p, r);
+    }
 }
 
 template <typename G>
-double
+void
 fsp_prn (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
 {
   assert (boost::get (boost::vertex_type, g, cn) == VERTEX_T::PRN);
 
-  evp <G> p = get_upstream (g, cn);
+  evp <G> up = get_upstream (g, cn);
 
-  if (p.second == pn)
+  if (up.second == pn)
     {
       // The first case (see above), we are going downstream.
     }
@@ -87,8 +94,6 @@ fsp_prn (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
     {
       // The second case (see above), we are climbing upstream.
     }
-
-  return availa;
 }
 
 // Find shortest paths in a PON.
@@ -100,19 +105,19 @@ fsp (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
 
   switch (t)
     {
-      VERTEX_T::ONU:
+    case VERTEX_T::ONU:
       return fsp_onu (g, cn, pn, p, r);
 
-      VERTEX_T::ICO:
+    case VERTEX_T::ICO:
       return fsp_ico (g, cn, pn, p, r);
 
-      VERTEX_T::PRN:
+    case VERTEX_T::PRN:
       return fsp_prn (g, cn, pn, p, r);
 
-      VERTEX_T::ARN:
+    case VERTEX_T::ARN:
       return fsp_arn (g, cn, pn, p, r);
 
-      VERTEX_T::OLT:
+    case VERTEX_T::OLT:
       return fsp_olt (g, cn, pn, p, r);
     }
 
@@ -121,6 +126,8 @@ fsp (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
 
 // Find shortest paths in a PON from the given cn to all ONUs and
 // ICOs.
+template <typename G>
+void
 fsp (const G &g, Vertex <G> cn, v2lp <G> &r)
 {
   fsp (g, cn, G::null_vertex(), Path <G>(), r);
