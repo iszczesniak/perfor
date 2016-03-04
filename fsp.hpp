@@ -8,28 +8,26 @@
 
 // The pair of an edge and a vertex.
 template <typename G>
-using evp = std::pair <Edge <G>, Vertex <G>>;
+using evp = std::pair <Edge <G>, Vertex <G> >;
 
 // The set of the evp.
 template <typename G>
-using evpset = std::set <evp <G>>;
+using evpset = std::set <evp <G> >;
 
 // Return the upstream evp for the given node.
 template <typename G>
 evp <G>
-get_upstream (const G &g, Vertex <G> cv)
+get_upstream (const G &g, Vertex <G> v)
 {
-  typename G::in_edge_iterator ei, ee;
-  tie (ei, ee) = boost::in_edges (cv, g);
-  // The set of links cannot be empty.
-  assert (ei != ee);
-  // We expect one edge only.
-  assert (ei + 1 == ee);
-  // The upstream edge.
-  Edge <G> ue = *ei;
-  // The the upstream vertex.
-  Vertex <G> uv = boost::source (ue, g);
-  return std::make_pair(ue, uv);
+  for(const auto &e: make_iterator_range (out_edges (v, g)))
+    if (boost::get (boost::edge_type, g, e) == EDGE_T::UP)
+      {
+        // The upstream vertex.
+        Vertex <G> t = boost::target (e, g);
+        return std::make_pair (e, t);
+      }
+
+  abort();
 }
 
 // Return the set of downstream evps for the given node.
@@ -39,13 +37,13 @@ get_downstream (const G &g, Vertex <G> v)
 {
   evpset <G> s;
 
-  typename G::out_edge_iterator ei, ee;
-  for (tie (ei, ee) = out_edges (v, g); ei != ee; ++ei)
-    {
-      Edge<G> e = *ei;
-      Vertex<G> t = boost::target(e, g);
-      s.insert (evp <G> (e, t));
-    }
+  for(const auto &e: make_iterator_range (out_edges (v, g)))
+    if (boost::get (boost::edge_type, g, e) == EDGE_T::DOWN)
+      {
+        // The downstream vertex.
+        Vertex <G> t = boost::target (e, g);
+        s.insert (evp <G> (e, t));
+      }
 
   return s;
 }
@@ -71,25 +69,6 @@ double
 fsp_arn (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
 {
   assert (boost::get (boost::vertex_type, g, cn) == VERTEX_T::ARN);
-  
-}
-
-template <typename G>
-std::pair <double, double>
-trace_prns (const G &g, Vertex <G> cn, Vertex <G> pn)
-{
-  evp <G> p = get_upstream (g, cn);
-  VERTEX_T nvt = boost::get (boost::vertex_type, g, p.second);
-
-  if (nvt != VERTEX_T::PRN)
-    {
-      // It must be an OLT or an ARN.
-      assert (nvt == VERTEX_T::OLT || nvt == VERTEX_T::ARN);
-    }
-  else
-    trace_prns (g, p.second, cn);
-
-  return ap;
 }
 
 template <typename G>
