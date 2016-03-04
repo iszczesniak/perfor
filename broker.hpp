@@ -1,12 +1,10 @@
 #ifndef BROKER_HPP
 #define BROKER_HPP
 
+#include "fsp.hpp"
 #include "graph.hpp"
-#include "exclude_filter.hpp"
 
-#include <boost/graph/breadth_first_search.hpp>
 #include <boost/graph/filtered_graph.hpp>
-#include <boost/graph/visitors.hpp>
 
 #include <deque>
 #include <map>
@@ -28,21 +26,15 @@ class broker
 public:
   broker(const G &g): m_g (g)
   {
-    // Excluded edges.
-    std::set<Vertex<G>> ev;
-    // The filter for excluding edges.
-    exclude_filter <Vertex<G>> evf (ev);
-
+    // Excluded vertexes.
+    std::set <Vertex <G> > ev;
     // The filtered graph.
-    boost::filtered_graph<Graph, eef_type, evf_type> fg;
-
-    // The filtered graph.
-    fg_type fg(g, ef, vf);
+    auto fg = boost::make_vertex_subset_compliment_filter (g, ev);
 
     // Iterate over OLT and ICOs, and find paths to all other nodes.
     for(const auto s: get_nodes (g, VERTEX_T::OLT, VERTEX_T::ICO))
       {
-        fsp (g, s, m_paths);
+        fsp (fg, s, m_paths);
         ev.insert (s);
       }
   }
