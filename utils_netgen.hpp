@@ -33,7 +33,7 @@ name_vertices (G &g)
 
 template<typename G, typename T>
 void
-add_edge_and_rate(G &g, Vertex<G> pn, Vertex<G> n, T rate, EDGE_T type)
+add_edge (G &g, Vertex<G> pn, Vertex<G> n, T rate, EDGE_T type)
 {
   bool s;
   Edge<G> e;
