@@ -49,23 +49,14 @@ get_downstream (const G &g, Vertex <G> v)
 }
 
 template<typename G>
-double
-fsp_onu (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
+void
+fsp_term (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
 {
-  assert (boost::get (boost::vertex_type, g, cn) == VERTEX_T::ONU);
-  r[cn].push_back(p);
-}
-
-template<typename G>
-double
-fsp_ico (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
-{
-  assert (boost::get (boost::vertex_type, g, cn) == VERTEX_T::ICO);
   r[cn].push_back(p);
 }
 
 template <typename G>
-double
+void
 fsp_arn (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
 {
   assert (boost::get (boost::vertex_type, g, cn) == VERTEX_T::ARN);
@@ -106,22 +97,22 @@ fsp (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
   switch (t)
     {
     case VERTEX_T::ONU:
-      return fsp_onu (g, cn, pn, p, r);
-
     case VERTEX_T::ICO:
-      return fsp_ico (g, cn, pn, p, r);
-
+    case VERTEX_T::OLT:
+      fsp_term (g, cn, pn, p, r);
+      break;
+      
     case VERTEX_T::PRN:
-      return fsp_prn (g, cn, pn, p, r);
+      fsp_prn (g, cn, pn, p, r);
+      break;
 
     case VERTEX_T::ARN:
-      return fsp_arn (g, cn, pn, p, r);
+      fsp_arn (g, cn, pn, p, r);
+      break;
 
-    case VERTEX_T::OLT:
-      return fsp_olt (g, cn, pn, p, r);
+    default:
+      abort();
     }
-
-  abort();
 }
 
 // Find shortest paths in a PON from the given cn to all ONUs and
