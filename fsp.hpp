@@ -48,18 +48,42 @@ get_downstream (const G &g, Vertex <G> v)
   return s;
 }
 
+// We can get to an ONU only downstream.  We don't start the search
+// from here.  Here we only record the path, because it's the end of
+// it.
 template<typename G>
 void
-fsp_term (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
+fsp_onu (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
 {
-  r[cn].push_back(p);
+  assert (boost::get (boost::vertex_type, g, cn) == VERTEX_T::ONU);
+  assert (pn != G::null_vertex ());
+  r[cn].push_back (p);
 }
 
+// If we start the search at the ICO, we climb upstream.  If we get
+// here downstream, we record the path.
+template<typename G>
+void
+fsp_ico (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
+{
+  assert (boost::get (boost::vertex_type, g, cn) == VERTEX_T::ICO);
+
+  if (pn == G::null_vertex ())
+    {
+      evp <G> e = get_upstream (g, cn);
+      fsp (g, e.second, cn, p, r);
+    }
+  else
+    r[cn].push_back (p);
+}
+
+// For active nodes: OLT or ARN.  Here fan out the search.
 template <typename G>
 void
-fsp_arn (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
+fsp_an (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
 {
-  assert (boost::get (boost::vertex_type, g, cn) == VERTEX_T::ARN);
+  VERTEX_T t = boost::get (boost::vertex_type, g, cn);
+  assert (t == VERTEX_T::ARN || t == VERTEX_T::OLT);
 
   for(const auto &e: make_iterator_range (out_edges (cn, g)))
     {
@@ -69,22 +93,23 @@ fsp_arn (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
     }
 }
 
+// Passive node: PRN.
 template <typename G>
 void
-fsp_prn (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
+fsp_pn (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
 {
   assert (boost::get (boost::vertex_type, g, cn) == VERTEX_T::PRN);
 
-  evp <G> up = get_upstream (g, cn);
+  // The upstream node.
+  Vertex <G> up = get_upstream (g, cn).second;
 
-  if (up.second == pn)
-    {
-      // The first case (see above), we are going downstream.
-    }
+  if (up == pn)
+    // We're are going downstream.
+    for(auto const evp: get_downstream (g, cn))
+      fsp (g, evp.second, cn, p, r);
   else
-    {
-      // The second case (see above), we are climbing upstream.
-    }
+    // We are climbing upstream.
+    fsp (g, up, cn, p, r);
 }
 
 // Find shortest paths in a PON.
@@ -94,20 +119,29 @@ fsp (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
 {
   VERTEX_T t = boost::get (boost::vertex_type, g, cn);
 
+  if (pn != G::null_vertex())
+    {
+      Edge <G> e;
+      bool s;
+      std::tie (e, s) = boost::edge (pn, cn, g);
+      assert (s);
+      p.push_back (e);
+    }
+
   switch (t)
     {
     case VERTEX_T::ONU:
     case VERTEX_T::ICO:
-    case VERTEX_T::OLT:
-      fsp_term (g, cn, pn, p, r);
+      fsp_onu (g, cn, pn, p, r);
       break;
       
     case VERTEX_T::PRN:
-      fsp_prn (g, cn, pn, p, r);
+      fsp_pn (g, cn, pn, p, r);
       break;
 
     case VERTEX_T::ARN:
-      fsp_arn (g, cn, pn, p, r);
+    case VERTEX_T::OLT:
+      fsp_an (g, cn, pn, p, r);
       break;
 
     default:
