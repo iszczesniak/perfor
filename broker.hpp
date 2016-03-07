@@ -1,10 +1,12 @@
 #ifndef BROKER_HPP
 #define BROKER_HPP
 
+// We're including the filtered graph before fsp.hpp, because
+// otherwise the compilation fails.  I'm not sure why.
+#include <boost/graph/filtered_graph.hpp>
+
 #include "fsp.hpp"
 #include "graph.hpp"
-
-#include <boost/graph/filtered_graph.hpp>
 
 #include <deque>
 #include <map>
