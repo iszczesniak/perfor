@@ -2,6 +2,7 @@
 #define FSP_HPP
 
 #include "graph.hpp"
+#include "utils.hpp"
 
 #include <set>
 #include <utility>
@@ -55,7 +56,7 @@ get_downstream (const G &g, Vertex <G> v)
 // it.
 template<typename G>
 void
-fsp_onu (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
+fsp_onu (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> &p, v2lp <G> &r)
 {
   assert (boost::get (boost::vertex_type, g, cn) == VERTEX_T::ONU);
   assert (pn != G::null_vertex ());
@@ -66,7 +67,7 @@ fsp_onu (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
 // here downstream, we record the path.
 template<typename G>
 void
-fsp_ico (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
+fsp_ico (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> &p, v2lp <G> &r)
 {
   assert (boost::get (boost::vertex_type, g, cn) == VERTEX_T::ICO);
 
@@ -82,7 +83,7 @@ fsp_ico (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
 // For active nodes: OLT or ARN.  Here fan out the search.
 template <typename G>
 void
-fsp_an (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
+fsp_an (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> &p, v2lp <G> &r)
 {
   VERTEX_T t = boost::get (boost::vertex_type, g, cn);
   assert (t == VERTEX_T::ARN || t == VERTEX_T::OLT);
@@ -98,7 +99,7 @@ fsp_an (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
 // Passive node: PRN.
 template <typename G>
 void
-fsp_pn (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
+fsp_pn (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> &p, v2lp <G> &r)
 {
   assert (boost::get (boost::vertex_type, g, cn) == VERTEX_T::PRN);
 
@@ -117,10 +118,8 @@ fsp_pn (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
 // Find shortest paths in a PON.
 template <typename G>
 void
-fsp (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
+fsp (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> &p, v2lp <G> &r)
 {
-  std::cout << "." << std::endl;
-  
   VERTEX_T t = boost::get (boost::vertex_type, g, cn);
 
   if (pn != G::null_vertex())
@@ -131,6 +130,10 @@ fsp (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
       assert (s);
       p.push_back (e);
     }
+
+  std::cout << "p.size = " << p.size() << std::endl;
+  print_path (g, p, std::cout);
+  std::cout << "----------------------------------------" << std::endl;
 
   switch (t)
     {
@@ -151,6 +154,9 @@ fsp (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
     default:
       abort();
     }
+
+  if (pn != G::null_vertex())
+    p.pop_back ();
 }
 
 // Find shortest paths in a PON from the given cn to all ONUs and
@@ -159,7 +165,8 @@ template <typename G>
 void
 fsp (const G &g, Vertex <G> cn, v2lp <G> &r)
 {
-  fsp (g, cn, G::null_vertex(), Path <G>(), r);
+  Path <G> p;
+  fsp (g, cn, G::null_vertex(), p, r);
 }
 
 #endif /* FSP_HPP */
