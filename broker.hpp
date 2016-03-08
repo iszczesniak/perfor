@@ -34,9 +34,9 @@ public:
     auto fg = boost::make_vertex_subset_compliment_filter (g, ev);
 
     // Iterate over OLT and ICOs, and find paths to all other nodes.
-    for(const auto s: get_nodes (g, VERTEX_T::OLT, VERTEX_T::ICO))
+    for(auto s: get_nodes (g, VERTEX_T::OLT, VERTEX_T::ICO))
       {
-        fsp (fg, s, m_paths);
+        fsp <G> {fg, s, m_paths};
         ev.insert (s);
       }
   }
