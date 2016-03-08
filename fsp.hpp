@@ -23,7 +23,7 @@ evp <G>
 get_upstream (const G &g, Vertex <G> v)
 {
   for(const auto &e: make_iterator_range (out_edges (v, g)))
-    if (boost::get (boost::edge_type, g, e) == EDGE_T::UP)
+    if (boost::get (boost::edge_type, g, e) == DIR_T::UP)
       {
         // The upstream vertex.
         Vertex <G> t = boost::target (e, g);
@@ -41,7 +41,7 @@ get_downstream (const G &g, Vertex <G> v)
   evpset <G> s;
 
   for(const auto &e: make_iterator_range (out_edges (v, g)))
-    if (boost::get (boost::edge_type, g, e) == EDGE_T::DOWN)
+    if (boost::get (boost::edge_type, g, e) == DIR_T::DOWN)
       {
         // The downstream vertex.
         Vertex <G> t = boost::target (e, g);

@@ -20,7 +20,8 @@ typedef std::set<int> SOO;
 // PRN - passive remote node
 enum class VERTEX_T {OLT, ONU, ICO, PRN, ARN};
 
-enum class EDGE_T {UNDEF, DOWN, UP};
+// Direction type.
+enum class DIR_T {UNDEF, DOWN, UP};
 
 namespace boost {
   // Vertex type.
@@ -52,7 +53,7 @@ boost::adjacency_list<boost::vecS, boost::vecS, boost::bidirectionalS,
                       boost::property<boost::vertex_type_t, VERTEX_T,
                       boost::property<boost::vertex_dr_req_t, double,
                       boost::property<boost::vertex_dr_all_t, double> > > >,
-                      boost::property<boost::edge_type_t, EDGE_T,
+                      boost::property<boost::edge_type_t, DIR_T,
                       boost::property<boost::edge_rate_t, double,
                       boost::property<boost::edge_onus_t, SOO> > > >
 graph;

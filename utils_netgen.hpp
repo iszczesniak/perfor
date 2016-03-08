@@ -33,7 +33,7 @@ name_vertices (G &g)
 
 template<typename G, typename T>
 void
-add_edge (G &g, Vertex<G> pn, Vertex<G> n, T rate, EDGE_T type)
+add_edge (G &g, Vertex<G> pn, Vertex<G> n, T rate, DIR_T type)
 {
   bool s;
   Edge<G> e;
@@ -56,9 +56,9 @@ generate_further (G &g, args &a, T &gen, int stage, Vertex<G> pn)
   Vertex<G> n = add_vertex(g);
 
   // The downstream edge.
-  add_edge (g, pn, n, a.drate, EDGE_T::DOWN);
+  add_edge (g, pn, n, a.drate, DIR_T::DOWN);
   // The upstream edge.
-  add_edge (g, n, pn, a.urate, EDGE_T::UP);
+  add_edge (g, n, pn, a.urate, DIR_T::UP);
   
   // The type of the first node.
   VERTEX_T nt;
