@@ -110,4 +110,21 @@ print_pon(const G &g, std::ostream &out)
   print_pon(g, out, olt, G::null_vertex ());
 }
 
+template<typename G>
+void
+print_path(const G &g, const Path <G> &p, std::ostream &out)
+{
+  for (const auto e: p)
+    {
+      Vertex <G> s = source (e, g);
+      Vertex <G> t = target (e, g);
+
+      out << to_string (boost::get (boost::vertex_type, g, s))
+          << " (" << boost::get (boost::vertex_name, g, s)
+          << ") ->" << to_string (boost::get (boost::vertex_type, g, t))
+          << " (" << boost::get (boost::vertex_name, g, t)
+          << ")" << std::endl;
+    }
+}
+
 #endif /* UTILS_HPP */
