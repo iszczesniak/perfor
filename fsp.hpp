@@ -6,6 +6,8 @@
 #include <set>
 #include <utility>
 
+#include <iostream>
+
 // The pair of an edge and a vertex.
 template <typename G>
 using evp = std::pair <Edge <G>, Vertex <G> >;
@@ -117,6 +119,8 @@ template <typename G>
 void
 fsp (const G &g, Vertex <G> cn, Vertex <G> pn, Path <G> p, v2lp <G> &r)
 {
+  std::cout << "." << std::endl;
+  
   VERTEX_T t = boost::get (boost::vertex_type, g, cn);
 
   if (pn != G::null_vertex())
