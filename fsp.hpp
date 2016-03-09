@@ -86,7 +86,7 @@ private:
 
     if (pn == G::null_vertex ())
       {
-        evp e = get_upstream (m_g, cn);
+        evp e = get_upstream (cn);
         fsp_generic (e.second, cn, p);
       }
     else
@@ -115,11 +115,11 @@ private:
     assert (boost::get (boost::vertex_type, m_g, cn) == VERTEX_T::PRN);
 
     // The upstream node.
-    Vertex <G> up = get_upstream (m_g, cn).second;
+    Vertex <G> up = get_upstream (cn).second;
 
     if (up == pn)
       // We're are going downstream.
-      for(auto const e: get_downstream (m_g, cn))
+      for(auto const e: get_downstream (cn))
         fsp_generic (e.second, cn, p);
     else
       // We are climbing upstream.
@@ -136,7 +136,7 @@ private:
       {
         Edge <G> e;
         bool s;
-        std::tie (e, s) = boost::edge (pn, cn);
+        std::tie (e, s) = boost::edge (pn, cn, m_g);
         assert (s);
         p.push_back (e);
       }
