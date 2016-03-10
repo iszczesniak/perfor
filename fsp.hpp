@@ -7,8 +7,6 @@
 #include <set>
 #include <utility>
 
-#include <iostream>
-
 template <typename G>
 class fsp
 {
@@ -35,7 +33,10 @@ public:
   // ICOs.
   fsp (const G &g, Vertex <G> cn, v2lp <G> &r): m_g (g), m_r (r)
   {
-    fsp_generic (cn, G::null_vertex());
+    // We don't want to examine the null vertex, which we can
+    // encounter when a node was filtered out.
+    vv.insert (G::null_vertex ());
+    fsp_generic (cn, G::null_vertex ());
   }
 
 private:
@@ -48,14 +49,9 @@ private:
         // The upstream vertex.
         return boost::target (e, m_g);
 
-    std::cout << "v = " 
-              << to_string (boost::get (boost::vertex_type, m_g, v))
-              << " (" << boost::get (boost::vertex_name, m_g, v)
-              << std::endl;
-
-    std::cout.flush();
-    
-    abort();
+    // It can happen that a node doesn't have an upstream node,
+    // because it was filtered out.
+    return G::null_vertex ();
   }
 
   // Return the set of downstream evps for the given node.
@@ -149,10 +145,6 @@ private:
             assert (s);
             p.push_back (e);
           }
-
-        std::cout << "p.size = " << p.size() << std::endl;
-        print_path (m_g, p, std::cout);
-        std::cout << "----------------------------------------" << std::endl;
 
         switch (t)
           {
