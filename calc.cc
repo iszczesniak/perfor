@@ -2,6 +2,7 @@
 
 #include "graph.hpp"
 #include "perfor.hpp"
+#include "results.hpp"
 #include "simulation.hpp"
 #include "utils_netgen.hpp"
 #include "utils_tragen.hpp"
@@ -32,15 +33,16 @@ calc::operator()()
 
   // Allocate the traffic.
   allocate (pon);
-  
-  // Calculate the mean ONU performance.
-  double perfor = calc_mean_perfor (pon);
 
-  // ostringstream o;
-  // print_pon (pon, o);
-  // o << "------------------------------------------" << endl;
-  // string text = o.str ();
+  // The results object.
+  results r;
+
+  // Calculate the mean ONU performance.
+  r.perfor = calc_mean_perfor (pon);
+
+  // Calculate the mean connectivity.
+  r.mean_conn = calc_mean_conn ();
 
   // Report the result back to the simulation object.
-  m_sim.report (m_uv, m_seed, perfor);
+  m_sim.report (m_uv, m_seed, r);
 }
