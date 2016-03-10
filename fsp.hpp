@@ -59,18 +59,15 @@ private:
   }
 
   // Return the set of downstream evps for the given node.
-  evpset
+  Vset <G>
   get_downstream (Vertex <G> v)
   {
-    evpset s;
+    Vset <G> s;
 
     for(const auto &e: make_iterator_range (out_edges (v, m_g)))
       if (boost::get (boost::edge_type, m_g, e) == DIR_T::DOWN)
-        {
-          // The downstream vertex.
-          Vertex <G> t = boost::target (e, m_g);
-          s.insert (evp (e, t));
-        }
+        // The downstream vertex.
+        s.insert (boost::target (e, m_g));
 
     return s;
   }
@@ -125,8 +122,8 @@ private:
 
     if (up == pn)
       // We're are going downstream.
-      for(auto const e: get_downstream (cn))
-        fsp_generic (e.second, cn);
+      for(auto const dn: get_downstream (cn))
+        fsp_generic (dn, cn);
     else
       // We are climbing upstream.
       fsp_generic (up, cn);
