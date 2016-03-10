@@ -135,43 +135,52 @@ private:
   void
   fsp_generic (Vertex <G> cn, Vertex <G> pn)
   {
-    VERTEX_T t = boost::get (boost::vertex_type, m_g, cn);
-
-    if (pn != G::null_vertex())
+    // Examine cn only if it's not already in the path.
+    if (vv.find (cn) == vv.end())
       {
-        Edge <G> e;
-        bool s;
-        std::tie (e, s) = boost::edge (pn, cn, m_g);
-        assert (s);
-        p.push_back (e);
-      }
+        // Remember the vertex is part of the path.
+        vv.insert(cn);
 
-    std::cout << "p.size = " << p.size() << std::endl;
-    print_path (m_g, p, std::cout);
-    std::cout << "----------------------------------------" << std::endl;
+        VERTEX_T t = boost::get (boost::vertex_type, m_g, cn);
 
-    switch (t)
-      {
-      case VERTEX_T::ONU:
-      case VERTEX_T::ICO:
-        fsp_onu (cn, pn);
-        break;
+        if (pn != G::null_vertex())
+          {
+            Edge <G> e;
+            bool s;
+            std::tie (e, s) = boost::edge (pn, cn, m_g);
+            assert (s);
+            p.push_back (e);
+          }
+
+        std::cout << "p.size = " << p.size() << std::endl;
+        print_path (m_g, p, std::cout);
+        std::cout << "----------------------------------------" << std::endl;
+
+        switch (t)
+          {
+          case VERTEX_T::ONU:
+          case VERTEX_T::ICO:
+            fsp_onu (cn, pn);
+            break;
       
-      case VERTEX_T::PRN:
-        fsp_pn (cn, pn);
-        break;
+          case VERTEX_T::PRN:
+            fsp_pn (cn, pn);
+            break;
 
-      case VERTEX_T::ARN:
-      case VERTEX_T::OLT:
-        fsp_an (cn, pn);
-        break;
+          case VERTEX_T::ARN:
+          case VERTEX_T::OLT:
+            fsp_an (cn, pn);
+            break;
 
-      default:
-        abort();
+          default:
+            abort();
+          }
+
+        if (pn != G::null_vertex())
+          p.pop_back ();
+
+        vv.erase (cn);
       }
-
-    if (pn != G::null_vertex())
-      p.pop_back ();
   }
 };
 
