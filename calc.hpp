@@ -18,8 +18,8 @@ class calc
 
 public:
   // Takes the arguments needed for a calculation.
-  calc(simulation &sim, const args &a, int seed, double uv);
+  calc (simulation &sim, const args &a, int seed, double uv);
 
   // Does the calculation.
-  void operator()();
+  void operator ()();
 };
