@@ -83,13 +83,16 @@ generate_further (G &g, args &a, T &gen, int stage, Vertex<G> pn)
 }
 
 template<typename G, typename T>
-void
-generate_pon(G &g, args &a, T &gen)
+G
+generate_pon(args &a, T &gen)
 {
+  G pon;
   assert(num_vertices(g) == 0);
   Vertex<G> olt = add_vertex(g);
   boost::get(boost::vertex_type, g, olt) = VERTEX_T::OLT;
   generate_further(g, a, gen, 0, olt);
+  name_vertices(pon);
+  return pon;
 }
 
 #endif /* UTILS_NETGEN_HPP */

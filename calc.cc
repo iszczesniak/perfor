@@ -24,15 +24,13 @@ calc::operator()()
   mt19937 gen (m_seed);
 
   // Generate PON.
-  graph pon;
-  generate_pon (pon, m_a, gen);
-  name_vertices(pon);
+  graph pon = generate_pon (pon, m_a, gen);
 
-  // Generate traffic.
-  generate_traffic (pon, m_a, gen, m_uv);
+  // The traffic requested.
+  V2D <G> req = generate_traffic (pon, m_a, gen, m_uv);
 
-  // Allocate the traffic.
-  allocate (pon);
+  // The traffic allocated.
+  V2D <G> all = allocate (pon, req);
 
   // The results object.
   results r;

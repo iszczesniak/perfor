@@ -16,9 +16,11 @@ using v2d = std::map <Vertex <G>, double>;
 
 // Calculate performance values for all ONUs.
 template <typename G>
-void
-allocate (G &g)
+V2D <G>
+allocate (G &g, const V2D &req)
 {
+  V2D <G> all;
+  
   broker<G> b(g);
 
   // Tell the broker what nodes need service.
@@ -26,20 +28,22 @@ allocate (G &g)
     b.push(v);
 
   b.service();
+
+  return all;
 }
 
 /**
  * Calculates the mean performance of ONUs, including ICOs.
  */
-template <typename G>
+template <typename G, typename M>
 double
-calc_mean_perf (const G &g)
+calc_mean_perf (const G &g, const M &m)
 {
   // The performance accumulator.
   ba::accumulator_set <double, ba::stats <ba::tag::mean> > pa;
 
   for(const auto v: get_nodes (g, VERTEX_T::ONU, VERTEX_T::ICO))
-    pa (get (boost::vertex_dr_all, g, v));
+    pa (get (m, v));
 
   return ba::mean (pa);
 }

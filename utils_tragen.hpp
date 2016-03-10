@@ -12,9 +12,11 @@
 // split among all ONUS, reagardless whether they are IC or not.
 
 template<typename G, typename T>
-void
+V2D <G>
 generate_traffic(G &g, args &a, T &gen, double uv)
 {
+  V2D <G> req;
+  
   assert(num_vertices(g) != 0);
 
   // Count the number of ONUs, including the IC-ONUs.
@@ -27,11 +29,14 @@ generate_traffic(G &g, args &a, T &gen, double uv)
   Viter<G> vi, ve;
   for (tie(vi, ve) = vertices(g); vi != ve; ++vi)
     {
-      VERTEX_T vt = boost::get(boost::vertex_type, g, *vi);
+      Vertex <G> v = *vi;
+      VERTEX_T vt = boost::get(boost::vertex_type, g, v);
 
       if (vt == VERTEX_T::ONU || vt == VERTEX_T::ICO)
-        boost::get(boost::vertex_dr_req, g, *vi) = bfo; 
+        req[v] = bfo; 
     }
+
+  return req;
 }
 
 #endif /* UTILS_TRAGEN_HPP */
