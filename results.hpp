@@ -7,8 +7,14 @@
 /**
  * These are the simulation results of a single run.
  */
-struct args
+struct results
 {
+  // The mean ONU performance.
+  double mean_perf;
+
+  // The mean ONU connectivity.
+  double mean_conn;
+  
   // Histogram of ONU path possibilities.
   std::map<int, int> hist;
 

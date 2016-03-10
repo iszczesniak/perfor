@@ -3,6 +3,7 @@
 
 #include "args.hpp"
 #include "progress.hpp"
+#include "results.hpp"
 
 #include <map>
 #include <mutex>

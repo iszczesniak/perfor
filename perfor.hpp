@@ -33,7 +33,7 @@ allocate (G &g)
  */
 template <typename G>
 double
-calc_mean_perfor (const G &g)
+calc_mean_perf (const G &g)
 {
   // The performance accumulator.
   ba::accumulator_set <double, ba::stats <ba::tag::mean> > pa;
@@ -42,6 +42,16 @@ calc_mean_perfor (const G &g)
     pa (get (boost::vertex_dr_all, g, v));
 
   return ba::mean (pa);
+}
+
+/**
+ * Calculates the mean connectivity of ONUs, including ICOs.
+ */
+template <typename G>
+double
+calc_mean_conn (const G &g)
+{
+  return 0;
 }
 
 #endif /* PERFOR_HPP */

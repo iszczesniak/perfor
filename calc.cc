@@ -38,10 +38,10 @@ calc::operator()()
   results r;
 
   // Calculate the mean ONU performance.
-  r.perfor = calc_mean_perfor (pon);
+  r.mean_perf = calc_mean_perf (pon);
 
   // Calculate the mean connectivity.
-  r.mean_conn = calc_mean_conn ();
+  r.mean_conn = calc_mean_conn (pon);
 
   // Report the result back to the simulation object.
   m_sim.report (m_uv, m_seed, r);
