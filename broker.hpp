@@ -13,15 +13,13 @@
 #include <tuple>
 #include <iostream>
 
+// The type of the filtered graph.
+template <typename G>
+using FilteredG = typename boost::vertex_subset_complement_filter<G, Vset <G> >::type;
+
 template <typename G>
 class broker
 {
-  // The type of the set of vertexes.
-  typedef std::set <Vertex <G> > vset;
-
-  // The type of the filtered graph.
-  typedef boost::vertex_subset_complement_filter<G, vset>::type fg_t;
-
   // The shortest paths.
   v2lp <G> m_paths;
 
@@ -35,16 +33,16 @@ public:
   broker(const G &g): m_g (g)
   {
     // The set of excluded vertexes.
-    vset ev;
+    Vset <G> ev;
     // The vertex predicate.
-    boost::is_not_in_subset <vset> vp (ev);
+    boost::is_not_in_subset <Vset <G> > vp (ev);
     // The filtered graph.
-    fg_t fg (m_g, boost::keep_all (), vp);
+    FilteredG <G> fg (m_g, boost::keep_all (), vp);
 
     // Iterate over OLT and ICOs, and find paths to all other nodes.
     for(auto s: get_nodes (g, VERTEX_T::OLT, VERTEX_T::ICO))
       {
-        fsp <fg_t> {fg, s, m_paths};
+        fsp <FilteredG <G> > {fg, s, m_paths};
         ev.insert (s);
       }
   }
