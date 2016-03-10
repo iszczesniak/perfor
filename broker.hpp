@@ -17,10 +17,10 @@ template <typename G>
 class broker
 {
   // The type of the set of vertexes.
-  typedef typename std::set <Vertex <G> > vset;
+  typedef std::set <Vertex <G> > vset;
 
   // The type of the filtered graph.
-  typedef typename boost::vertex_subset_complement_filter<G, vset>::type fg_t;
+  typedef boost::vertex_subset_complement_filter<G, vset>::type fg_t;
 
   // The shortest paths.
   v2lp <G> m_paths;
