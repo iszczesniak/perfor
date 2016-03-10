@@ -73,6 +73,10 @@ using Vertex = typename G::vertex_descriptor;
 template <typename G>
 using Path = std::list <Edge<G> >;
 
+// The type of the set of vertexes.
+template <typename G>
+using Vset = std::set <Vertex <G> >;
+
 template <typename G>
 using v2lp = std::map <Vertex <G>, std::deque<Path <G> > >;
 
