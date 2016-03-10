@@ -40,17 +40,21 @@ public:
 
 private:
   // Return the upstream evp for the given node.
-  evp
+  Vertex <G>
   get_upstream (Vertex <G> v)
   {
     for(const auto &e: make_iterator_range (out_edges (v, m_g)))
       if (boost::get (boost::edge_type, m_g, e) == DIR_T::UP)
-        {
-          // The upstream vertex.
-          Vertex <G> t = boost::target (e, m_g);
-          return std::make_pair (e, t);
-        }
+        // The upstream vertex.
+        return boost::target (e, m_g);
 
+    std::cout << "v = " 
+              << to_string (boost::get (boost::vertex_type, m_g, v))
+              << " (" << boost::get (boost::vertex_name, m_g, v)
+              << std::endl;
+
+    std::cout.flush();
+    
     abort();
   }
 
@@ -90,10 +94,7 @@ private:
     assert (boost::get (boost::vertex_type, m_g, cn) == VERTEX_T::ICO);
 
     if (pn == G::null_vertex ())
-      {
-        evp e = get_upstream (cn);
-        fsp_generic (e.second, cn);
-      }
+      fsp_generic (get_upstream (cn), cn);
     else
       m_r[cn].push_back (p);
   }
@@ -120,7 +121,7 @@ private:
     assert (boost::get (boost::vertex_type, m_g, cn) == VERTEX_T::PRN);
 
     // The upstream node.
-    Vertex <G> up = get_upstream (cn).second;
+    Vertex <G> up = get_upstream (cn);
 
     if (up == pn)
       // We're are going downstream.
@@ -159,8 +160,11 @@ private:
         switch (t)
           {
           case VERTEX_T::ONU:
-          case VERTEX_T::ICO:
             fsp_onu (cn, pn);
+            break;
+
+          case VERTEX_T::ICO:
+            fsp_ico (cn, pn);
             break;
       
           case VERTEX_T::PRN:
