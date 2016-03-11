@@ -23,20 +23,23 @@ calc::operator()()
   // Random number generator.
   mt19937 gen (m_seed);
 
+  // Graph.
+  graph pon;
+
   // Generate PON.
-  graph pon = generate_pon (pon, m_a, gen);
+  generate_pon (pon, m_a, gen);
 
   // The traffic requested.
-  V2D <G> req = generate_traffic (pon, m_a, gen, m_uv);
+  auto req = generate_traffic (pon, m_a, gen, m_uv);
 
   // The traffic allocated.
-  V2D <G> all = allocate (pon, req);
+  auto all = allocate (pon, req);
 
   // The results object.
   results r;
 
   // Calculate the mean ONU performance.
-  r.mean_perf = calc_mean_perf (pon);
+  r.mean_perf = calc_mean_perf (pon, req, all);
 
   // Calculate the mean connectivity.
   r.mean_conn = calc_mean_conn (pon);

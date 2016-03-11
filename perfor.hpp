@@ -17,7 +17,7 @@ using v2d = std::map <Vertex <G>, double>;
 // Calculate performance values for all ONUs.
 template <typename G>
 V2D <G>
-allocate (G &g, const V2D &req)
+allocate (const G &g, const V2D <G> &req)
 {
   V2D <G> all;
   
@@ -37,13 +37,13 @@ allocate (G &g, const V2D &req)
  */
 template <typename G, typename M>
 double
-calc_mean_perf (const G &g, const M &m)
+calc_mean_perf (const G &g, const M &req, const M &all)
 {
   // The performance accumulator.
   ba::accumulator_set <double, ba::stats <ba::tag::mean> > pa;
 
-  for(const auto v: get_nodes (g, VERTEX_T::ONU, VERTEX_T::ICO))
-    pa (get (m, v));
+  //  for(const auto v: get_nodes (g, VERTEX_T::ONU, VERTEX_T::ICO))
+  //    pa (get (m, v));
 
   return ba::mean (pa);
 }
@@ -55,7 +55,13 @@ template <typename G>
 double
 calc_mean_conn (const G &g)
 {
-  return 0;
+  // The connectivity accumulator.
+  ba::accumulator_set <double, ba::stats <ba::tag::mean> > ca;
+
+  for (const auto v: get_nodes (g, VERTEX_T::ONU, VERTEX_T::ICO))
+    ca (boost::get(boost::vertex_paths, g, v).size ());
+
+  return ba::mean (ca);
 }
 
 #endif /* PERFOR_HPP */
