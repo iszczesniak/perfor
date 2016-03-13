@@ -34,11 +34,11 @@ allocate (const G &g, const V2D <G> &req)
 
 template <typename G>
 double
-irek (const V2D <G> &c, const Vertex <G> v)
+get (const V2D <G> &c, const Vertex <G> v)
 {
   auto i = c.find (v);
   assert (i != c.end ());
-  return *i;
+  return i->second;
 }
 
 /**
@@ -52,7 +52,7 @@ calc_mean_perf (const G &g, const V2D <G> &req, const V2D <G> &all)
   ba::accumulator_set <double, ba::stats <ba::tag::mean> > pa;
 
   for (const auto v: get_nodes (g, VERTEX_T::ONU, VERTEX_T::ICO))
-    pa (irek (all, v) / irek (req, v));
+    pa (get <G> (all, v) / get <G> (req, v));
 
   return ba::mean (pa);
 }
