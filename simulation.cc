@@ -38,10 +38,14 @@ simulation::run ()
     threads.create_thread (boost::bind (&as::io_service::run, &ios));
 
   // Queue the tasks.
-  for (double uv: m_a.uvs)
-    for (int seed = 1; seed <= m_a.seeds; ++seed)
-      ios.post (calc (*this, m_a, seed, uv));
-
+  for (int seed = 1; seed <= m_a.seeds; ++seed)
+    {
+      auto &pon = s2d[seed];
+      generate_pon (s2d[seed]);
+      for (double uv: m_a.uvs)
+        ios.post (calc (*this, pon, seed, uv));
+    }
+  
   // This is needed here, so that all tasks finish.
   work.reset ();
   threads.join_all ();

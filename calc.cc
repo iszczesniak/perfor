@@ -12,8 +12,8 @@
 
 using namespace std;
 
-calc::calc(simulation &sim, const args &a, int seed, double uv):
-  m_sim (sim), m_a (a), m_seed (seed), m_uv (uv)
+calc::calc(simulation &sim, const graph &pon, int seed, double uv):
+  m_sim (sim), m_pon (pon), m_seed (seed), m_uv (uv)
 {
 }
 
@@ -22,12 +22,6 @@ calc::operator()()
 {
   // Random number generator.
   mt19937 gen (m_seed);
-
-  // Graph.
-  graph pon;
-
-  // Generate PON.
-  generate_pon (pon, m_a, gen);
 
   // The traffic requested.
   auto req = generate_traffic (pon, m_a, gen, m_uv);
@@ -39,7 +33,7 @@ calc::operator()()
   results r;
 
   // Calculate the mean ONU performance.
-  r.mean_perf = calc_mean_perf (pon, req, all);
+  r.mean_perf = calc_mean_perf (m_pon, req, all);
 
   // Calculate the mean connectivity.
   r.mean_conn = calc_mean_conn (pon);

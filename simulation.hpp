@@ -21,12 +21,18 @@ class simulation
   // Result type for dirretent utilization values.
   typedef std::map <double, rfds_type> results_type;
 
-  // Here the threads store their solutions.
+  // Here the results are stored.
   results_type m_results;
   std::mutex m_results_mutex;
 
   // Progress indicator;
   progress m_pi;
+
+  // The type of the container with the simulation graphs.
+  typedef std::map <int, graph> S2D;
+
+  // The simulation graphs.
+  S2D s2d;
   
 public:
   simulation (const args &a);
