@@ -32,18 +32,27 @@ allocate (const G &g, const V2D <G> &req)
   return all;
 }
 
+template <typename G>
+double
+irek (const V2D <G> &c, const Vertex <G> v)
+{
+  auto i = c.find (v);
+  assert (i != c.end ());
+  return *i;
+}
+
 /**
  * Calculates the mean performance of ONUs, including ICOs.
  */
-template <typename G, typename M>
+template <typename G>
 double
-calc_mean_perf (const G &g, const M &req, const M &all)
+calc_mean_perf (const G &g, const V2D <G> &req, const V2D <G> &all)
 {
   // The performance accumulator.
   ba::accumulator_set <double, ba::stats <ba::tag::mean> > pa;
 
-  //  for(const auto v: get_nodes (g, VERTEX_T::ONU, VERTEX_T::ICO))
-  //    pa (get (m, v));
+  for (const auto v: get_nodes (g, VERTEX_T::ONU, VERTEX_T::ICO))
+    pa (irek (all, v) / irek (req, v));
 
   return ba::mean (pa);
 }
