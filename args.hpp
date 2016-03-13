@@ -4,7 +4,8 @@
 #include <vector>
 
 /**
- * These are the simulation arguments.
+ * These are the simulation arguments for all runs, not for a specific
+ * simulation run.
  */
 struct args
 {
