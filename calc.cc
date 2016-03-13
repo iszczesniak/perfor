@@ -24,10 +24,10 @@ calc::operator()()
   mt19937 gen (m_seed);
 
   // The traffic requested.
-  auto req = generate_traffic (pon, m_a, gen, m_uv);
+  auto req = generate_traffic (m_pon, m_a, gen, m_uv);
 
   // The traffic allocated.
-  auto all = allocate (pon, req);
+  auto all = allocate (m_pon, req);
 
   // The results object.
   results r;
@@ -36,7 +36,7 @@ calc::operator()()
   r.mean_perf = calc_mean_perf (m_pon, req, all);
 
   // Calculate the mean connectivity.
-  r.mean_conn = calc_mean_conn (pon);
+  r.mean_conn = calc_mean_conn (m_pon);
 
   // Report the result back to the simulation object.
   m_sim.report (m_uv, m_seed, r);
