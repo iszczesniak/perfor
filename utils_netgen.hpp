@@ -84,7 +84,7 @@ generate_further (G &g, args &a, T &gen, int stage, Vertex<G> pn)
 
 template<typename G, typename T>
 void
-generate_pon(G &pon, args &a, T &gen)
+generate_pon (G &pon, args &a, T &gen)
 {
   assert(num_vertices(pon) == 0);
   Vertex<G> olt = add_vertex(pon);

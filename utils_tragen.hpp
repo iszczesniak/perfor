@@ -13,18 +13,11 @@
 
 template<typename G, typename T>
 V2D <G>
-generate_traffic(G &g, args &a, T &gen, double uv)
+generate_traffic(G &g, double bfo)
 {
   V2D <G> req;
   
   assert(num_vertices(g) != 0);
-
-  // Count the number of ONUs, including the IC-ONUs.
-  int onus = count_node_types(g, VERTEX_T::ONU);
-  onus += count_node_types(g, VERTEX_T::ICO);
-
-  // The average bitrate for ONU.
-  double bfo = a.drate * uv / onus;
 
   Viter<G> vi, ve;
   for (tie(vi, ve) = vertices(g); vi != ve; ++vi)

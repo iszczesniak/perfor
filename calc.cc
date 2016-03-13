@@ -24,7 +24,7 @@ calc::operator()()
   mt19937 gen (m_seed);
 
   // The traffic requested.
-  auto req = generate_traffic (m_pon, m_a, gen, m_uv);
+  auto req = generate_traffic (m_pon, gen, m_uv);
 
   // The traffic allocated.
   auto all = allocate (m_pon, req);
