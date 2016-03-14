@@ -43,6 +43,7 @@ simulation::run ()
   for (int seed = 1; seed <= m_a.seeds; ++seed)
     {
       std::mt19937 gen;
+      gen.seed(seed);
       auto &pon = s2d[seed];
       generate_pon (pon, m_a, gen);
       for (double uv: m_a.uvs)
