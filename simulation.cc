@@ -53,10 +53,10 @@ simulation::run ()
 }
 
 void
-simulation::report(double uv, int seed, results &r)
+simulation::report(double uv, results &r)
 {
   m_results_mutex.lock ();
-  m_results[uv][seed] = r.mean_perf;
+  m_results[uv] = r.mean_perf;
   m_results_mutex.unlock ();
 
   // Update the progress indicator.

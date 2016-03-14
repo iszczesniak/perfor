@@ -2,6 +2,7 @@
 #define SIMULATION_HPP
 
 #include "args.hpp"
+#include "graph.hpp"
 #include "progress.hpp"
 #include "results.hpp"
 
@@ -12,14 +13,17 @@
 
 class simulation
 {
-  // Simulation arguments.
-  args m_a;
-
   // Result type for different seeds.
   typedef std::map <int, double> rfds_type;
 
   // Result type for dirretent utilization values.
   typedef std::map <double, rfds_type> results_type;
+
+  // The type of the container with the simulation graphs.
+  typedef std::map <int, graph> S2D;
+
+  // Simulation arguments.
+  args m_a;
 
   // Here the results are stored.
   results_type m_results;
@@ -28,16 +32,13 @@ class simulation
   // Progress indicator;
   progress m_pi;
 
-  // The type of the container with the simulation graphs.
-  typedef std::map <int, graph> S2D;
-
   // The simulation graphs.
   S2D s2d;
   
 public:
   simulation (const args &a);
   void run ();
-  void report (double uv, int seed, results &r);
+  void report (double uv, results &r);
   void print ();
 };
 
