@@ -9,17 +9,14 @@ class calc
   simulation &m_sim;
 
   // The graph we operate on.
-  graph &m_pon;
-
-  // Seed for this calculation.
-  int m_seed;
+  const graph &m_pon;
 
   // Utilization value.
   double m_uv;
 
 public:
   // Takes the arguments needed for a calculation.
-  calc(simulation &sim, const graph &pon, int seed, double uv);
+  calc(simulation &sim, const graph &pon, double uv);
   
   // Does the calculation.
   void operator ()();

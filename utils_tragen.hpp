@@ -11,9 +11,9 @@
 // fraction uv (utilization value) of the total downstream rate is
 // split among all ONUS, reagardless whether they are IC or not.
 
-template<typename G, typename T>
+template<typename G>
 V2D <G>
-generate_traffic(G &g, double bfo)
+generate_traffic(const G &g, double bfo)
 {
   V2D <G> req;
   
