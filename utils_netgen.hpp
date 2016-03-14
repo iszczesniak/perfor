@@ -46,7 +46,7 @@ add_edge (G &g, Vertex<G> pn, Vertex<G> n, T rate, DIR_T type)
 // We start counting stages from 0. pn is the previous node.
 template<typename G, typename T>
 void
-generate_further (G &g, args &a, T &gen, int stage, Vertex<G> pn)
+generate_further (G &g, const args &a, T &gen, int stage, Vertex<G> pn)
 {
   std::bernoulli_distribution qd(a.q);
   std::bernoulli_distribution rd(a.r);
@@ -84,7 +84,7 @@ generate_further (G &g, args &a, T &gen, int stage, Vertex<G> pn)
 
 template<typename G, typename T>
 void
-generate_pon (G &pon, args &a, T &gen)
+generate_pon (G &pon, const args &a, T &gen)
 {
   assert(num_vertices(pon) == 0);
   Vertex<G> olt = add_vertex(pon);

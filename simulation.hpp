@@ -16,7 +16,7 @@ class simulation
   // Result type for different seeds.
   typedef std::map <int, double> rfds_type;
 
-  // Result type for dirretent utilization values.
+  // Result type for different utilization values.
   typedef std::map <double, rfds_type> results_type;
 
   // The type of the container with the simulation graphs.
@@ -38,7 +38,7 @@ class simulation
 public:
   simulation (const args &a);
   void run ();
-  void report (double uv, results &r);
+  void report (double uv, int id, results &r);
   void print ();
 };
 

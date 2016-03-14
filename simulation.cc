@@ -2,6 +2,7 @@
 
 #include "calc.hpp"
 #include "progress.hpp"
+#include "utils_netgen.hpp"
 
 #include <boost/accumulators/accumulators.hpp>
 #include <boost/accumulators/statistics/stats.hpp>
@@ -12,6 +13,7 @@
 
 #include <list>
 #include <mutex>
+#include <random>
 #include <thread>
 
 using namespace std;
@@ -37,11 +39,12 @@ simulation::run ()
   for (int i = 0; i < noth; ++i)
     threads.create_thread (boost::bind (&as::io_service::run, &ios));
 
-  // Queue the tasks.
+  // Generate networks and queue the tasks.
   for (int seed = 1; seed <= m_a.seeds; ++seed)
     {
+      std::mt19937 gen;
       auto &pon = s2d[seed];
-      generate_pon (s2d[seed]);
+      generate_pon (pon, m_a, gen);
       for (double uv: m_a.uvs)
         ios.post (calc (*this, pon, seed, uv));
     }
@@ -53,10 +56,10 @@ simulation::run ()
 }
 
 void
-simulation::report(double uv, results &r)
+simulation::report(double uv, int id, results &r)
 {
   m_results_mutex.lock ();
-  m_results[uv] = r.mean_perf;
+  m_results[uv][id] = r.mean_perf;
   m_results_mutex.unlock ();
 
   // Update the progress indicator.

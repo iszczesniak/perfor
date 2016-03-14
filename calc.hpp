@@ -14,9 +14,12 @@ class calc
   // Utilization value.
   double m_uv;
 
+  // Calculation id.
+  int m_id;
+
 public:
   // Takes the arguments needed for a calculation.
-  calc(simulation &sim, const graph &pon, double uv);
+  calc(simulation &sim, const graph &pon, double uv, int id);
   
   // Does the calculation.
   void operator ()();

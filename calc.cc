@@ -12,8 +12,8 @@
 
 using namespace std;
 
-calc::calc(simulation &sim, const graph &pon, double uv):
-  m_sim (sim), m_pon (pon), m_uv (uv)
+calc::calc(simulation &sim, const graph &pon, double uv, int id):
+  m_sim (sim), m_pon (pon), m_uv (uv), m_id (id)
 {
 }
 
@@ -36,5 +36,5 @@ calc::operator()()
   r.mean_conn = calc_mean_conn (m_pon);
 
   // Report the result back to the simulation object.
-  m_sim.report (m_uv, r);
+  m_sim.report (m_uv, m_id, r);
 }
