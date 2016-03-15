@@ -4,6 +4,8 @@
 #include "graph.hpp"
 #include "utils.hpp"
 
+#include <boost/graph/filtered_graph.hpp>
+
 #include <set>
 #include <utility>
 
@@ -22,7 +24,7 @@ class fsp
 public:
   // Find shortest paths in a PON from the given cn to all ONUs and
   // ICOs.
-  fsp (G &g, Vertex <G> cn)
+  fsp (G &g, Vertex <G> cn): m_g (g)
   {
     // We don't want to examine the null vertex, which we can
     // encounter when a node was filtered out.
@@ -67,7 +69,7 @@ private:
   {
     assert (boost::get (boost::vertex_type, m_g, cn) == VERTEX_T::ONU);
     assert (pn != G::null_vertex ());
-    m_r[cn].push_back (p);
+    boost::get (boost::vertex_paths, m_g, cn).push_back (p);
   }
 
   // If we start the search at the ICO, we climb upstream.  If we get
@@ -80,7 +82,7 @@ private:
     if (pn == G::null_vertex ())
       fsp_generic (get_upstream (cn), cn);
     else
-      m_r[cn].push_back (p);
+      boost::get (boost::vertex_paths, m_g, cn).push_back (p);
   }
 
   // For active nodes: OLT or ARN.  Here fan out the search.
@@ -168,10 +170,28 @@ private:
   }
 };
 
+// This function fills in shortest paths in a graph.
 template <typename G>
+void
 fill_paths (G &g)
 {
-  
+  // The type of the filtered graph.
+  typedef typename boost::vertex_subset_complement_filter<G, Vset <G> >::type
+  FilteredG;
+
+  // The set of excluded vertexes.
+  Vset <G> ev;
+  // The vertex predicate.
+  boost::is_not_in_subset <Vset <G> > vp (ev);
+  // The filtered graph.
+  FilteredG fg (g, boost::keep_all (), vp);
+
+  // Iterate over OLT and ICOs, and find paths to all other nodes.
+  for(auto s: get_nodes (g, VERTEX_T::OLT, VERTEX_T::ICO))
+    {
+      fsp <FilteredG> (fg, s);
+      ev.insert (s);
+    }
 }
 
 #endif /* FSP_HPP */

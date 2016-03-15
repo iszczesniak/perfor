@@ -1,10 +1,6 @@
 #ifndef BROKER_HPP
 #define BROKER_HPP
 
-// We're including the filtered graph before fsp.hpp, because
-// otherwise the compilation fails.  I'm not sure why.
-#include <boost/graph/filtered_graph.hpp>
-
 #include "fsp.hpp"
 #include "graph.hpp"
 
@@ -16,13 +12,6 @@
 template <typename G>
 class broker
 {
-  // The type of the filtered graph.
-  typedef typename boost::vertex_subset_complement_filter<G, Vset <G> >::type
-  FilteredG;
-
-  // The shortest paths.
-  v2lp <G> m_paths;
-
   // Nodes that need service.
   std::deque <Vertex <G> > nodes;
 
@@ -32,19 +21,6 @@ class broker
 public:
   broker(const G &g): m_g (g)
   {
-    // The set of excluded vertexes.
-    Vset <G> ev;
-    // The vertex predicate.
-    boost::is_not_in_subset <Vset <G> > vp (ev);
-    // The filtered graph.
-    FilteredG fg (m_g, boost::keep_all (), vp);
-
-    // Iterate over OLT and ICOs, and find paths to all other nodes.
-    for(auto s: get_nodes (g, VERTEX_T::OLT, VERTEX_T::ICO))
-      {
-        fsp <FilteredG> (fg, s, m_paths);
-        ev.insert (s);
-      }
   }
 
   // Insert nodes that need service.
@@ -69,8 +45,6 @@ private:
   void
   service(Vertex<G> v)
   {
-    auto i = m_paths.find(v);
-    assert(i != m_paths.end());
   }
 
   void
@@ -78,24 +52,22 @@ private:
   {
     struct ver_cmp
     {
-      const v2lp <G> &m_paths;
+      const G &m_g;
 
-      ver_cmp(const v2lp <G> &paths): m_paths(paths)
+      ver_cmp(const G &g): m_g(g)
       {
       }
 
       bool operator () (Vertex<G> a, Vertex<G> b)
       {
-        auto ai = m_paths.find(a);
-        assert(ai != m_paths.end());
-        auto bi = m_paths.find(b);
-        assert(bi != m_paths.end());
+        const auto &ap = boost::get (boost::vertex_paths, m_g, a);
+        const auto &bp = boost::get (boost::vertex_paths, m_g, b);
 
-        return ai->second.size() < bi->second.size();
+        return ap.size() < bp.size();
       }
     };
 
-    std::sort(nodes.begin(), nodes.end(), ver_cmp(m_paths));
+    std::sort(nodes.begin(), nodes.end(), ver_cmp(m_g));
   }
 };
 
