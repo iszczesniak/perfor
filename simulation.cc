@@ -44,7 +44,7 @@ simulation::run ()
     {
       std::mt19937 gen;
       gen.seed(seed);
-      auto &pon = s2d[seed];
+      auto &pon = i2g[seed];
       generate_pon (pon, m_a, gen);
       for (double uv: m_a.uvs)
         ios.post (calc (*this, pon, seed, uv));

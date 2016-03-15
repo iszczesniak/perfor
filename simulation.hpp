@@ -20,7 +20,7 @@ class simulation
   typedef std::map <double, rfds_type> results_type;
 
   // The type of the container with the simulation graphs.
-  typedef std::map <int, graph> S2D;
+  typedef std::map <int, graph> I2G;
 
   // Simulation arguments.
   args m_a;
@@ -33,7 +33,7 @@ class simulation
   progress m_pi;
 
   // The simulation graphs.
-  S2D s2d;
+  I2G i2g;
   
 public:
   simulation (const args &a);
