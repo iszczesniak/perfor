@@ -10,17 +10,8 @@
 template <typename G>
 class fsp
 {
-  // The pair of an edge and a vertex.
-  typedef std::pair <Edge <G>, Vertex <G> > evp;
-
-  // The set of the evp.
-  typedef std::set <evp> evpset;
-
   // The graph we operate on.
-  const G &m_g;
-
-  // Here we store the results;
-  v2lp <G> &m_r;
+  G &m_g;
 
   // The set of visited vertexes.
   Vset <G> vv;
@@ -31,7 +22,7 @@ class fsp
 public:
   // Find shortest paths in a PON from the given cn to all ONUs and
   // ICOs.
-  fsp (const G &g, Vertex <G> cn, v2lp <G> &r): m_g (g), m_r (r)
+  fsp (G &g, Vertex <G> cn)
   {
     // We don't want to examine the null vertex, which we can
     // encounter when a node was filtered out.
@@ -176,5 +167,11 @@ private:
       }
   }
 };
+
+template <typename G>
+fill_paths (G &g)
+{
+  
+}
 
 #endif /* FSP_HPP */

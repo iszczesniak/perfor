@@ -2,6 +2,7 @@
 #define UTILS_NETGEN_HPP
 
 #include "args.hpp"
+#include "fsp.hpp"
 #include "graph.hpp"
 #include "utils.hpp"
 
@@ -91,6 +92,7 @@ generate_pon (G &pon, const args &a, T &gen)
   boost::get(boost::vertex_type, pon, olt) = VERTEX_T::OLT;
   generate_further(pon, a, gen, 0, olt);
   name_vertices(pon);
+  fill_paths(pon);
 }
 
 #endif /* UTILS_NETGEN_HPP */
