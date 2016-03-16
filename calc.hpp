@@ -9,7 +9,7 @@ class calc
   simulation &m_sim;
 
   // The graph we operate on.
-  const graph &m_pon;
+  const graph &m_g;
 
   // Utilization value.
   double m_uv;
@@ -19,7 +19,7 @@ class calc
 
 public:
   // Takes the arguments needed for a calculation.
-  calc(simulation &sim, const graph &pon, double uv, int id);
+  calc(simulation &sim, const graph &g, double uv, int id);
   
   // Does the calculation.
   void operator ()();

@@ -11,19 +11,6 @@
 
 namespace ba = boost::accumulators;
 
-// The type where the calculated performance values are stored.
-template <typename G>
-using v2d = std::map <Vertex <G>, double>;
-
-// Calculate performance values for all ONUs.
-template <typename G>
-V2D <G>
-allocate (const G &g, const V2D <G> &req)
-{
-  broker<G> b(g);
-  return b.service(req);
-}
-
 /**
  * Calculates the mean performance of ONUs, including ICOs.
  */
