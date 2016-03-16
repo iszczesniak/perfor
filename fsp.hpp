@@ -182,6 +182,7 @@ struct path_cmp
   }
 };
 
+// Sort the shortest paths of all vertexes.
 template <typename G>
 void
 sort_paths (G &g)
@@ -191,6 +192,19 @@ sort_paths (G &g)
     {
       auto &l = boost::get(boost::vertex_paths, g, v);
       std::sort(l.begin(), l.end(), path_cmp <Path <G> > ());
+    }
+}
+
+// Make sure that each vertex has its paths sorted.
+template <typename G>
+void
+test_paths (G &g)
+{
+  // Iterate over every vertex and make sure it has sorted paths.
+  for(const auto &v: make_iterator_range(boost::vertices(g)))
+    {
+      auto &l = boost::get(boost::vertex_paths, g, v);
+      assert(std::is_sorted(l.begin(), l.end(), path_cmp <Path <G> > ()));
     }
 }
 
@@ -218,6 +232,7 @@ fill_paths (G &g)
     }
 
   sort_paths (g);
+  test_paths (g);
 }
 
 #endif /* FSP_HPP */
