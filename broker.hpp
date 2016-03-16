@@ -29,7 +29,6 @@ public:
   {
     // Nodes that need service.
     std::deque <Vertex <G> > nodes;
-
     for (const auto p: req)
       nodes.push_back(p.first);
 
