@@ -19,17 +19,8 @@ template <typename G>
 V2D <G>
 allocate (const G &g, const V2D <G> &req)
 {
-  broker<G> b(g, req);
-
-  // Tell the broker what nodes need service.
-  for(const auto v: get_nodes (g, VERTEX_T::ONU, VERTEX_T::ICO))
-    {
-      const auto i = req.find(v);
-      assert (i != req.end());
-      b.push(v, i->second);
-    }
-
-  return b.service();
+  broker<G> b(g);
+  return b.service(req);
 }
 
 template <typename G>
