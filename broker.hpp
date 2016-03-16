@@ -15,34 +15,28 @@ class broker
   // The graph we're working on.
   const G &m_g;
 
-  // Nodes that need service.
-  std::deque <Vertex <G> > nodes;
+  // The available bitrate for links.
+  std::map <Edge <G>, double> available;
 
-  // The requested
-  V2D <G> req;
-  
 public:
   broker(const G &g): m_g (g)
   {
   }
 
-  // Insert a node that need service, and what bitrate is requested.
-  void
-  push (Vertex<G> v, double br)
-  {
-    nodes.push_back (v);
-  }
-
   // Service the nodes now.
   V2D <G>
-  service ()
+  service (const V2D <G> &req)
   {
+    // Nodes that need service.
+    std::deque <Vertex <G> > nodes;
+
+    for (const auto p: req)
+      nodes.push_back(p.first);
+
     V2D <G> all;
 
-    sort();
     for(const auto v: nodes)
-      service(v);
-    nodes.clear();
+      all[v] = service(v, get <G> (req, v));
 
     return all;
   }
@@ -50,13 +44,13 @@ public:
 private:
   // Service a single node.
   double
-  service(Vertex<G> v)
+  service(Vertex<G> v, double req)
   {
     return 0;
   }
 
   void
-  sort()
+  sort(std::deque <Vertex <G> > &nodes)
   {
     struct ver_cmp
     {
