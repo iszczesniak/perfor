@@ -31,6 +31,7 @@ public:
     std::deque <Vertex <G> > nodes;
     for (const auto p: req)
       nodes.push_back(p.first);
+    sort(nodes);
 
     V2D <G> all;
 
@@ -69,6 +70,7 @@ private:
     };
 
     std::sort(nodes.begin(), nodes.end(), ver_cmp(m_g));
+    assert(std::is_sorted (nodes.begin(), nodes.end(), ver_cmp(m_g)));
   }
 };
 
