@@ -1,8 +1,6 @@
 #ifndef PERFOR_HPP
 #define PERFOR_HPP
 
-#include "broker.hpp"
-#include "graph.hpp"
 #include "utils.hpp"
 
 #include <boost/accumulators/accumulators.hpp>
