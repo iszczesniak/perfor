@@ -5,7 +5,9 @@
 #include "utils.hpp"
 
 #include <boost/graph/filtered_graph.hpp>
+#include <boost/range.hpp>
 
+#include <algorithm>
 #include <set>
 #include <utility>
 
@@ -170,6 +172,28 @@ private:
   }
 };
 
+// Compare containers according to their sizes.
+template <typename C>
+struct path_cmp
+{
+  bool operator () (const C &a, const C &b)
+  {
+    return a.size() < b.size();
+  }
+};
+
+template <typename G>
+void
+sort_paths (G &g)
+{
+  // Iterate over every vertex and sort its paths.
+  for(const auto &v: make_iterator_range(boost::vertices(g)))
+    {
+      auto &l = boost::get(boost::vertex_paths, g, v);
+      std::sort(l.begin(), l.end(), path_cmp <Path <G> > ());
+    }
+}
+
 // This function fills in shortest paths in a graph.
 template <typename G>
 void
@@ -192,6 +216,8 @@ fill_paths (G &g)
       fsp <FilteredG> (fg, s);
       ev.insert (s);
     }
+
+  sort_paths (g);
 }
 
 #endif /* FSP_HPP */
