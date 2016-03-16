@@ -3,6 +3,7 @@
 
 #include "broker.hpp"
 #include "graph.hpp"
+#include "utils.hpp"
 
 #include <boost/accumulators/accumulators.hpp>
 #include <boost/accumulators/statistics/stats.hpp>
@@ -21,15 +22,6 @@ allocate (const G &g, const V2D <G> &req)
 {
   broker<G> b(g);
   return b.service(req);
-}
-
-template <typename G>
-double
-get (const V2D <G> &c, const Vertex <G> v)
-{
-  auto i = c.find (v);
-  assert (i != c.end ());
-  return i->second;
 }
 
 /**
