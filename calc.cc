@@ -7,6 +7,8 @@
 #include "simulation.hpp"
 #include "utils_tragen.hpp"
 
+#include <iostream>
+
 using namespace std;
 
 calc::calc(simulation &sim, const graph &g, double uv, int id):
@@ -23,6 +25,9 @@ calc::operator()()
   // The traffic allocated.
   auto all = broker <graph> (m_g).service (req);
 
+  for (const auto &p: req)
+    std::cout << p.first << " " << p.second << std::endl;
+  
   // The results object.
   results r;
 

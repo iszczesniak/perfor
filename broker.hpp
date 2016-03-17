@@ -22,19 +22,10 @@ class broker
 public:
   broker(const G &g): m_g (g)
   {
-    // Initialize the available bitrate.
-    Vertex<G> olt = *vertices(g).first;
-    assert(boost::get(boost::vertex_type, m_g, olt) == VERTEX_T::OLT);
-    assert(boost::out_degree(olt, m_g) == 1);
-    assert(boost::in_degree(olt, m_g) == 1);
-    Edge<G> oe = *(out_edges(olt, m_g).first);
-    Edge<G> ie = *(in_edges(olt, m_g).first);
-    assert(get(boost::edge_type, m_g, oe) == DIR_T::DOWN);
-    assert(get(boost::edge_type, m_g, ie) == DIR_T::UP);
-    double db = get(boost::edge_rate, m_g, oe);
-    double ub = get(boost::edge_rate, m_g, ie);
+    double db = get_drate(m_g);
+    double ub = get_urate(m_g);
 
-    for (const auto &e: make_iterator_range(edges(g)))
+    for (const auto &e: make_iterator_range(edges(m_g)))
       {
         DIR_T t = get(boost::edge_type, m_g, e);
         assert(t == DIR_T::UP || t == DIR_T::DOWN);
