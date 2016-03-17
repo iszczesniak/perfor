@@ -27,6 +27,19 @@ public:
     assert(boost::get(boost::vertex_type, m_g, olt) == VERTEX_T::OLT);
     assert(boost::out_degree(olt, m_g) == 1);
     assert(boost::in_degree(olt, m_g) == 1);
+    Edge<G> oe = *(out_edges(olt, m_g).first);
+    Edge<G> ie = *(in_edges(olt, m_g).first);
+    assert(get(boost::edge_type, m_g, oe) == DIR_T::DOWN);
+    assert(get(boost::edge_type, m_g, ie) == DIR_T::UP);
+    double db = get(boost::edge_rate, m_g, oe);
+    double ub = get(boost::edge_rate, m_g, ie);
+
+    for (const auto &e: make_iterator_range(edges(g)))
+      {
+        DIR_T t = get(boost::edge_type, m_g, e);
+        assert(t == DIR_T::UP || t == DIR_T::DOWN);
+        available[e] = (t == DIR_T::DOWN) ? db : ub;
+      }
   }
 
   // Service the nodes now.
