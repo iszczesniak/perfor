@@ -61,18 +61,44 @@ public:
   }
 
 private:
-  // Service a single node.  Return the allocated bitrate.
+  // Service a single node.  Return the allocated bitrate.  We try to
+  // allocate the bitrate along the shortest paths, and stop searching
+  // for a path when the requested bitrate is found.
   double
   service(Vertex<G> v, double req)
   {
-    return 0;
+    double all = 0;
+    Path<G> empty_path;
+    Path<G> &path = empty_path;
+
+    // Iterate over the paths of the vertex.
+    for (auto const &p: boost::get(boost::vertex_paths, m_g, v))
+      {
+        // The path bitrate.
+        double pbr = find_path_bitrate(p);
+
+        if (pbr > all)
+          {
+            all = pbr;
+            path = p;
+          }
+
+        // We stop the search when sufficient bitrate was found.
+        if (all >= req)
+          break;
+      }
+
+    // Allocate the bitrate on all edges of the chosen path.
+    for (auto const &e: path)
+      available[e] -= all;
+
+    return all;
   }
 
   // Return the bitrate a path can support.
   double
   find_path_bitrate (const Path<G> &p)
   {
-    assert(!p.empty());
     double bitrate = std::numeric_limits<double>::max();
 
     for (const auto e: p)
