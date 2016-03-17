@@ -70,14 +70,10 @@ simulation::report(double uv, int id, results &r)
 void
 simulation::print()
 {
-  // Iterate over the results.  Don't modify the results to make sure
-  // we got the results of all tasks.
-  const results_type &results = m_results;
-  
-  for (double uv: m_a.uvs)
+  for (auto uv: m_a.uvs)
       {
-        results_type::const_iterator i = results.find (uv);
-        assert (i != results.end());
+        results_type::const_iterator i = m_results.find (uv);
+        assert (i != m_results.end());
         const rfds_type &rfds = i->second;
 
         typedef ba::tag::error_of <ba::tag::mean> eom_t;
