@@ -47,7 +47,7 @@ simulation::run ()
       auto &pon = i2g[seed];
       generate_pon (pon, m_a, gen);
       for (double uv: m_a.uvs)
-        ios.post (calc (*this, pon, seed, uv));
+        ios.post (calc (*this, pon, uv, seed));
     }
   
   // This is needed here, so that all tasks finish.
