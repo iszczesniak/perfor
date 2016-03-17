@@ -3,6 +3,8 @@
 
 #include "graph.hpp"
 
+#include <boost/range.hpp>
+
 #include <iomanip>
 #include <iostream>
 #include <random>
@@ -67,10 +69,8 @@ template<typename G>
 void
 print_pon(const G &g, std::ostream &out, Vertex<G> cn, Vertex<G> pn)
 {
-  typename G::out_edge_iterator ei, ee;
-  for (tie (ei, ee) = out_edges (cn, g); ei != ee; ++ei)
+  for (const auto &e: make_iterator_range(out_edges (cn, g)))
     {
-      Edge<G> e = *ei;
       Vertex<G> nn = boost::target(e, g);
 
       // Don't follow upstream.
