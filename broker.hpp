@@ -22,6 +22,11 @@ class broker
 public:
   broker(const G &g): m_g (g)
   {
+    // Initialize the available bitrate.
+    Vertex<G> olt = *vertices(g).first;
+    assert(boost::get(boost::vertex_type, m_g, olt) == VERTEX_T::OLT);
+    assert(boost::out_degree(olt, m_g) == 1);
+    assert(boost::in_degree(olt, m_g) == 1);
   }
 
   // Service the nodes now.
