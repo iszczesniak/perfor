@@ -5,6 +5,7 @@
 #include "graph.hpp"
 
 #include <deque>
+#include <limits>
 #include <map>
 #include <tuple>
 #include <iostream>
@@ -42,11 +43,24 @@ public:
   }
 
 private:
-  // Service a single node.
+  // Service a single node.  Return the allocated bitrate.
   double
   service(Vertex<G> v, double req)
   {
     return 0;
+  }
+
+  // Return the bitrate a path can support.
+  double
+  find_path_bitrate (const Path<G> &p)
+  {
+    assert(!p.empty());
+    double bitrate = std::numeric_limits<double>::max();
+
+    for (const auto e: p)
+      bitrate = std::min(bitrate, available[e]);
+
+    return bitrate;
   }
 
   void
