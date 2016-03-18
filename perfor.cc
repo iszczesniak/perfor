@@ -34,7 +34,7 @@ main (int argc, const char* argv[])
 
   // The number of seeds, i.e., simulation runs for the given
   // parameters.
-  a.seeds = 10;
+  a.seeds = 1;
   
   a.uvs = {0.1};
 

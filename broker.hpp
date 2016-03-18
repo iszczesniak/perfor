@@ -62,6 +62,8 @@ private:
     Path<G> empty_path;
     Path<G> &path = empty_path;
 
+    std::cout << boost::get(boost::vertex_paths, m_g, v).size() << std::endl;
+
     // Iterate over the paths of the vertex.
     for (auto const &p: boost::get(boost::vertex_paths, m_g, v))
       {
