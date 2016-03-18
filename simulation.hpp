@@ -39,7 +39,7 @@ public:
   simulation (const args &a);
   void run ();
   void report (double uv, int id, results &r);
-  void print ();
+  void print (std::ostream &);
 };
 
 #endif /* SIMULATION_HPP */

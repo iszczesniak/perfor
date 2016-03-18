@@ -68,7 +68,7 @@ simulation::report(double uv, int id, results &r)
 }
 
 void
-simulation::print()
+simulation::print(ostream &out)
 {
   for (auto uv: m_a.uvs)
       {
@@ -94,8 +94,8 @@ simulation::print()
         // Relative standard error of the mean in percent.
         double rse = 100 * se / mean;
 
-        cout << uv << " "
-             << mean << " "
-             << rse << endl;
+        out << uv << " "
+            << mean << " "
+            << rse << endl;
       }
 }

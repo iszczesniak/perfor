@@ -43,7 +43,7 @@ main (int argc, const char* argv[])
 
   simulation sim(a);
   sim.run();
-  sim.print();
+  sim.print(cout);
 
   return 0;
 }
