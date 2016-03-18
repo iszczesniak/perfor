@@ -46,7 +46,7 @@ public:
     V2D <G> all;
 
     for(const auto v: nodes)
-      all[v] = service(v, get <G> (req, v));
+      all[v] = service(v, req.at(v));
 
     return all;
   }

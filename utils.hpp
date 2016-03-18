@@ -136,13 +136,4 @@ print_path(const G &g, const Path <G> &p, std::ostream &out)
     }
 }
 
-template <typename G>
-double
-get (const V2D <G> &c, const Vertex <G> v)
-{
-  auto i = c.find (v);
-  assert (i != c.end ());
-  return i->second;
-}
-
 #endif /* UTILS_HPP */

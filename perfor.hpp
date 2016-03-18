@@ -20,7 +20,7 @@ calc_mean_perf (const G &g, const V2D <G> &req, const V2D <G> &all)
   ba::accumulator_set <double, ba::stats <ba::tag::mean> > pa;
 
   for (const auto v: get_nodes (g, VERTEX_T::ONU, VERTEX_T::ICO))
-    pa (get <G> (all, v) / get <G> (req, v));
+    pa (all.at(v) / req.at(v));
 
   return ba::mean (pa);
 }
