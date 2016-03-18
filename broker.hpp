@@ -22,14 +22,14 @@ class broker
 public:
   broker(const G &g): m_g (g)
   {
-    double db = get_drate(m_g);
-    double ub = get_urate(m_g);
+    double drate = get_drate(m_g);
+    double urate = get_urate(m_g);
 
     for (const auto &e: make_iterator_range(edges(m_g)))
       {
         DIR_T t = get(boost::edge_type, m_g, e);
         assert(t == DIR_T::UP || t == DIR_T::DOWN);
-        available[e] = (t == DIR_T::DOWN) ? db : ub;
+        available[e] = (t == DIR_T::DOWN) ? drate : urate;
       }
   }
 

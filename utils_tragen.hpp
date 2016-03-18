@@ -16,8 +16,8 @@ get_drate(const G &g)
   assert(boost::get(boost::vertex_type, g, olt) == VERTEX_T::OLT);
   assert(boost::out_degree(olt, g) == 1);
   Edge<G> oe = *(out_edges(olt, g).first);
-  assert(get(boost::edge_type, m_g, oe) == DIR_T::DOWN);
-  return get(boost::edge_rate, m_g, oe);
+  assert(get(boost::edge_type, g, oe) == DIR_T::DOWN);
+  return get(boost::edge_rate, g, oe);
 }
 
 // Returns the up rate of the PON.
@@ -29,8 +29,8 @@ get_urate(const G &g)
   assert(boost::get(boost::vertex_type, g, olt) == VERTEX_T::OLT);
   assert(boost::in_degree(olt, g) == 1);
   Edge<G> ie = *(in_edges(olt, g).first);
-  assert(get(boost::edge_type, m_g, ie) == DIR_T::UP);
-  return get(boost::edge_rate, m_g, ie);
+  assert(get(boost::edge_type, g, ie) == DIR_T::UP);
+  return get(boost::edge_rate, g, ie);
 }
 
 // This function generates the downstream traffic, i.e. to ONUs.  The
