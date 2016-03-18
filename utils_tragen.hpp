@@ -38,10 +38,19 @@ get_urate(const G &g)
 // split among all ONUS, reagardless whether they are IC or not.
 template<typename G>
 V2D <G>
-generate_traffic(const G &g, double bfo)
+generate_traffic(const G &g, double uv)
 {
   V2D <G> req;
-  
+
+  // The downstream bitrate.
+  double drate = get_drate(g);
+
+  // The number of ONUS among which to split the uv fraction of drate.
+  int onus = count_nodes(g, VERTEX_T::ONU, VERTEX_T::ICO);
+
+  // Bitrate for an ONU.
+  double bfo = drate * uv / onus;
+
   assert(num_vertices(g) != 0);
 
   for (auto v: get_nodes(g, VERTEX_T::ONU, VERTEX_T::ICO))

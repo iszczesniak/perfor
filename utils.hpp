@@ -12,12 +12,21 @@
 
 template<typename G>
 int
-count_node_types(const G &g, VERTEX_T t)
+count_nodes(const G &g, VERTEX_T t)
 {
   int count = 0;
   Viter<G> vi, ve;
   for (tie(vi, ve) = vertices(g); vi != ve; ++vi)
     count += (boost::get(boost::vertex_type, g, *vi) == t);
+  return count;
+}
+
+template<typename G>
+int
+count_nodes(const G &g, VERTEX_T t1, VERTEX_T t2)
+{
+  int count = count_nodes(g, t1);
+  count += count_nodes(g, t2);
   return count;
 }
 
