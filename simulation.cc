@@ -74,28 +74,31 @@ simulation::print(ostream &out)
       {
         results_type::const_iterator i = m_results.find (uv);
         assert (i != m_results.end());
+        // Here we have the results for the uv, all of them, for all
+        // seed values.
         const rfds_type &rfds = i->second;
 
         typedef ba::tag::error_of <ba::tag::mean> eom_t;
         typedef ba::stats <ba::tag::mean, eom_t> stats_t;
-        ba::accumulator_set <double, stats_t> acc;
+        ba::accumulator_set <double, stats_t> perfor_acc;
 
+        // Iterate over the seed values.
         for (int seed = 1; seed <= m_a.seeds; ++seed)
           {
             rfds_type::const_iterator j = rfds.find (seed);
             assert (j != rfds.end ());
-            acc(j->second);
+            perfor_acc(j->second);
           }
 
-        // The mean.
-        double mean = ba::mean (acc);
-        // Standard error of the mean.
-        double se = ba::error_of <ba::tag::mean> (acc);
-        // Relative standard error of the mean in percent.
-        double rse = 100 * se / mean;
+        // The mean of the performance.
+        double perfor_mean = ba::mean (perfor_acc);
+        // Standard error of the mean of the performance.
+        double perfor_se = ba::error_of <ba::tag::mean> (perfor_acc);
+        // Relative standard error of the mean in percent of performance.
+        double perfor_rse = 100 * perfor_se / perfor_mean;
 
         out << uv << " "
-            << mean << " "
-            << rse << endl;
+            << perfor_mean << " "
+            << perfor_rse << endl;
       }
 }
