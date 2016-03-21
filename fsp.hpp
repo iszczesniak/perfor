@@ -71,7 +71,7 @@ private:
   {
     assert (boost::get (boost::vertex_type, m_g, cn) == VERTEX_T::ONU);
     assert (pn != G::null_vertex ());
-    boost::get (boost::vertex_paths, m_g, cn).push_back (p);
+    boost::get (boost::vertex_paths, m_g)[cn].push_back (p);
   }
 
   // If we start the search at the ICO, we climb upstream.  If we get
@@ -84,7 +84,7 @@ private:
     if (pn == G::null_vertex ())
       fsp_generic (get_upstream (cn), cn);
     else
-      boost::get (boost::vertex_paths, m_g, cn).push_back (p);
+      boost::get (boost::vertex_paths, m_g)[cn].push_back (p);
   }
 
   // For active nodes: OLT or ARN.  Here fan out the search.
@@ -190,7 +190,7 @@ sort_paths (G &g)
   // Iterate over every vertex and sort its paths.
   for(const auto &v: make_iterator_range(boost::vertices(g)))
     {
-      auto &l = boost::get(boost::vertex_paths, g, v);
+      auto &l = boost::get(boost::vertex_paths, g)[v];
       std::sort(l.begin(), l.end(), path_cmp <Path <G> > ());
     }
 }
@@ -203,7 +203,7 @@ test_paths (G &g)
   // Iterate over every vertex and make sure it has sorted paths.
   for(const auto &v: make_iterator_range(boost::vertices(g)))
     {
-      auto &l = boost::get(boost::vertex_paths, g, v);
+      auto &l = boost::get(boost::vertex_paths, g)[v];
       assert(std::is_sorted(l.begin(), l.end(), path_cmp <Path <G> > ()));
     }
 }
