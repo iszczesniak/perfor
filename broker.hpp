@@ -8,7 +8,6 @@
 #include <limits>
 #include <map>
 #include <tuple>
-#include <iostream>
 
 template <typename G>
 class broker
@@ -58,11 +57,11 @@ private:
   double
   service(Vertex<G> v, double req)
   {
-    double all = 0;
     Path<G> empty_path;
     Path<G> &path = empty_path;
 
-    std::cout << boost::get(boost::vertex_paths, m_g, v).size() << std::endl;
+    // The bitrate found to allocate.
+    double all = 0;
 
     // Iterate over the paths of the vertex.
     for (auto const &p: boost::get(boost::vertex_paths, m_g, v))
@@ -81,6 +80,9 @@ private:
           break;
       }
 
+    // We don't want to allocate more than requested.
+    all = std::min (req, all);
+    
     // Allocate the bitrate on all edges of the chosen path.
     for (auto const &e: path)
       available[e] -= all;
