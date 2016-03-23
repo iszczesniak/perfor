@@ -49,7 +49,7 @@ simulation::run ()
       for (double uv: m_a.uvs)
         ios.post (calc (*this, pon, uv, seed));
     }
-  
+
   // This is needed here, so that all tasks finish.
   work.reset ();
   threads.join_all ();
