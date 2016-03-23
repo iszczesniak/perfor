@@ -1,4 +1,5 @@
 #include "args_run.hpp"
+#include "broker.hpp"
 #include "graph.hpp"
 #include "net_fac.hpp"
 #include "sim.hpp"
@@ -28,13 +29,13 @@ public:
   void operator ()()
   {
     // Get the network we operate on.
-    const G &g = net_factory::get(args.net);
+    const G &g = net_fac<G>::get(m_args.net);
 
     // The traffic requested.
     auto req = generate_traffic (g, m_args.uv);
 
     // The traffic allocated.
-    auto all = broker <graph> (g).service (req);
+    auto all = broker <G> (g).service (req);
 
     // The results object.
     results r;

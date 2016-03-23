@@ -19,13 +19,13 @@ using namespace std;
 namespace ba = boost::accumulators;
 namespace as = boost::asio;
 
-simulation::simulation(const args &a):
+sim::sim(const args_sim &a):
   m_a(a), m_pi(m_a.runs.size())
 {
 }
 
 void
-simulation::run ()
+sim::run ()
 {
   assert(m_a.seeds >= 1);
 
