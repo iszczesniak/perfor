@@ -1,7 +1,7 @@
-#include "simulation.hpp"
+#include "sim.hpp"
 
 #include "calc.hpp"
-#include "progress.hpp"
+#include "run.hpp"
 #include "utils_netgen.hpp"
 
 #include <boost/accumulators/accumulators.hpp>
@@ -21,7 +21,7 @@ namespace ba = boost::accumulators;
 namespace as = boost::asio;
 
 simulation::simulation(const args &a):
-  m_a(a), m_pi(m_a.seeds * m_a.uvs.size())
+  m_a(a), m_pi(m_a.runs.size())
 {
 }
 
@@ -39,16 +39,9 @@ simulation::run ()
   for (int i = 0; i < noth; ++i)
     threads.create_thread (boost::bind (&as::io_service::run, &ios));
 
-  // Generate networks and queue the tasks.
-  for (int seed = 1; seed <= m_a.seeds; ++seed)
-    {
-      std::mt19937 gen;
-      gen.seed(seed);
-      auto &pon = i2g[seed];
-      generate_pon (pon, m_a, gen);
-      for (double uv: m_a.uvs)
-        ios.post (calc (*this, pon, uv, seed));
-    }
+  // Run the runs.
+  for (const args_run &a: runs)
+    ios.post (run (*this, a));
 
   // This is needed here, so that all tasks finish.
   work.reset ();
@@ -57,11 +50,11 @@ simulation::run ()
 }
 
 void
-simulation::report(double uv, int id, results &r)
+simulation::report(const args_run &args, const results &r)
 {
-  m_results_mutex.lock ();
-  m_results[uv][id] = r.mean_perf;
-  m_results_mutex.unlock ();
+  m_a2r_mutex.lock ();
+  m_a2r[args] = r;
+  m_a2r_mutex.unlock ();
 
   // Update the progress indicator.
   m_pi.report (r.text);
