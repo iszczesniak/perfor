@@ -1,7 +1,7 @@
 TARGETS = perfor
 LINK.o = $(LINK.cc)
 
-OBJS = calc.o graph.o perfor.o progress.o simulation.o
+OBJS = graph.o perfor.o progress.o sim.o
 
 CXXFLAGS = -g
 #CXXFLAGS = -O3

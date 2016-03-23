@@ -1,8 +1,7 @@
-calc.o: calc.cc calc.hpp args.hpp graph.hpp simulation.hpp progress.hpp \
- results.hpp broker.hpp fsp.hpp utils.hpp perfor.hpp utils_tragen.hpp
 graph.o: graph.cc graph.hpp
-perfor.o: perfor.cc args.hpp simulation.hpp graph.hpp progress.hpp \
- results.hpp
+perfor.o: perfor.cc args_sim.hpp sim.hpp args_run.hpp args_net.hpp \
+ graph.hpp progress.hpp results.hpp
 progress.o: progress.cc progress.hpp
-simulation.o: simulation.cc simulation.hpp args.hpp graph.hpp \
- progress.hpp results.hpp calc.hpp utils_netgen.hpp fsp.hpp utils.hpp
+sim.o: sim.cc sim.hpp args_run.hpp args_net.hpp args_sim.hpp graph.hpp \
+ progress.hpp results.hpp run.hpp net_fac.hpp utils_tragen.hpp utils.hpp \
+ utils_netgen.hpp fsp.hpp

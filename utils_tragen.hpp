@@ -1,8 +1,6 @@
 #ifndef UTILS_TRAGEN_HPP
 #define UTILS_TRAGEN_HPP
 
-#include "args.hpp"
-#include "graph.hpp"
 #include "utils.hpp"
 
 #include <iostream>

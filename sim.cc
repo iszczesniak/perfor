@@ -1,6 +1,5 @@
 #include "sim.hpp"
 
-#include "calc.hpp"
 #include "run.hpp"
 #include "utils_netgen.hpp"
 

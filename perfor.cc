@@ -1,5 +1,5 @@
 #include "args_sim.hpp"
-#include "simulation.hpp"
+#include "sim.hpp"
 
 #include <iostream>
 
@@ -40,9 +40,9 @@ main (int argc, const char* argv[])
   // parameters.
   a.seeds = 10;
 
-  simulation sim(a);
-  sim.run();
-  sim.print(cout);
+  sim s(a);
+  s.run();
+  s.print(cout);
 
   return 0;
 }

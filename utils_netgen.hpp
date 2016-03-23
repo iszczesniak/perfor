@@ -1,7 +1,7 @@
 #ifndef UTILS_NETGEN_HPP
 #define UTILS_NETGEN_HPP
 
-#include "args.hpp"
+#include "args_net.hpp"
 #include "fsp.hpp"
 #include "graph.hpp"
 #include "utils.hpp"
