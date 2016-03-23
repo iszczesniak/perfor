@@ -25,7 +25,7 @@ struct args_net
   double q;
 
   /// The probability that an ONU is connected to the other operator.
-  double rs;
+  double r;
 
   /// The seed value.
   int seed;
