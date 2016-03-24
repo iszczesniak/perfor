@@ -14,7 +14,7 @@ class progress
   boost::timer::auto_cpu_timer t;
 
 public:
-  progress (int target);
+  progress();
 
   void
   set (int count);

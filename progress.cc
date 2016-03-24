@@ -5,8 +5,8 @@
 
 using namespace std;
 
-progress::progress(int target): m_target (target), m_count (), 
-                                t (cerr, 2, "%w s elapsed\n")
+progress::progress(): m_target (), m_count (), 
+                      t (cerr, 2, "%w s elapsed\n")
 {
 }
 
