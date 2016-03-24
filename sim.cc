@@ -39,7 +39,7 @@ sim::run ()
     threads.create_thread (boost::bind (&as::io_service::run, &ios));
 
   // Run the runs.
-  for (const args_run &a: runs)
+  for (const args_run &a: m_runs)
     ios.post (run (*this, a));
 
   // This is needed here, so that all tasks finish.
@@ -93,4 +93,26 @@ simulation::print(ostream &out)
             << perfor_mean << " "
             << perfor_rse << endl;
       }
+}
+
+void
+sim::make_runs()
+{
+  args_run args;
+  args.net.sratio = m_args.sratio;
+  args.net.s = m_args.s;
+  args.net.stages = m_args.stages;
+  args.net.drate = m_args.drate;
+  args.net.urate = m_args.urate;
+
+  for(auto uv: m_args.uvs)
+    for(auto r: m_args.rs)
+      for(auto q: m_args.qs)
+        {
+          runs.push_back(args);
+          args.uv = uv;
+          args.net.r = r;
+          args.net.q = q;
+          args_run(m_args, uv, r, q);
+        }
 }

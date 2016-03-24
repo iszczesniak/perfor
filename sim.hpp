@@ -3,14 +3,12 @@
 
 #include "args_run.hpp"
 #include "args_sim.hpp"
-#include "graph.hpp"
 #include "progress.hpp"
 #include "results.hpp"
 
 #include <map>
 #include <mutex>
-#include <string>
-#include <utility>
+#include <ostream>
 
 class sim
 {
@@ -27,11 +25,17 @@ class sim
   // Progress indicator;
   progress m_pi;
 
+  // The arguments for runs.
+  std::deque<args_run> m_runs;
+
 public:
   sim (const args_sim &a);
   void run ();
   void report (const args_run &args, const results &r);
   void print (std::ostream &);
+
+private:
+  make_runs();
 };
 
 #endif /* SIM_HPP */

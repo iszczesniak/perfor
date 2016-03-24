@@ -24,7 +24,7 @@ struct args_sim
   /// The up rate in bps.
   double urate;
 
-    /// The probability that a remote node is active.
+  /// The probability that a remote node is active.
   std::vector<double> qs;
 
   /// The probability that an ONU is connected to the other operator.
