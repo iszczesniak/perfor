@@ -19,15 +19,18 @@ using namespace std;
 namespace ba = boost::accumulators;
 namespace as = boost::asio;
 
-sim::sim(const args_sim &a):
-  m_a(a), m_pi(m_a.runs.size())
+sim::sim(const args_sim &args):
+  m_args(args)
 {
+  make_runs();
 }
 
 void
 sim::run ()
 {
-  assert(m_a.seeds >= 1);
+  assert(m_args.seeds >= 1);
+
+  m_pi = progress(runs.size());
 
   as::io_service ios;
   auto_ptr <as::io_service::work> work (new as::io_service::work (ios));
@@ -62,7 +65,7 @@ simulation::report(const args_run &args, const results &r)
 void
 simulation::print(ostream &out)
 {
-  for (auto uv: m_a.uvs)
+  for (auto uv: m_args.uvs)
       {
         results_type::const_iterator i = m_results.find (uv);
         assert (i != m_results.end());
@@ -75,7 +78,7 @@ simulation::print(ostream &out)
         ba::accumulator_set <double, stats_t> perfor_acc;
 
         // Iterate over the seed values.
-        for (int seed = 1; seed <= m_a.seeds; ++seed)
+        for (int seed = 1; seed <= m_args.seeds; ++seed)
           {
             rfds_type::const_iterator j = rfds.find (seed);
             assert (j != rfds.end ());

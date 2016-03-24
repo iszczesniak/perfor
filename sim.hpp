@@ -6,6 +6,7 @@
 #include "progress.hpp"
 #include "results.hpp"
 
+#include <deque>
 #include <map>
 #include <mutex>
 #include <ostream>
@@ -35,7 +36,7 @@ public:
   void print (std::ostream &);
 
 private:
-  make_runs();
+  void make_runs();
 };
 
 #endif /* SIM_HPP */
