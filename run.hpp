@@ -1,9 +1,14 @@
+#ifndef RUN_HPP
+#define RUN_HPP
+
 #include "args_run.hpp"
 #include "broker.hpp"
 #include "graph.hpp"
 #include "net_fac.hpp"
-#include "sim.hpp"
 #include "utils_tragen.hpp"
+
+template<typename G>
+class sim;
 
 // An object of this class calculates the performance.
 template<typename G>
@@ -13,14 +18,14 @@ class run
   const G &m_g;
 
   // Reference to the simulation object.
-  sim &m_sim;
+  sim<G> &m_sim;
 
   // The arguments of the run.
   args_run &m_args;
   
 public:
   // Takes the arguments needed for a run.
-  run(const sim &sim, const args_run &args):
+  run(const sim<G> &sim, const args_run &args):
     m_sim (sim), m_args (args)
   {
   }
@@ -50,3 +55,5 @@ public:
     m_sim.report (m_args, r);
   }
 };
+
+#endif /* RUN_HPP */

@@ -43,35 +43,11 @@ class sim
   std::deque<args_run> m_runs;
 
 public:
-  sim (const args_sim &a)
+  sim (const args_sim &a, std::ostream &out)
   {
     make_runs();
-  }
-
-  void run ()
-  {
-    assert(m_args.seeds >= 1);
-
-    // Set the progress iterator target value.
-    m_pi.set(m_runs.size());
-
-    as::io_service ios;
-    auto_ptr <as::io_service::work> work (new as::io_service::work (ios));
-    boost::thread_group threads;
-
-    // The number of threads supported by hardware.
-    int noth = boost::thread::hardware_concurrency ();
-    for (int i = 0; i < noth; ++i)
-    threads.create_thread (boost::bind (&as::io_service::run, &ios));
-
-    // Run the runs.
-    for (const args_run &a: m_runs)
-      ios.post (run<graph> (*this, a));
-
-    // This is needed here, so that all tasks finish.
-    work.reset ();
-    threads.join_all ();
-    ios.stop ();
+    run_runs();
+    print(out);
   }
 
   void
@@ -83,6 +59,56 @@ public:
 
     // Update the progress indicator.
     m_pi.report (r.text);
+  }
+
+private:
+  void
+  make_runs()
+  {
+    args_run args;
+    args.net.sratio = m_args.sratio;
+    args.net.s = m_args.s;
+    args.net.stages = m_args.stages;
+    args.net.drate = m_args.drate;
+    args.net.urate = m_args.urate;
+
+    for(auto uv: m_args.uvs)
+      for(auto r: m_args.rs)
+        for(auto q: m_args.qs)
+          {
+            runs.push_back(args);
+            args.uv = uv;
+            args.net.r = r;
+            args.net.q = q;
+            args_run(m_args, uv, r, q);
+          }
+  }
+
+  void
+  run_runs()
+  {
+    assert(m_args.seeds >= 1);
+
+    // Set the progress iterator target value.
+    m_pi.set(m_runs.size());
+
+    as::io_service ios;
+    std::auto_ptr <as::io_service::work> work (new as::io_service::work (ios));
+    boost::thread_group threads;
+
+    // The number of threads supported by hardware.
+    int noth = boost::thread::hardware_concurrency ();
+    for (int i = 0; i < noth; ++i)
+      threads.create_thread (boost::bind (&as::io_service::run, &ios));
+
+    // Run the runs.
+    for (const args_run &a: m_runs)
+      ios.post (run<G> (*this, a));
+
+    // This is needed here, so that all tasks finish.
+    work.reset ();
+    threads.join_all ();
+    ios.stop ();
   }
 
   void
@@ -121,29 +147,6 @@ public:
             << perfor_rse << endl;
       }
     */
-  }
-
-private:
-  void
-  make_runs()
-  {
-    args_run args;
-    args.net.sratio = m_args.sratio;
-    args.net.s = m_args.s;
-    args.net.stages = m_args.stages;
-    args.net.drate = m_args.drate;
-    args.net.urate = m_args.urate;
-
-    for(auto uv: m_args.uvs)
-      for(auto r: m_args.rs)
-        for(auto q: m_args.qs)
-          {
-            runs.push_back(args);
-            args.uv = uv;
-            args.net.r = r;
-            args.net.q = q;
-            args_run(m_args, uv, r, q);
-          }
   }
 };
 
