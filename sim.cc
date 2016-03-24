@@ -30,7 +30,8 @@ sim::run ()
 {
   assert(m_args.seeds >= 1);
 
-  m_pi = progress(runs.size());
+  // Set the progress iterator target value.
+  pi.set(m_runs.size());
 
   as::io_service ios;
   auto_ptr <as::io_service::work> work (new as::io_service::work (ios));
