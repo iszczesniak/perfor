@@ -15,6 +15,10 @@ class progress
 
 public:
   progress (int target);
+
+  void
+  set (int count);
+  
   void
   report (const std::string &text = "");
 };

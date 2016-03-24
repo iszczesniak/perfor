@@ -11,6 +11,12 @@ progress::progress(int target): m_target (target), m_count (),
 }
 
 void
+progress::set(int count)
+{
+  m_count = count;
+}
+
+void
 progress::report(const string &text)
 {
   m_mutex.lock ();
