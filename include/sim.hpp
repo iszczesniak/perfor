@@ -37,13 +37,14 @@ class sim
   std::mutex m_a2r_mutex;
 
   // Progress indicator;
-  progress m_pi;
+  progress<int> m_pi;
 
   // The arguments for runs.
   std::deque<args_run<double>> m_runs;
 
 public:
-  sim (const args_sim &a, std::ostream &out)
+  sim (const args_sim &args, std::ostream &out):
+    m_args(args), m_pi(out)
   {
     make_runs();
     run_runs();

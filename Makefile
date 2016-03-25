@@ -1,12 +1,12 @@
 TARGETS = perfor
 LINK.o = $(LINK.cc)
 
-OBJS = perfor.o progress.o
+OBJS = perfor.o
 
 CXXFLAGS = -g
 #CXXFLAGS = -O3
 
-CXXFLAGS := $(CXXFLAGS) -Wall -std=c++11 -Wno-deprecated
+CXXFLAGS := $(CXXFLAGS) -Wall -std=c++11 -Wno-deprecated -I include
 
 # Boost
 LDFLAGS := $(LDFLAGS) -l boost_system
@@ -26,7 +26,7 @@ count:
 	wc -l *.hpp *.cc
 
 depend:
-	g++ -std=c++11 -MM *.cc > dependencies
+	g++ $(CXXFLAGS) -MM *.cc > dependencies
 
 test: $(OBJS)
 	cd test; make
