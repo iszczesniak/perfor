@@ -5,6 +5,7 @@
 #include "broker.hpp"
 #include "graph.hpp"
 #include "net_fac.hpp"
+#include "perfor.hpp"
 #include "utils_tragen.hpp"
 
 template<typename G>
@@ -21,12 +22,12 @@ class run
   sim<G> &m_sim;
 
   // The arguments of the run.
-  args_run &m_args;
+  const args_run<double> &m_args;
   
 public:
   // Takes the arguments needed for a run.
-  run(const sim<G> &sim, const args_run &args):
-    m_sim (sim), m_args (args)
+  run(sim<G> &sim, const args_run<double> &args):
+    m_sim (sim), m_args (args), m_g(net_fac<G>::get(m_args.net))
   {
   }
 
@@ -46,10 +47,10 @@ public:
     results r;
 
     // Calculate the mean ONU performance.
-    r.mean_perf = calc_mean_perf (g, req, all);
+    r.mean_perf = calc_mean_perf<G> (g, req, all);
 
     // Calculate the mean connectivity.
-    r.mean_conn = calc_mean_conn (g);
+    r.mean_conn = calc_mean_conn<G> (g);
 
     // Report the result back to the simulation object.
     m_sim.report (m_args, r);

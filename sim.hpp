@@ -30,7 +30,7 @@ class sim
   args_sim m_args;
 
   // The type that maps the arguments to resutls.
-  typedef std::map <args_run, results> a2r_type;
+  typedef std::map <args_run<double>, results> a2r_type;
 
   // Here the results are stored.
   a2r_type m_a2r;
@@ -40,7 +40,7 @@ class sim
   progress m_pi;
 
   // The arguments for runs.
-  std::deque<args_run> m_runs;
+  std::deque<args_run<double>> m_runs;
 
 public:
   sim (const args_sim &a, std::ostream &out)
@@ -51,7 +51,7 @@ public:
   }
 
   void
-  report (const args_run &args, const results &r)
+  report (const args_run<double> &args, const results &r)
   {
     m_a2r_mutex.lock ();
     m_a2r[args] = r;
@@ -65,7 +65,7 @@ private:
   void
   make_runs()
   {
-    args_run args;
+    args_run<double> args;
     args.net.sratio = m_args.sratio;
     args.net.s = m_args.s;
     args.net.stages = m_args.stages;
@@ -76,11 +76,10 @@ private:
       for(auto r: m_args.rs)
         for(auto q: m_args.qs)
           {
-            runs.push_back(args);
             args.uv = uv;
             args.net.r = r;
             args.net.q = q;
-            args_run(m_args, uv, r, q);
+            m_runs.push_back(args);
           }
   }
 
@@ -101,8 +100,8 @@ private:
     for (int i = 0; i < noth; ++i)
       threads.create_thread (boost::bind (&as::io_service::run, &ios));
 
-    // Run the runs.
-    for (const args_run &a: m_runs)
+    //Run the runs.
+    for (const args_run<double> &a: m_runs)
       ios.post (run<G> (*this, a));
 
     // This is needed here, so that all tasks finish.

@@ -40,9 +40,7 @@ main (int argc, const char* argv[])
   // parameters.
   a.seeds = 10;
 
-  sim s(a);
-  s.run();
-  s.print(cout);
+  sim<graph> s(a, cout);
 
   return 0;
 }
