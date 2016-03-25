@@ -1,34 +1,26 @@
-TARGETS = perfor
+# Use the C++ linker.
 LINK.o = $(LINK.cc)
 
-OBJS = perfor.o
+# Compiler flags.
+CXXFLAGS := -g -Wall -std=c++11 -Wno-deprecated -I include
 
-CXXFLAGS = -g
-#CXXFLAGS = -O3
-
-CXXFLAGS := $(CXXFLAGS) -Wall -std=c++11 -Wno-deprecated -I include
-
-# Boost
+# Linker flags: use Boost.
 LDFLAGS := $(LDFLAGS) -l boost_system
 LDFLAGS := $(LDFLAGS) -l boost_thread
 LDFLAGS := $(LDFLAGS) -l boost_timer
 
-perfor: $(OBJS)
+perfor: perfor.o
 
-.PHONY: clean count depend test
+.PHONY: clean count depend
 
 clean:
 	rm -f *~
-	rm -f $(OBJS)
-	rm -f $(TARGETS)
+	rm -f perfor perfor.o
 
 count:
-	wc -l *.hpp *.cc
+	wc -l include/*.hpp *.cc
 
 depend:
 	g++ $(CXXFLAGS) -MM *.cc > dependencies
-
-test: $(OBJS)
-	cd test; make
 
 include dependencies
