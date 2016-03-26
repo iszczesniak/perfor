@@ -76,12 +76,14 @@ private:
     for(auto uv: m_args.uvs)
       for(auto r: m_args.rs)
         for(auto q: m_args.qs)
-          {
-            args.uv = uv;
-            args.net.r = r;
-            args.net.q = q;
-            m_runs.push_back(args);
-          }
+          for(int seed = 1; seed < m_args.seeds; ++seed)
+            {
+              args.uv = uv;
+              args.net.r = r;
+              args.net.q = q;
+              args.net.seed = seed;
+              m_runs.push_back(args);
+            }
   }
 
   void
