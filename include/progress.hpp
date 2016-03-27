@@ -23,9 +23,9 @@ public:
   }
 
   void
-  set (T count)
+  set (T target)
   {
-    m_count = count;
+    m_target = target;
   }
 
   void
