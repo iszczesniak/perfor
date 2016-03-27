@@ -2,6 +2,7 @@
 #define ARGS_RUN_HPP
 
 #include "args_net.hpp"
+#include "args_sim.hpp"
 
 #include <tuple>
 
@@ -13,15 +14,31 @@ template<typename T>
 struct args_run
 {
   // The network arguments.
-  args_net<T> net;
+  args_net<T> m_net;
 
   // The utilization value;
-  T uv;
+  T m_uv;
+
+  args_run(const args_sim &args, T q, T r, T uv, int seed)
+  {
+    // The custom arguments.
+    m_net.q = q;
+    m_net.r = r;
+    m_uv = uv;
+    m_net.seed = seed;
+
+    // The simulation arguments.
+    m_net.s = args.s;
+    m_net.sratio = args.sratio;
+    m_net.stages = args.stages;
+    m_net.drate = args.drate;
+    m_net.urate = args.urate;
+  }
 
   // The comparison operator.
   bool operator < (const args_run &args) const
   {
-    return std::tie(net, uv) < std::tie(args.net, args.uv);
+    return std::tie(m_net, m_uv) < std::tie(args.m_net, args.m_uv);
   }
 };
 

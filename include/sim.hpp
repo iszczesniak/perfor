@@ -66,24 +66,11 @@ private:
   void
   make_runs()
   {
-    args_run<double> args;
-    args.net.sratio = m_args.sratio;
-    args.net.s = m_args.s;
-    args.net.stages = m_args.stages;
-    args.net.drate = m_args.drate;
-    args.net.urate = m_args.urate;
-
-    for(auto r: m_args.rs)
-      for(auto q: m_args.qs)
-        for(int seed = 1; seed < m_args.seeds; ++seed)
-          for(auto uv: m_args.uvs)
-            {
-              args.uv = uv;
-              args.net.r = r;
-              args.net.q = q;
-              args.net.seed = seed;
-              m_runs.push_back(args);
-            }
+    for(auto q: m_args.qs)
+      for(auto r: m_args.rs)
+        for(auto uv: m_args.uvs)
+          for(int seed = 1; seed < m_args.seeds; ++seed)
+            m_runs.push_back(args_run<double>(m_args, q, r, uv, seed));
   }
 
   void

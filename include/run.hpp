@@ -32,10 +32,10 @@ public:
   void operator ()()
   {
     // Get the network we operate on.
-    G g = generate_pon<G>(m_args.net);
+    G g = generate_pon<G>(m_args.m_net);
 
     // The traffic requested.
-    auto req = generate_traffic (g, m_args.uv);
+    auto req = generate_traffic (g, m_args.m_uv);
 
     // The traffic allocated.
     auto all = broker <G> (g).service (req);
