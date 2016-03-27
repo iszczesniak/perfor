@@ -27,14 +27,17 @@ main (int argc, const char* argv[])
   a.stages = 3;
 
   // The probabilities that a remote node is active.
-  a.qs = {0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
+  a.qs = {0, 0.2, 0.4, 0.6, 0.8, 1.0};
+  //a.qs = {0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
 
   // The probabilities that an ONU is connected to the other operator.
-  a.rs = {0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
+  a.rs = {0, 0.2, 0.4, 0.6, 0.8, 1.0};
+  //a.rs = {0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
 
   // The utilization values.
-  a.uvs = {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0,
-           1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0};
+  a.uvs = {0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0};
+  //a.uvs = {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0,
+  //1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0};
 
   // The number of seeds, i.e., simulation runs for the given
   // parameters.
