@@ -4,8 +4,8 @@
 #include "args_run.hpp"
 #include "broker.hpp"
 #include "graph.hpp"
-#include "net_fac.hpp"
 #include "perfor.hpp"
+#include "utils_netgen.hpp"
 #include "utils_tragen.hpp"
 
 template<typename G>
@@ -15,9 +15,6 @@ class sim;
 template<typename G>
 class run
 {
-  // The graph we operate on.
-  const G &m_g;
-
   // Reference to the simulation object.
   sim<G> &m_sim;
 
@@ -27,7 +24,7 @@ class run
 public:
   // Takes the arguments needed for a run.
   run(sim<G> &sim, const args_run<double> &args):
-    m_sim (sim), m_args (args), m_g(net_fac<G>::get(m_args.net))
+    m_sim (sim), m_args (args)
   {
   }
 
@@ -35,7 +32,7 @@ public:
   void operator ()()
   {
     // Get the network we operate on.
-    const G &g = net_fac<G>::get(m_args.net);
+    G g = generate_pon<G>(m_args.net);
 
     // The traffic requested.
     auto req = generate_traffic (g, m_args.uv);

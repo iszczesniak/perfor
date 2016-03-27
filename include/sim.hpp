@@ -73,10 +73,10 @@ private:
     args.net.drate = m_args.drate;
     args.net.urate = m_args.urate;
 
-    for(auto uv: m_args.uvs)
-      for(auto r: m_args.rs)
-        for(auto q: m_args.qs)
-          for(int seed = 1; seed < m_args.seeds; ++seed)
+    for(auto r: m_args.rs)
+      for(auto q: m_args.qs)
+        for(int seed = 1; seed < m_args.seeds; ++seed)
+          for(auto uv: m_args.uvs)
             {
               args.uv = uv;
               args.net.r = r;

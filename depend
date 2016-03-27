@@ -2,5 +2,4 @@ perfor.o: perfor.cc include/args_sim.hpp include/sim.hpp \
  include/args_run.hpp include/args_net.hpp include/args_sim.hpp \
  include/progress.hpp include/results.hpp include/run.hpp \
  include/broker.hpp include/fsp.hpp include/graph.hpp include/utils.hpp \
- include/net_fac.hpp include/perfor.hpp include/utils_tragen.hpp \
- include/utils_netgen.hpp
+ include/perfor.hpp include/utils_netgen.hpp include/utils_tragen.hpp

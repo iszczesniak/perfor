@@ -84,9 +84,10 @@ generate_further (G &g, const args_net<double> &a, T &gen, int stage, Vertex<G> 
 }
 
 template<typename G>
-void
-generate_pon (G &pon, const args_net<double> &a)
+G
+generate_pon (const args_net<double> &a)
 {
+  G pon;
   assert(num_vertices(pon) == 0);
   std::mt19937 gen;
   gen.seed(a.seed);
@@ -95,6 +96,7 @@ generate_pon (G &pon, const args_net<double> &a)
   generate_further(pon, a, gen, 0, olt);
   name_vertices(pon);
   fill_paths(pon);
+  return pon;
 }
 
 #endif /* UTILS_NETGEN_HPP */
