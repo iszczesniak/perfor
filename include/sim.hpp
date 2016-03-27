@@ -103,39 +103,33 @@ private:
   void
   print (std::ostream &out)
   {
-    /*
-    for (auto uv: m_args.uvs)
-      {
-        results_type::const_iterator i = m_results.find (uv);
-        assert (i != m_results.end());
-        // Here we have the results for the uv, all of them, for all
-        // seed values.
-        const rfds_type &rfds = i->second;
-
-        typedef ba::tag::error_of <ba::tag::mean> eom_t;
-        typedef ba::stats <ba::tag::mean, eom_t> stats_t;
-        ba::accumulator_set <double, stats_t> perfor_acc;
-
-        // Iterate over the seed values.
-        for (int seed = 1; seed <= m_args.seeds; ++seed)
+    for(auto q: m_args.qs)
+      for(auto r: m_args.rs)
+        for(auto uv: m_args.uvs)
           {
-            rfds_type::const_iterator j = rfds.find (seed);
-            assert (j != rfds.end ());
-            perfor_acc(j->second);
+            typedef ba::tag::error_of <ba::tag::mean> eom_t;
+            typedef ba::stats <ba::tag::mean, eom_t> stats_t;
+            ba::accumulator_set <double, stats_t> perfor_acc;
+
+            // Iterate over the seed values.
+            for (int seed = 1; seed <= m_args.seeds; ++seed)
+              {
+                args_run<double> args(m_args, q, r, uv, seed);
+                const results &r = m_a2r.at(args);
+                perfor_acc(r.mean_perf);
+              }
+
+            // The mean of the performance.
+            double perfor_mean = ba::mean (perfor_acc);
+            // Standard error of the mean of the performance.
+            double perfor_se = ba::error_of <ba::tag::mean> (perfor_acc);
+            // Relative standard error of the mean in percent of performance.
+            double perfor_rse = 100 * perfor_se / perfor_mean;
+
+            out << uv << " "
+                << perfor_mean << " "
+                << perfor_rse << std::endl;
           }
-
-        // The mean of the performance.
-        double perfor_mean = ba::mean (perfor_acc);
-        // Standard error of the mean of the performance.
-        double perfor_se = ba::error_of <ba::tag::mean> (perfor_acc);
-        // Relative standard error of the mean in percent of performance.
-        double perfor_rse = 100 * perfor_se / perfor_mean;
-
-        out << uv << " "
-            << perfor_mean << " "
-            << perfor_rse << endl;
-      }
-    */
   }
 };
 
