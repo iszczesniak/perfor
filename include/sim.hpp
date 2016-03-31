@@ -69,7 +69,7 @@ private:
     for(auto q: m_args.qs)
       for(auto r: m_args.rs)
         for(auto uv: m_args.uvs)
-          for(int seed = 1; seed < m_args.seeds; ++seed)
+          for(int seed = 1; seed <= m_args.seeds; ++seed)
             m_runs.push_back(args_run<double>(m_args, q, r, uv, seed));
   }
 
