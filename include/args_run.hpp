@@ -42,4 +42,13 @@ struct args_run
   }
 };
 
+template<typename S, typename T>
+S &
+operator << (S &out, const args_run<T> &args)
+{
+  out << args.m_net;
+  out << "m_uv = " << args.m_uv << '\n';
+  return out;
+}
+
 #endif /* ARGS_RUN_HPP */

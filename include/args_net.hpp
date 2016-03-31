@@ -46,4 +46,19 @@ struct args_net
   }
 };
 
+template<typename S, typename T>
+S &
+operator << (S &out, const args_net<T> &args)
+{
+  out << "sratio = " << args.sratio << '\n';
+  out << "s = " << args.s << '\n';
+  out << "stages = " << args.stages << '\n';
+  out << "rdate = " << args.drate << '\n';
+  out << "urate = " << args.urate << '\n';
+  out << "q = " << args.q << '\n';
+  out << "r = " << args.r << '\n';
+  out << "seed = " << args.seed << '\n';
+  return out;
+}
+
 #endif /* ARGS_NET_HPP */
