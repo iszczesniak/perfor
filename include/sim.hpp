@@ -126,7 +126,9 @@ private:
             // Relative standard error of the mean in percent of performance.
             double perfor_rse = 100 * perfor_se / perfor_mean;
 
-            out << uv << " "
+            out << q << " "
+                << r << " "
+                << uv << " "
                 << perfor_mean << " "
                 << perfor_rse << std::endl;
           }
