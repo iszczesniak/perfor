@@ -1,792 +1,73 @@
-Progress 0.138889 %, 0.07 s elapsed
-Progress 0.277778 %, 0.07 s elapsed
-Progress 0.416667 %, 0.07 s elapsed
-Progress 0.555556 %, 0.07 s elapsed
-Progress 0.694444 %, 0.11 s elapsed
-Progress 0.833333 %, 0.11 s elapsed
-Progress 0.972222 %, 0.11 s elapsed
-Progress 1.11111 %, 0.11 s elapsed
-Progress 1.25 %, 0.12 s elapsed
-Progress 1.38889 %, 0.12 s elapsed
-Progress 1.52778 %, 0.16 s elapsed
-Progress 1.66667 %, 0.17 s elapsed
-Progress 1.80556 %, 0.17 s elapsed
-Progress 1.94444 %, 0.17 s elapsed
-Progress 2.08333 %, 0.17 s elapsed
-Progress 2.22222 %, 0.21 s elapsed
-Progress 2.36111 %, 0.21 s elapsed
-Progress 2.5 %, 0.21 s elapsed
-Progress 2.63889 %, 0.22 s elapsed
-Progress 2.77778 %, 0.23 s elapsed
-Progress 2.91667 %, 0.24 s elapsed
-Progress 3.05556 %, 0.26 s elapsed
-Progress 3.19444 %, 0.28 s elapsed
-Progress 3.33333 %, 0.28 s elapsed
-Progress 3.47222 %, 0.29 s elapsed
-Progress 3.61111 %, 0.30 s elapsed
-Progress 3.75 %, 0.33 s elapsed
-Progress 3.88889 %, 0.34 s elapsed
-Progress 4.02778 %, 0.34 s elapsed
-Progress 4.16667 %, 0.36 s elapsed
-Progress 4.30556 %, 0.36 s elapsed
-Progress 4.44444 %, 0.38 s elapsed
-Progress 4.58333 %, 0.40 s elapsed
-Progress 4.72222 %, 0.40 s elapsed
-Progress 4.86111 %, 0.41 s elapsed
-Progress 5 %, 0.42 s elapsed
-Progress 5.13889 %, 0.42 s elapsed
-Progress 5.27778 %, 0.45 s elapsed
-Progress 5.41667 %, 0.47 s elapsed
-Progress 5.55556 %, 0.48 s elapsed
-Progress 5.69444 %, 0.48 s elapsed
-Progress 5.83333 %, 0.50 s elapsed
-Progress 5.97222 %, 0.50 s elapsed
-Progress 6.11111 %, 0.55 s elapsed
-Progress 6.25 %, 0.55 s elapsed
-Progress 6.38889 %, 0.56 s elapsed
-Progress 6.52778 %, 0.56 s elapsed
-Progress 6.66667 %, 0.58 s elapsed
-Progress 6.80556 %, 0.60 s elapsed
-Progress 6.94444 %, 0.62 s elapsed
-Progress 7.08333 %, 0.63 s elapsed
-Progress 7.22222 %, 0.64 s elapsed
-Progress 7.36111 %, 0.64 s elapsed
-Progress 7.5 %, 0.68 s elapsed
-Progress 7.63889 %, 0.69 s elapsed
-Progress 7.77778 %, 0.70 s elapsed
-Progress 7.91667 %, 0.70 s elapsed
-Progress 8.05556 %, 0.72 s elapsed
-Progress 8.19444 %, 0.74 s elapsed
-Progress 8.33333 %, 0.76 s elapsed
-Progress 8.47222 %, 0.78 s elapsed
-Progress 8.61111 %, 0.78 s elapsed
-Progress 8.75 %, 0.80 s elapsed
-Progress 8.88889 %, 0.83 s elapsed
-Progress 9.02778 %, 0.84 s elapsed
-Progress 9.16667 %, 0.87 s elapsed
-Progress 9.30556 %, 0.87 s elapsed
-Progress 9.44444 %, 0.88 s elapsed
-Progress 9.58333 %, 0.89 s elapsed
-Progress 9.72222 %, 0.93 s elapsed
-Progress 9.86111 %, 0.94 s elapsed
-Progress 10 %, 0.95 s elapsed
-Progress 10.1389 %, 0.96 s elapsed
-Progress 10.2778 %, 0.97 s elapsed
-Progress 10.4167 %, 0.99 s elapsed
-Progress 10.5556 %, 1.02 s elapsed
-Progress 10.6944 %, 1.03 s elapsed
-Progress 10.8333 %, 1.05 s elapsed
-Progress 10.9722 %, 1.07 s elapsed
-Progress 11.1111 %, 1.09 s elapsed
-Progress 11.25 %, 1.09 s elapsed
-Progress 11.3889 %, 1.11 s elapsed
-Progress 11.5278 %, 1.14 s elapsed
-Progress 11.6667 %, 1.17 s elapsed
-Progress 11.8056 %, 1.17 s elapsed
-Progress 11.9444 %, 1.20 s elapsed
-Progress 12.0833 %, 1.21 s elapsed
-Progress 12.2222 %, 1.24 s elapsed
-Progress 12.3611 %, 1.24 s elapsed
-Progress 12.5 %, 1.27 s elapsed
-Progress 12.6389 %, 1.28 s elapsed
-Progress 12.7778 %, 1.30 s elapsed
-Progress 12.9167 %, 1.31 s elapsed
-Progress 13.0556 %, 1.34 s elapsed
-Progress 13.1944 %, 1.36 s elapsed
-Progress 13.3333 %, 1.38 s elapsed
-Progress 13.4722 %, 1.38 s elapsed
-Progress 13.6111 %, 1.42 s elapsed
-Progress 13.75 %, 1.43 s elapsed
-Progress 13.8889 %, 1.46 s elapsed
-Progress 14.0278 %, 1.47 s elapsed
-Progress 14.1667 %, 1.49 s elapsed
-Progress 14.3056 %, 1.50 s elapsed
-Progress 14.4444 %, 1.54 s elapsed
-Progress 14.5833 %, 1.54 s elapsed
-Progress 14.7222 %, 1.58 s elapsed
-Progress 14.8611 %, 1.59 s elapsed
-Progress 15 %, 1.61 s elapsed
-Progress 15.1389 %, 1.63 s elapsed
-Progress 15.2778 %, 1.66 s elapsed
-Progress 15.4167 %, 1.67 s elapsed
-Progress 15.5556 %, 1.70 s elapsed
-Progress 15.6944 %, 1.70 s elapsed
-Progress 15.8333 %, 1.74 s elapsed
-Progress 15.9722 %, 1.75 s elapsed
-Progress 16.1111 %, 1.76 s elapsed
-Progress 16.25 %, 1.78 s elapsed
-Progress 16.3889 %, 1.79 s elapsed
-Progress 16.5278 %, 1.80 s elapsed
-Progress 16.6667 %, 1.81 s elapsed
-Progress 16.8056 %, 1.84 s elapsed
-Progress 16.9444 %, 1.84 s elapsed
-Progress 17.0833 %, 1.85 s elapsed
-Progress 17.2222 %, 1.86 s elapsed
-Progress 17.3611 %, 1.86 s elapsed
-Progress 17.5 %, 1.89 s elapsed
-Progress 17.6389 %, 1.90 s elapsed
-Progress 17.7778 %, 1.91 s elapsed
-Progress 17.9167 %, 1.91 s elapsed
-Progress 18.0556 %, 1.91 s elapsed
-Progress 18.1944 %, 1.92 s elapsed
-Progress 18.3333 %, 1.94 s elapsed
-Progress 18.4722 %, 1.95 s elapsed
-Progress 18.6111 %, 1.95 s elapsed
-Progress 18.75 %, 1.96 s elapsed
-Progress 18.8889 %, 1.97 s elapsed
-Progress 19.0278 %, 1.99 s elapsed
-Progress 19.1667 %, 2.00 s elapsed
-Progress 19.3056 %, 2.01 s elapsed
-Progress 19.4444 %, 2.02 s elapsed
-Progress 19.5833 %, 2.03 s elapsed
-Progress 19.7222 %, 2.04 s elapsed
-Progress 19.8611 %, 2.06 s elapsed
-Progress 20 %, 2.08 s elapsed
-Progress 20.1389 %, 2.11 s elapsed
-Progress 20.2778 %, 2.13 s elapsed
-Progress 20.4167 %, 2.18 s elapsed
-Progress 20.5556 %, 2.25 s elapsed
-Progress 20.6944 %, 13.39 s elapsed
-Progress 20.8333 %, 13.40 s elapsed
-Progress 20.9722 %, 13.41 s elapsed
-Progress 21.1111 %, 13.42 s elapsed
-Progress 21.25 %, 13.43 s elapsed
-Progress 21.3889 %, 13.48 s elapsed
-Progress 21.5278 %, 13.60 s elapsed
-Progress 21.6667 %, 13.67 s elapsed
-Progress 21.8056 %, 14.63 s elapsed
-Progress 21.9444 %, 14.66 s elapsed
-Progress 22.0833 %, 14.70 s elapsed
-Progress 22.2222 %, 14.74 s elapsed
-Progress 22.3611 %, 14.79 s elapsed
-Progress 22.5 %, 14.86 s elapsed
-Progress 22.6389 %, 14.91 s elapsed
-Progress 22.7778 %, 15.00 s elapsed
-Progress 22.9167 %, 25.58 s elapsed
-Progress 23.0556 %, 25.60 s elapsed
-Progress 23.1944 %, 26.66 s elapsed
-Progress 23.3333 %, 26.75 s elapsed
-Progress 23.4722 %, 35.96 s elapsed
-Progress 23.6111 %, 36.00 s elapsed
-Progress 23.75 %, 36.11 s elapsed
-Progress 23.8889 %, 36.13 s elapsed
-Progress 24.0278 %, 36.33 s elapsed
-Progress 24.1667 %, 36.42 s elapsed
-Progress 24.3056 %, 37.71 s elapsed
-Progress 24.4444 %, 37.80 s elapsed
-Progress 24.5833 %, 37.92 s elapsed
-Progress 24.7222 %, 38.10 s elapsed
-Progress 24.8611 %, 38.22 s elapsed
-Progress 25 %, 38.33 s elapsed
-Progress 25.1389 %, 47.62 s elapsed
-Progress 25.2778 %, 47.69 s elapsed
-Progress 25.4167 %, 49.31 s elapsed
-Progress 25.5556 %, 49.42 s elapsed
-Progress 25.6944 %, 58.80 s elapsed
-Progress 25.8333 %, 58.85 s elapsed
-Progress 25.9722 %, 60.52 s elapsed
-Progress 26.1111 %, 60.63 s elapsed
-Progress 26.25 %, 66.21 s elapsed
-Progress 26.3889 %, 66.29 s elapsed
-Progress 26.5278 %, 66.61 s elapsed
-Progress 26.6667 %, 66.66 s elapsed
-Progress 26.8056 %, 68.73 s elapsed
-Progress 26.9444 %, 68.95 s elapsed
-Progress 27.0833 %, 69.07 s elapsed
-Progress 27.2222 %, 69.45 s elapsed
-Progress 27.3611 %, 77.41 s elapsed
-Progress 27.5 %, 77.69 s elapsed
-Progress 27.6389 %, 79.90 s elapsed
-Progress 27.7778 %, 80.17 s elapsed
-Progress 27.9167 %, 88.40 s elapsed
-Progress 28.0556 %, 88.77 s elapsed
-Progress 28.1944 %, 90.61 s elapsed
-Progress 28.3333 %, 91.12 s elapsed
-Progress 28.4722 %, 96.59 s elapsed
-Progress 28.6111 %, 96.84 s elapsed
-Progress 28.75 %, 99.02 s elapsed
-Progress 28.8889 %, 99.32 s elapsed
-Progress 29.0278 %, 102.83 s elapsed
-Progress 29.1667 %, 103.14 s elapsed
-Progress 29.3056 %, 105.38 s elapsed
-Progress 29.4444 %, 105.95 s elapsed
-Progress 29.5833 %, 113.00 s elapsed
-Progress 29.7222 %, 113.65 s elapsed
-Progress 29.8611 %, 115.84 s elapsed
-Progress 30 %, 116.44 s elapsed
-Progress 30.1389 %, 123.84 s elapsed
-Progress 30.2778 %, 124.38 s elapsed
-Progress 30.4167 %, 126.37 s elapsed
-Progress 30.5556 %, 127.12 s elapsed
-Progress 30.6944 %, 132.27 s elapsed
-Progress 30.8333 %, 132.68 s elapsed
-Progress 30.9722 %, 135.06 s elapsed
-Progress 31.1111 %, 135.52 s elapsed
-Progress 31.25 %, 139.23 s elapsed
-Progress 31.3889 %, 139.43 s elapsed
-Progress 31.5278 %, 141.79 s elapsed
-Progress 31.6667 %, 142.25 s elapsed
-Progress 31.8056 %, 151.41 s elapsed
-Progress 31.9444 %, 152.35 s elapsed
-Progress 32.0833 %, 154.15 s elapsed
-Progress 32.2222 %, 154.96 s elapsed
-Progress 32.3611 %, 162.20 s elapsed
-Progress 32.5 %, 163.05 s elapsed
-Progress 32.6389 %, 164.59 s elapsed
-Progress 32.7778 %, 164.68 s elapsed
-Progress 32.9167 %, 164.74 s elapsed
-Progress 33.0556 %, 164.83 s elapsed
-Progress 33.1944 %, 164.89 s elapsed
-Progress 33.3333 %, 164.98 s elapsed
-Progress 33.4722 %, 165.04 s elapsed
-Progress 33.6111 %, 165.13 s elapsed
-Progress 33.75 %, 165.19 s elapsed
-Progress 33.8889 %, 165.28 s elapsed
-Progress 34.0278 %, 165.34 s elapsed
-Progress 34.1667 %, 165.43 s elapsed
-Progress 34.3056 %, 165.48 s elapsed
-Progress 34.4444 %, 165.53 s elapsed
-Progress 34.5833 %, 165.56 s elapsed
-Progress 34.7222 %, 165.62 s elapsed
-Progress 34.8611 %, 165.62 s elapsed
-Progress 35 %, 165.68 s elapsed
-Progress 35.1389 %, 165.71 s elapsed
-Progress 35.2778 %, 165.76 s elapsed
-Progress 35.4167 %, 165.84 s elapsed
-Progress 35.5556 %, 165.97 s elapsed
-Progress 35.6944 %, 171.20 s elapsed
-Progress 35.8333 %, 171.66 s elapsed
-Progress 35.9722 %, 174.00 s elapsed
-Progress 36.1111 %, 174.27 s elapsed
-Progress 36.25 %, 176.12 s elapsed
-Progress 36.3889 %, 176.45 s elapsed
-Progress 36.5278 %, 177.25 s elapsed
-Progress 36.6667 %, 177.44 s elapsed
-Progress 36.8056 %, 178.64 s elapsed
-Progress 36.9444 %, 178.68 s elapsed
-Progress 37.0833 %, 181.14 s elapsed
-Progress 37.2222 %, 181.46 s elapsed
-Progress 37.3611 %, 184.59 s elapsed
-Progress 37.5 %, 185.01 s elapsed
-Progress 37.6389 %, 185.60 s elapsed
-Progress 37.7778 %, 186.02 s elapsed
-Progress 37.9167 %, 187.93 s elapsed
-Progress 38.0556 %, 188.11 s elapsed
-Progress 38.1944 %, 189.15 s elapsed
-Progress 38.3333 %, 189.38 s elapsed
-Progress 38.4722 %, 190.22 s elapsed
-Progress 38.6111 %, 191.39 s elapsed
-Progress 38.75 %, 191.49 s elapsed
-Progress 38.8889 %, 192.22 s elapsed
-Progress 39.0278 %, 192.61 s elapsed
-Progress 39.1667 %, 192.88 s elapsed
-Progress 39.3056 %, 193.44 s elapsed
-Progress 39.4444 %, 194.01 s elapsed
-Progress 39.5833 %, 195.93 s elapsed
-Progress 39.7222 %, 196.83 s elapsed
-Progress 39.8611 %, 197.13 s elapsed
-Progress 40 %, 198.01 s elapsed
-Progress 40.1389 %, 209.69 s elapsed
-Progress 40.2778 %, 210.11 s elapsed
-Progress 40.4167 %, 211.53 s elapsed
-Progress 40.5556 %, 211.98 s elapsed
-Progress 40.6944 %, 213.62 s elapsed
-Progress 40.8333 %, 213.75 s elapsed
-Progress 40.9722 %, 214.29 s elapsed
-Progress 41.1111 %, 214.98 s elapsed
-Progress 41.25 %, 215.57 s elapsed
-Progress 41.3889 %, 215.87 s elapsed
-Progress 41.5278 %, 216.46 s elapsed
-Progress 41.6667 %, 216.85 s elapsed
-Progress 41.8056 %, 218.02 s elapsed
-Progress 41.9444 %, 218.97 s elapsed
-Progress 42.0833 %, 220.10 s elapsed
-Progress 42.2222 %, 221.03 s elapsed
-Progress 42.3611 %, 232.48 s elapsed
-Progress 42.5 %, 232.68 s elapsed
-Progress 42.6389 %, 234.49 s elapsed
-Progress 42.7778 %, 234.77 s elapsed
-Progress 42.9167 %, 243.17 s elapsed
-Progress 43.0556 %, 243.78 s elapsed
-Progress 43.1944 %, 244.24 s elapsed
-Progress 43.3333 %, 244.71 s elapsed
-Progress 43.4722 %, 245.65 s elapsed
-Progress 43.6111 %, 246.39 s elapsed
-Progress 43.75 %, 247.17 s elapsed
-Progress 43.8889 %, 247.51 s elapsed
-Progress 44.0278 %, 248.02 s elapsed
-Progress 44.1667 %, 249.29 s elapsed
-Progress 44.3056 %, 250.70 s elapsed
-Progress 44.4444 %, 251.86 s elapsed
-Progress 44.5833 %, 261.86 s elapsed
-Progress 44.7222 %, 262.42 s elapsed
-Progress 44.8611 %, 264.56 s elapsed
-Progress 45 %, 265.08 s elapsed
-Progress 45.1389 %, 273.40 s elapsed
-Progress 45.2778 %, 274.20 s elapsed
-Progress 45.4167 %, 275.83 s elapsed
-Progress 45.5556 %, 276.77 s elapsed
-Progress 45.6944 %, 280.25 s elapsed
-Progress 45.8333 %, 280.78 s elapsed
-Progress 45.9722 %, 282.95 s elapsed
-Progress 46.1111 %, 283.79 s elapsed
-Progress 46.25 %, 283.99 s elapsed
-Progress 46.3889 %, 285.54 s elapsed
-Progress 46.5278 %, 287.11 s elapsed
-Progress 46.6667 %, 288.27 s elapsed
-Progress 46.8056 %, 297.33 s elapsed
-Progress 46.9444 %, 298.10 s elapsed
-Progress 47.0833 %, 300.37 s elapsed
-Progress 47.2222 %, 301.14 s elapsed
-Progress 47.3611 %, 308.92 s elapsed
-Progress 47.5 %, 310.02 s elapsed
-Progress 47.6389 %, 311.68 s elapsed
-Progress 47.7778 %, 312.99 s elapsed
-Progress 47.9167 %, 316.31 s elapsed
-Progress 48.0556 %, 316.88 s elapsed
-Progress 48.1944 %, 319.09 s elapsed
-Progress 48.3333 %, 319.92 s elapsed
-Progress 48.4722 %, 323.18 s elapsed
-Progress 48.6111 %, 324.54 s elapsed
-Progress 48.75 %, 326.21 s elapsed
-Progress 48.8889 %, 327.18 s elapsed
-Progress 49.0278 %, 335.63 s elapsed
-Progress 49.1667 %, 336.77 s elapsed
-Progress 49.3056 %, 338.28 s elapsed
-Progress 49.4444 %, 338.37 s elapsed
-Progress 49.5833 %, 338.43 s elapsed
-Progress 49.7222 %, 338.53 s elapsed
-Progress 49.8611 %, 338.59 s elapsed
-Progress 50 %, 338.68 s elapsed
-Progress 50.1389 %, 338.74 s elapsed
-Progress 50.2778 %, 338.84 s elapsed
-Progress 50.4167 %, 338.89 s elapsed
-Progress 50.5556 %, 338.99 s elapsed
-Progress 50.6944 %, 339.05 s elapsed
-Progress 50.8333 %, 339.14 s elapsed
-Progress 50.9722 %, 339.20 s elapsed
-Progress 51.1111 %, 339.30 s elapsed
-Progress 51.25 %, 339.34 s elapsed
-Progress 51.3889 %, 339.39 s elapsed
-Progress 51.5278 %, 339.39 s elapsed
-Progress 51.6667 %, 339.45 s elapsed
-Progress 51.8056 %, 339.48 s elapsed
-Progress 51.9444 %, 339.54 s elapsed
-Progress 52.0833 %, 339.83 s elapsed
-Progress 52.2222 %, 340.19 s elapsed
-Progress 52.3611 %, 347.49 s elapsed
-Progress 52.5 %, 349.11 s elapsed
-Progress 52.6389 %, 350.23 s elapsed
-Progress 52.7778 %, 350.25 s elapsed
-Progress 52.9167 %, 351.15 s elapsed
-Progress 53.0556 %, 351.49 s elapsed
-Progress 53.1944 %, 352.33 s elapsed
-Progress 53.3333 %, 352.70 s elapsed
-Progress 53.4722 %, 355.60 s elapsed
-Progress 53.6111 %, 356.25 s elapsed
-Progress 53.75 %, 358.31 s elapsed
-Progress 53.8889 %, 359.15 s elapsed
-Progress 54.0278 %, 361.15 s elapsed
-Progress 54.1667 %, 362.05 s elapsed
-Progress 54.3056 %, 362.38 s elapsed
-Progress 54.4444 %, 362.54 s elapsed
-Progress 54.5833 %, 362.57 s elapsed
-Progress 54.7222 %, 363.45 s elapsed
-Progress 54.8611 %, 363.66 s elapsed
-Progress 55 %, 363.74 s elapsed
-Progress 55.1389 %, 364.06 s elapsed
-Progress 55.2778 %, 365.30 s elapsed
-Progress 55.4167 %, 365.92 s elapsed
-Progress 55.5556 %, 366.90 s elapsed
-Progress 55.6944 %, 368.89 s elapsed
-Progress 55.8333 %, 370.03 s elapsed
-Progress 55.9722 %, 370.48 s elapsed
-Progress 56.1111 %, 371.61 s elapsed
-Progress 56.25 %, 373.27 s elapsed
-Progress 56.3889 %, 374.28 s elapsed
-Progress 56.5278 %, 374.85 s elapsed
-Progress 56.6667 %, 375.85 s elapsed
-Progress 56.8056 %, 385.07 s elapsed
-Progress 56.9444 %, 386.06 s elapsed
-Progress 57.0833 %, 387.14 s elapsed
-Progress 57.2222 %, 387.28 s elapsed
-Progress 57.3611 %, 388.12 s elapsed
-Progress 57.5 %, 388.26 s elapsed
-Progress 57.6389 %, 389.58 s elapsed
-Progress 57.7778 %, 390.53 s elapsed
-Progress 57.9167 %, 391.61 s elapsed
-Progress 58.0556 %, 392.70 s elapsed
-Progress 58.1944 %, 394.24 s elapsed
-Progress 58.3333 %, 395.32 s elapsed
-Progress 58.4722 %, 395.79 s elapsed
-Progress 58.6111 %, 396.72 s elapsed
-Progress 58.75 %, 398.41 s elapsed
-Progress 58.8889 %, 399.33 s elapsed
-Progress 59.0278 %, 408.21 s elapsed
-Progress 59.1667 %, 409.19 s elapsed
-Progress 59.3056 %, 410.83 s elapsed
-Progress 59.4444 %, 411.76 s elapsed
-Progress 59.5833 %, 417.61 s elapsed
-Progress 59.7222 %, 418.47 s elapsed
-Progress 59.8611 %, 420.53 s elapsed
-Progress 60 %, 421.37 s elapsed
-Progress 60.1389 %, 422.51 s elapsed
-Progress 60.2778 %, 423.59 s elapsed
-Progress 60.4167 %, 425.76 s elapsed
-Progress 60.5556 %, 426.55 s elapsed
-Progress 60.6944 %, 426.86 s elapsed
-Progress 60.8333 %, 427.39 s elapsed
-Progress 60.9722 %, 429.82 s elapsed
-Progress 61.1111 %, 430.81 s elapsed
-Progress 61.25 %, 438.51 s elapsed
-Progress 61.3889 %, 439.40 s elapsed
-Progress 61.5278 %, 441.79 s elapsed
-Progress 61.6667 %, 442.77 s elapsed
-Progress 61.8056 %, 448.63 s elapsed
-Progress 61.9444 %, 449.44 s elapsed
-Progress 62.0833 %, 451.82 s elapsed
-Progress 62.2222 %, 452.77 s elapsed
-Progress 62.3611 %, 459.26 s elapsed
-Progress 62.5 %, 460.42 s elapsed
-Progress 62.6389 %, 462.76 s elapsed
-Progress 62.7778 %, 463.37 s elapsed
-Progress 62.9167 %, 463.94 s elapsed
-Progress 63.0556 %, 464.54 s elapsed
-Progress 63.1944 %, 467.04 s elapsed
-Progress 63.3333 %, 468.22 s elapsed
-Progress 63.4722 %, 474.99 s elapsed
-Progress 63.6111 %, 476.13 s elapsed
-Progress 63.75 %, 478.67 s elapsed
-Progress 63.8889 %, 479.84 s elapsed
-Progress 64.0278 %, 484.78 s elapsed
-Progress 64.1667 %, 486.23 s elapsed
-Progress 64.3056 %, 488.37 s elapsed
-Progress 64.4444 %, 489.85 s elapsed
-Progress 64.5833 %, 496.10 s elapsed
-Progress 64.7222 %, 497.40 s elapsed
-Progress 64.8611 %, 499.73 s elapsed
-Progress 65 %, 501.03 s elapsed
-Progress 65.1389 %, 503.34 s elapsed
-Progress 65.2778 %, 504.46 s elapsed
-Progress 65.4167 %, 506.98 s elapsed
-Progress 65.5556 %, 508.09 s elapsed
-Progress 65.6944 %, 514.69 s elapsed
-Progress 65.8333 %, 515.94 s elapsed
-Progress 65.9722 %, 517.40 s elapsed
-Progress 66.1111 %, 517.50 s elapsed
-Progress 66.25 %, 517.56 s elapsed
-Progress 66.3889 %, 517.65 s elapsed
-Progress 66.5278 %, 517.71 s elapsed
-Progress 66.6667 %, 517.81 s elapsed
-Progress 66.8056 %, 517.86 s elapsed
-Progress 66.9444 %, 517.96 s elapsed
-Progress 67.0833 %, 518.02 s elapsed
-Progress 67.2222 %, 518.11 s elapsed
-Progress 67.3611 %, 518.17 s elapsed
-Progress 67.5 %, 518.26 s elapsed
-Progress 67.6389 %, 518.32 s elapsed
-Progress 67.7778 %, 518.41 s elapsed
-Progress 67.9167 %, 518.47 s elapsed
-Progress 68.0556 %, 518.56 s elapsed
-Progress 68.1944 %, 518.62 s elapsed
-Progress 68.3333 %, 518.66 s elapsed
-Progress 68.4722 %, 518.67 s elapsed
-Progress 68.6111 %, 518.75 s elapsed
-Progress 68.75 %, 519.19 s elapsed
-Progress 68.8889 %, 519.74 s elapsed
-Progress 69.0278 %, 524.39 s elapsed
-Progress 69.1667 %, 526.02 s elapsed
-Progress 69.3056 %, 527.52 s elapsed
-Progress 69.4444 %, 529.11 s elapsed
-Progress 69.5833 %, 529.75 s elapsed
-Progress 69.7222 %, 530.64 s elapsed
-Progress 69.8611 %, 531.17 s elapsed
-Progress 70 %, 532.05 s elapsed
-Progress 70.1389 %, 535.87 s elapsed
-Progress 70.2778 %, 537.29 s elapsed
-Progress 70.4167 %, 538.43 s elapsed
-Progress 70.5556 %, 539.36 s elapsed
-Progress 70.6944 %, 539.90 s elapsed
-Progress 70.8333 %, 540.01 s elapsed
-Progress 70.9722 %, 540.48 s elapsed
-Progress 71.1111 %, 541.42 s elapsed
-Progress 71.25 %, 541.90 s elapsed
-Progress 71.3889 %, 542.88 s elapsed
-Progress 71.5278 %, 543.61 s elapsed
-Progress 71.6667 %, 543.93 s elapsed
-Progress 71.8056 %, 544.75 s elapsed
-Progress 71.9444 %, 544.96 s elapsed
-Progress 72.0833 %, 547.12 s elapsed
-Progress 72.2222 %, 548.36 s elapsed
-Progress 72.3611 %, 550.13 s elapsed
-Progress 72.5 %, 551.03 s elapsed
-Progress 72.6389 %, 551.64 s elapsed
-Progress 72.7778 %, 552.14 s elapsed
-Progress 72.9167 %, 552.32 s elapsed
-Progress 73.0556 %, 553.17 s elapsed
-Progress 73.1944 %, 554.20 s elapsed
-Progress 73.3333 %, 555.24 s elapsed
-Progress 73.4722 %, 565.32 s elapsed
-Progress 73.6111 %, 566.43 s elapsed
-Progress 73.75 %, 567.90 s elapsed
-Progress 73.8889 %, 568.64 s elapsed
-Progress 74.0278 %, 569.04 s elapsed
-Progress 74.1667 %, 569.85 s elapsed
-Progress 74.3056 %, 571.56 s elapsed
-Progress 74.4444 %, 572.88 s elapsed
-Progress 74.5833 %, 573.59 s elapsed
-Progress 74.7222 %, 574.22 s elapsed
-Progress 74.8611 %, 574.96 s elapsed
-Progress 75 %, 576.78 s elapsed
-Progress 75.1389 %, 576.83 s elapsed
-Progress 75.2778 %, 578.23 s elapsed
-Progress 75.4167 %, 579.65 s elapsed
-Progress 75.5556 %, 581.07 s elapsed
-Progress 75.6944 %, 589.19 s elapsed
-Progress 75.8333 %, 590.44 s elapsed
-Progress 75.9722 %, 592.36 s elapsed
-Progress 76.1111 %, 593.75 s elapsed
-Progress 76.25 %, 599.94 s elapsed
-Progress 76.3889 %, 601.36 s elapsed
-Progress 76.5278 %, 603.29 s elapsed
-Progress 76.6667 %, 604.68 s elapsed
-Progress 76.8056 %, 604.93 s elapsed
-Progress 76.9444 %, 605.68 s elapsed
-Progress 77.0833 %, 607.33 s elapsed
-Progress 77.2222 %, 608.80 s elapsed
-Progress 77.3611 %, 610.00 s elapsed
-Progress 77.5 %, 610.38 s elapsed
-Progress 77.6389 %, 611.96 s elapsed
-Progress 77.7778 %, 613.82 s elapsed
-Progress 77.9167 %, 620.38 s elapsed
-Progress 78.0556 %, 621.89 s elapsed
-Progress 78.1944 %, 624.23 s elapsed
-Progress 78.3333 %, 625.87 s elapsed
-Progress 78.4722 %, 631.76 s elapsed
-Progress 78.6111 %, 633.12 s elapsed
-Progress 78.75 %, 635.48 s elapsed
-Progress 78.8889 %, 637.05 s elapsed
-Progress 79.0278 %, 642.06 s elapsed
-Progress 79.1667 %, 643.71 s elapsed
-Progress 79.3056 %, 646.11 s elapsed
-Progress 79.4444 %, 646.63 s elapsed
-Progress 79.5833 %, 648.02 s elapsed
-Progress 79.7222 %, 648.45 s elapsed
-Progress 79.8611 %, 650.62 s elapsed
-Progress 80 %, 652.80 s elapsed
-Progress 80.1389 %, 657.99 s elapsed
-Progress 80.2778 %, 659.84 s elapsed
-Progress 80.4167 %, 662.32 s elapsed
-Progress 80.5556 %, 664.21 s elapsed
-Progress 80.6944 %, 668.94 s elapsed
-Progress 80.8333 %, 670.98 s elapsed
-Progress 80.9722 %, 672.91 s elapsed
-Progress 81.1111 %, 675.22 s elapsed
-Progress 81.25 %, 680.08 s elapsed
-Progress 81.3889 %, 681.98 s elapsed
-Progress 81.5278 %, 684.35 s elapsed
-Progress 81.6667 %, 686.34 s elapsed
-Progress 81.8056 %, 687.70 s elapsed
-Progress 81.9444 %, 689.71 s elapsed
-Progress 82.0833 %, 691.73 s elapsed
-Progress 82.2222 %, 694.04 s elapsed
-Progress 82.3611 %, 698.88 s elapsed
-Progress 82.5 %, 700.62 s elapsed
-Progress 82.6389 %, 701.62 s elapsed
-Progress 82.7778 %, 701.71 s elapsed
-Progress 82.9167 %, 701.77 s elapsed
-Progress 83.0556 %, 701.87 s elapsed
-Progress 83.1944 %, 701.92 s elapsed
-Progress 83.3333 %, 702.02 s elapsed
-Progress 83.4722 %, 702.08 s elapsed
-Progress 83.6111 %, 702.17 s elapsed
-Progress 83.75 %, 702.23 s elapsed
-Progress 83.8889 %, 702.32 s elapsed
-Progress 84.0278 %, 702.38 s elapsed
-Progress 84.1667 %, 702.47 s elapsed
-Progress 84.3056 %, 702.53 s elapsed
-Progress 84.4444 %, 702.62 s elapsed
-Progress 84.5833 %, 702.68 s elapsed
-Progress 84.7222 %, 702.77 s elapsed
-Progress 84.8611 %, 702.82 s elapsed
-Progress 85 %, 702.91 s elapsed
-Progress 85.1389 %, 702.97 s elapsed
-Progress 85.2778 %, 703.06 s elapsed
-Progress 85.4167 %, 706.36 s elapsed
-Progress 85.5556 %, 709.50 s elapsed
-Progress 85.6944 %, 709.79 s elapsed
-Progress 85.8333 %, 711.64 s elapsed
-Progress 85.9722 %, 714.66 s elapsed
-Progress 86.1111 %, 715.06 s elapsed
-Progress 86.25 %, 718.47 s elapsed
-Progress 86.3889 %, 720.71 s elapsed
-Progress 86.5278 %, 720.81 s elapsed
-Progress 86.6667 %, 721.82 s elapsed
-Progress 86.8056 %, 723.06 s elapsed
-Progress 86.9444 %, 725.16 s elapsed
-Progress 87.0833 %, 725.17 s elapsed
-Progress 87.2222 %, 726.41 s elapsed
-Progress 87.3611 %, 728.76 s elapsed
-Progress 87.5 %, 729.01 s elapsed
-Progress 87.6389 %, 729.24 s elapsed
-Progress 87.7778 %, 731.19 s elapsed
-Progress 87.9167 %, 732.40 s elapsed
-Progress 88.0556 %, 732.90 s elapsed
-Progress 88.1944 %, 734.83 s elapsed
-Progress 88.3333 %, 735.04 s elapsed
-Progress 88.4722 %, 737.01 s elapsed
-Progress 88.6111 %, 738.32 s elapsed
-Progress 88.75 %, 740.04 s elapsed
-Progress 88.8889 %, 740.52 s elapsed
-Progress 89.0278 %, 741.42 s elapsed
-Progress 89.1667 %, 743.63 s elapsed
-Progress 89.3056 %, 744.17 s elapsed
-Progress 89.4444 %, 746.97 s elapsed
-Progress 89.5833 %, 748.35 s elapsed
-Progress 89.7222 %, 751.06 s elapsed
-Progress 89.8611 %, 755.14 s elapsed
-Progress 90 %, 755.74 s elapsed
-Progress 90.1389 %, 757.73 s elapsed
-Progress 90.2778 %, 760.96 s elapsed
-Progress 90.4167 %, 761.63 s elapsed
-Progress 90.5556 %, 763.14 s elapsed
-Progress 90.6944 %, 765.75 s elapsed
-Progress 90.8333 %, 766.42 s elapsed
-Progress 90.9722 %, 768.90 s elapsed
-Progress 91.1111 %, 769.12 s elapsed
-Progress 91.25 %, 773.22 s elapsed
-Progress 91.3889 %, 774.85 s elapsed
-Progress 91.5278 %, 778.54 s elapsed
-Progress 91.6667 %, 779.06 s elapsed
-Progress 91.8056 %, 784.03 s elapsed
-Progress 91.9444 %, 784.10 s elapsed
-Progress 92.0833 %, 786.55 s elapsed
-Progress 92.2222 %, 787.71 s elapsed
-Progress 92.3611 %, 793.33 s elapsed
-Progress 92.5 %, 796.51 s elapsed
-Progress 92.6389 %, 797.42 s elapsed
-Progress 92.7778 %, 799.64 s elapsed
-Progress 92.9167 %, 802.60 s elapsed
-Progress 93.0556 %, 804.47 s elapsed
-Progress 93.1944 %, 807.46 s elapsed
-Progress 93.3333 %, 809.73 s elapsed
-Progress 93.4722 %, 812.09 s elapsed
-Progress 93.6111 %, 814.79 s elapsed
-Progress 93.75 %, 816.92 s elapsed
-Progress 93.8889 %, 817.32 s elapsed
-Progress 94.0278 %, 823.34 s elapsed
-Progress 94.1667 %, 826.66 s elapsed
-Progress 94.3056 %, 827.96 s elapsed
-Progress 94.4444 %, 830.29 s elapsed
-Progress 94.5833 %, 834.64 s elapsed
-Progress 94.7222 %, 835.52 s elapsed
-Progress 94.8611 %, 839.03 s elapsed
-Progress 95 %, 840.40 s elapsed
-Progress 95.1389 %, 846.25 s elapsed
-Progress 95.2778 %, 850.23 s elapsed
-Progress 95.4167 %, 851.31 s elapsed
-Progress 95.5556 %, 854.05 s elapsed
-Progress 95.6944 %, 857.47 s elapsed
-Progress 95.8333 %, 863.25 s elapsed
-Progress 95.9722 %, 864.09 s elapsed
-Progress 96.1111 %, 866.87 s elapsed
-Progress 96.25 %, 868.48 s elapsed
-Progress 96.3889 %, 872.29 s elapsed
-Progress 96.5278 %, 876.30 s elapsed
-Progress 96.6667 %, 877.76 s elapsed
-Progress 96.8056 %, 880.71 s elapsed
-Progress 96.9444 %, 885.29 s elapsed
-Progress 97.0833 %, 888.34 s elapsed
-Progress 97.2222 %, 891.45 s elapsed
-Progress 97.3611 %, 892.91 s elapsed
-Progress 97.5 %, 899.36 s elapsed
-Progress 97.6389 %, 900.35 s elapsed
-Progress 97.7778 %, 903.81 s elapsed
-Progress 97.9167 %, 904.82 s elapsed
-Progress 98.0556 %, 911.82 s elapsed
-Progress 98.1944 %, 913.17 s elapsed
-Progress 98.3333 %, 917.09 s elapsed
-Progress 98.4722 %, 917.43 s elapsed
-Progress 98.6111 %, 924.63 s elapsed
-Progress 98.75 %, 925.80 s elapsed
-Progress 98.8889 %, 930.96 s elapsed
-Progress 99.0278 %, 931.20 s elapsed
-Progress 99.1667 %, 937.06 s elapsed
-Progress 99.3056 %, 937.80 s elapsed
-Progress 99.4444 %, 942.31 s elapsed
-Progress 99.5833 %, 949.32 s elapsed
-Progress 99.7222 %, 952.94 s elapsed
-Progress 99.8611 %, 956.85 s elapsed
-Progress 100 %, 958.87 s elapsed
+q r uv perfor se_perfor
 0 0 0.2 1 0
 0 0 0.4 1 0
 0 0 0.6 1 0
 0 0 0.8 1 0
-0 0 1 1 -nan
+0 0 1 1 0
 0 0 1.2 0.833333 0
 0 0 1.4 0.714286 1.47514e-06
 0 0 1.6 0.625 1.19209e-06
-0 0 1.8 0.555556 -nan
+0 0 1.8 0.555556 0
 0 0 2 0.5 0
 0 0.2 0.2 1 0
 0 0.2 0.4 1 0
 0 0.2 0.6 1 0
 0 0.2 0.8 1 0
-0 0.2 1 1 -nan
+0 0.2 1 1 0
 0 0.2 1.2 0.833333 0
 0 0.2 1.4 0.714286 1.47514e-06
 0 0.2 1.6 0.625 1.19209e-06
-0 0.2 1.8 0.555556 -nan
+0 0.2 1.8 0.555556 0
 0 0.2 2 0.5 0
 0 0.4 0.2 1 0
 0 0.4 0.4 1 0
 0 0.4 0.6 1 0
 0 0.4 0.8 1 0
-0 0.4 1 1 -nan
+0 0.4 1 1 0
 0 0.4 1.2 0.833333 0
 0 0.4 1.4 0.714286 1.47514e-06
 0 0.4 1.6 0.625 1.19209e-06
-0 0.4 1.8 0.555556 -nan
+0 0.4 1.8 0.555556 0
 0 0.4 2 0.5 0
 0 0.6 0.2 1 0
 0 0.6 0.4 1 0
 0 0.6 0.6 1 0
 0 0.6 0.8 1 0
-0 0.6 1 1 -nan
+0 0.6 1 1 0
 0 0.6 1.2 0.833333 0
 0 0.6 1.4 0.714286 1.47514e-06
 0 0.6 1.6 0.625 1.19209e-06
-0 0.6 1.8 0.555556 -nan
+0 0.6 1.8 0.555556 0
 0 0.6 2 0.5 0
 0 0.8 0.2 1 0
 0 0.8 0.4 1 0
 0 0.8 0.6 1 0
 0 0.8 0.8 1 0
-0 0.8 1 1 -nan
+0 0.8 1 1 0
 0 0.8 1.2 0.833333 0
 0 0.8 1.4 0.714286 1.47514e-06
 0 0.8 1.6 0.625 1.19209e-06
-0 0.8 1.8 0.555556 -nan
+0 0.8 1.8 0.555556 0
 0 0.8 2 0.5 0
 0 1 0.2 1 0
 0 1 0.4 1 0
 0 1 0.6 1 0
 0 1 0.8 1 0
-0 1 1 1 -nan
+0 1 1 1 0
 0 1 1.2 0.833333 0
 0 1 1.4 0.714286 1.47514e-06
 0 1 1.6 0.625 1.19209e-06
-0 1 1.8 0.555556 -nan
+0 1 1.8 0.555556 0
 0 1 2 0.5 0
 0.2 0 0.2 1 0
 0.2 0 0.4 1 0
 0.2 0 0.6 1 0
 0.2 0 0.8 1 0
-0.2 0 1 1 -nan
+0.2 0 1 1 0
 0.2 0 1.2 0.833333 0
 0.2 0 1.4 0.714286 1.47514e-06
 0.2 0 1.6 0.625 1.19209e-06
-0.2 0 1.8 0.555556 -nan
+0.2 0 1.8 0.555556 0
 0.2 0 2 0.5 0
 0.2 0.2 0.2 1 0
 0.2 0.2 0.4 1 0
@@ -842,11 +123,11 @@ Progress 100 %, 958.87 s elapsed
 0.4 0 0.4 1 0
 0.4 0 0.6 1 0
 0.4 0 0.8 1 0
-0.4 0 1 1 -nan
+0.4 0 1 1 0
 0.4 0 1.2 0.833333 0
 0.4 0 1.4 0.714286 1.47514e-06
 0.4 0 1.6 0.625 1.19209e-06
-0.4 0 1.8 0.555556 -nan
+0.4 0 1.8 0.555556 0
 0.4 0 2 0.5 0
 0.4 0.2 0.2 1 0
 0.4 0.2 0.4 1 0
@@ -902,11 +183,11 @@ Progress 100 %, 958.87 s elapsed
 0.6 0 0.4 1 0
 0.6 0 0.6 1 0
 0.6 0 0.8 1 0
-0.6 0 1 1 -nan
+0.6 0 1 1 0
 0.6 0 1.2 0.833333 0
 0.6 0 1.4 0.714286 1.47514e-06
 0.6 0 1.6 0.625 1.19209e-06
-0.6 0 1.8 0.555556 -nan
+0.6 0 1.8 0.555556 0
 0.6 0 2 0.5 0
 0.6 0.2 0.2 1 0
 0.6 0.2 0.4 1 0
@@ -962,11 +243,11 @@ Progress 100 %, 958.87 s elapsed
 0.8 0 0.4 1 0
 0.8 0 0.6 1 0
 0.8 0 0.8 1 0
-0.8 0 1 1 -nan
+0.8 0 1 1 0
 0.8 0 1.2 0.833333 0
 0.8 0 1.4 0.714286 1.47514e-06
 0.8 0 1.6 0.625 1.19209e-06
-0.8 0 1.8 0.555556 -nan
+0.8 0 1.8 0.555556 0
 0.8 0 2 0.5 0
 0.8 0.2 0.2 1 0
 0.8 0.2 0.4 1 0
@@ -1022,11 +303,11 @@ Progress 100 %, 958.87 s elapsed
 1 0 0.4 1 0
 1 0 0.6 1 0
 1 0 0.8 1 0
-1 0 1 1 -nan
+1 0 1 1 0
 1 0 1.2 0.833333 0
 1 0 1.4 0.714286 1.47514e-06
 1 0 1.6 0.625 1.19209e-06
-1 0 1.8 0.555556 -nan
+1 0 1.8 0.555556 0
 1 0 2 0.5 0
 1 0.2 0.2 1 0
 1 0.2 0.4 1 0
@@ -1078,4 +359,3 @@ Progress 100 %, 958.87 s elapsed
 1 1 1.6 1 0
 1 1 1.8 1 0
 1 1 2 1 0
-960.58 s elapsed
