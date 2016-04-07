@@ -46,7 +46,6 @@ public:
   sim (const args_sim &args, std::ostream &out):
     m_args(args), m_pi(out)
   {
-    make_runs();
     run_runs();
     print(out);
   }
@@ -64,16 +63,6 @@ public:
 
 private:
   void
-  make_runs()
-  {
-    for(auto q: m_args.qs)
-      for(auto r: m_args.rs)
-        for(auto uv: m_args.uvs)
-          for(int seed = 1; seed <= m_args.seeds; ++seed)
-            m_runs.push_back(args_run<double>(m_args, q, r, uv, seed));
-  }
-
-  void
   run_runs()
   {
     assert(m_args.seeds >= 1);
@@ -90,9 +79,11 @@ private:
     for (int i = 0; i < noth; ++i)
       threads.create_thread (boost::bind (&as::io_service::run, &ios));
 
-    //Run the runs.
-    for (const args_run<double> &a: m_runs)
-      ios.post (run<G> (*this, a));
+    // Run the runs.
+    for(auto r: m_args.rs)
+      for(auto q: m_args.qs)
+        for(int seed = 1; seed <= m_args.seeds; ++seed)
+          ios.post (run<G> (*this, args_run<double>(m_args, q, r, seed)));
 
     // This is needed here, so that all tasks finish.
     work.reset ();
@@ -103,9 +94,9 @@ private:
   void
   print (std::ostream &out)
   {
-    for(auto q: m_args.qs)
+    for(auto uv: m_args.uvs)
       for(auto r: m_args.rs)
-        for(auto uv: m_args.uvs)
+        for(auto q: m_args.qs)
           {
             typedef ba::tag::error_of <ba::tag::mean> eom_t;
             typedef ba::stats <ba::tag::mean, eom_t> stats_t;
@@ -126,9 +117,9 @@ private:
             // Relative standard error of the mean in percent of performance.
             double perfor_rse = 100 * perfor_se / perfor_mean;
 
-            out << q << " "
+            out << uv << " "
                 << r << " "
-                << uv << " "
+                << q << " "
                 << perfor_mean << " "
                 << perfor_rse << std::endl;
           }

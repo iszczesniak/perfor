@@ -19,7 +19,7 @@ class run
   sim<G> &m_sim;
 
   // The arguments of the run.
-  const args_run<double> &m_args;
+  const args_run<double> m_args;
   
 public:
   // Takes the arguments needed for a run.
@@ -34,20 +34,23 @@ public:
     // Get the network we operate on.
     G g = generate_pon<G>(m_args.m_net);
 
-    // The traffic requested.
-    auto req = generate_traffic (g, m_args.m_uv);
-
-    // The traffic allocated.
-    auto all = broker <G> (g).service (req);
-
     // The results object.
     results r;
 
-    // Calculate the mean ONU performance.
-    r.mean_perf = calc_mean_perf<G> (g, req, all);
+    for(auto uv: m_args.m_uvs)
+      {
+        // The traffic requested.
+        auto req = generate_traffic (g, uv);
 
-    // Calculate the mean connectivity.
-    r.mean_conn = calc_mean_conn<G> (g);
+        // The traffic allocated.
+        auto all = broker <G> (g).service (req);
+
+        // Calculate the mean ONU performance.
+        r.mean_perf[uv] = calc_mean_perf<G> (g, req, all);
+
+        // Calculate the mean connectivity.
+        r.mean_conn[uv] = calc_mean_conn<G> (g);
+      }
 
     // Report the result back to the simulation object.
     m_sim.report (m_args, r);

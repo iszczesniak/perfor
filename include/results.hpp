@@ -10,11 +10,11 @@
 struct results
 {
   // The mean ONU performance.
-  double mean_perf;
+  std::map<double, double> mean_perf;
 
   // The mean ONU connectivity.
-  double mean_conn;
-  
+  std::map<double, double> mean_conn;
+
   // Histogram of ONU path possibilities.
   std::map<int, int> hist;
 
