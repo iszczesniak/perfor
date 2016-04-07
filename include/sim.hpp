@@ -39,9 +39,6 @@ class sim
   // Progress indicator;
   progress<int> m_pi;
 
-  // The arguments for runs.
-  std::deque<args_run<double>> m_runs;
-
 public:
   sim (const args_sim &args, std::ostream &out):
     m_args(args), m_pi(out)
@@ -68,7 +65,7 @@ private:
     assert(m_args.seeds >= 1);
 
     // Set the progress iterator target value.
-    m_pi.set(m_runs.size());
+    m_pi.set(m_args.rs.size() * m_args.qs.size() * m_args.seeds);
 
     as::io_service ios;
     std::auto_ptr <as::io_service::work> work (new as::io_service::work (ios));
@@ -105,9 +102,9 @@ private:
             // Iterate over the seed values.
             for (int seed = 1; seed <= m_args.seeds; ++seed)
               {
-                args_run<double> args(m_args, q, r, uv, seed);
+                args_run<double> args(m_args, q, r, seed);
                 const results &r = m_a2r.at(args);
-                perfor_acc(r.mean_perf);
+                perfor_acc(r.mean_perf.at(uv));
               }
 
             // The mean of the performance.
