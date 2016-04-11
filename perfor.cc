@@ -27,7 +27,7 @@ main (int argc, const char* argv[])
   a.stages = 3;
 
   // The probabilities that a remote node is active.
-  a.qs = {0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
+  a.qs = {0};
 
   // The probabilities that an ONU is connected to the other operator.
   a.rs = {0, 0.001, 0.002, 0.003, 0.004, 0.005, 0.006, 0.007, 0.008, 0.009,
@@ -41,7 +41,7 @@ main (int argc, const char* argv[])
 
   // The number of seeds, i.e., simulation runs for the given
   // parameters.
-  a.seeds = 1000;
+  a.seeds = 10;
 
   sim<graph> s(a, cout);
 

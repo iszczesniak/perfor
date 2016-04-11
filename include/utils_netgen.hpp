@@ -50,7 +50,6 @@ template<typename G, typename T>
 void
 generate_further (G &g, const args_net<double> &a, T &gen, int stage, Vertex<G> pn)
 {
-  std::bernoulli_distribution qd(a.q);
   std::bernoulli_distribution rd(a.r);
   std::bernoulli_distribution sd(a.s);
 
@@ -72,7 +71,13 @@ generate_further (G &g, const args_net<double> &a, T &gen, int stage, Vertex<G> 
   else
     {
       // It's a new stage, and so set the type of the RN.
-      nt = qd(gen) ? VERTEX_T::ARN : VERTEX_T::PRN;
+      if (stage == 0)
+        nt = VERTEX_T::PRN;
+      else if (stage == 1)
+        nt = VERTEX_T::ARN;
+      else if (stage == 2)
+        nt = VERTEX_T::PRN;
+      else abort();
 
       for (int i = 0; i < a.sratio; ++i)
         {
