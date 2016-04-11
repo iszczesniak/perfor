@@ -1,8 +1,10 @@
 # Use the C++ linker.
 LINK.o = $(LINK.cc)
 
-# Compiler flags.
-CXXFLAGS := -g -Wall -std=c++11 -Wno-deprecated -I include
+ifdef BOOST_ROOT
+	CXXFLAGS := $(CXXFLAGS) -I $(BOOST_ROOT)/include
+	LDFLAGS := $(LDFLAGS) -L $(BOOST_ROOT)/lib
+endif
 
 # Linker flags: use Boost.
 LDFLAGS := $(LDFLAGS) -l boost_system
