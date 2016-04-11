@@ -8,6 +8,7 @@
 #include <iomanip>
 #include <random>
 #include <set>
+#include <tuple>
 
 template<typename G>
 int
@@ -15,7 +16,7 @@ count_nodes(const G &g, VERTEX_T t)
 {
   int count = 0;
   Viter<G> vi, ve;
-  for (tie(vi, ve) = vertices(g); vi != ve; ++vi)
+  for (std::tie(vi, ve) = vertices(g); vi != ve; ++vi)
     count += (boost::get(boost::vertex_type, g, *vi) == t);
   return count;
 }
@@ -37,7 +38,7 @@ get_nodes (const G &g, VERTEX_T t)
   std::set<Vertex<G> > s;
 
   Viter<G> vi, ve;
-  for (tie(vi, ve) = vertices (g); vi != ve; ++vi)
+  for (std::tie(vi, ve) = vertices (g); vi != ve; ++vi)
     if (boost::get (boost::vertex_type, g, *vi) == t)
       s.insert (*vi);
 
@@ -97,7 +98,7 @@ print_pon(const G &g, std::ostream &out, Vertex<G> cn, Vertex<G> pn)
           // The reverse edge.
           Edge<G> re;
           bool rs;
-          tie(re, rs) = boost::edge(nn, cn, g);
+	  std::tie(re, rs) = boost::edge(nn, cn, g);
           assert(rs);
           
           out << "Upstream: rate = "

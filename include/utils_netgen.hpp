@@ -9,6 +9,7 @@
 #include <iomanip>
 #include <random>
 #include <sstream>
+#include <tuple>
 
 /**
  * Names the vertices.
@@ -23,7 +24,7 @@ name_vertices (G &g)
   int width = int(log10(number)) + 1;
 
   Viter<G> vi, ve;
-  for (tie(vi, ve) = vertices(g); vi != ve; ++vi)
+  for (std::tie(vi, ve) = vertices(g); vi != ve; ++vi)
     {
       Vertex<G> v = *vi;
       std::ostringstream out;

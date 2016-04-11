@@ -39,7 +39,7 @@ private:
   Vertex <G>
   get_upstream (Vertex <G> v)
   {
-    for(const auto &e: make_iterator_range (out_edges (v, m_g)))
+    for(const auto &e: boost::make_iterator_range (out_edges (v, m_g)))
       if (boost::get (boost::edge_type, m_g, e) == DIR_T::UP)
         // The upstream vertex.
         return boost::target (e, m_g);
@@ -55,7 +55,7 @@ private:
   {
     Vset <G> s;
 
-    for(const auto &e: make_iterator_range (out_edges (v, m_g)))
+    for(const auto &e: boost::make_iterator_range (out_edges (v, m_g)))
       if (boost::get (boost::edge_type, m_g, e) == DIR_T::DOWN)
         // The downstream vertex.
         s.insert (boost::target (e, m_g));
@@ -94,7 +94,7 @@ private:
     VERTEX_T t = boost::get (boost::vertex_type, m_g, cn);
     assert (t == VERTEX_T::ARN || t == VERTEX_T::OLT);
 
-    for(const auto &e: make_iterator_range (out_edges (cn, m_g)))
+    for(const auto &e: boost::make_iterator_range (out_edges (cn, m_g)))
       {
         // The downstream vertex.
         Vertex <G> t = boost::target (e, m_g);
@@ -188,7 +188,7 @@ void
 sort_paths (G &g)
 {
   // Iterate over every vertex and sort its paths.
-  for(const auto &v: make_iterator_range(boost::vertices(g)))
+  for(const auto &v: boost::make_iterator_range(boost::vertices(g)))
     {
       auto &l = boost::get(boost::vertex_paths, g)[v];
       std::sort(l.begin(), l.end(), path_cmp <Path <G> > ());
@@ -201,7 +201,7 @@ void
 test_paths (G &g)
 {
   // Iterate over every vertex and make sure it has sorted paths.
-  for(const auto &v: make_iterator_range(boost::vertices(g)))
+  for(const auto &v: boost::make_iterator_range(boost::vertices(g)))
     {
       auto &l = boost::get(boost::vertex_paths, g)[v];
       assert(std::is_sorted(l.begin(), l.end(), path_cmp <Path <G> > ()));
