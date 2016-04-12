@@ -15,7 +15,7 @@ LDFLAGS := $(LDFLAGS) -l boost_timer
 
 perfor: perfor.o
 
-.PHONY: clean count
+.PHONY: clean count depend
 
 clean:
 	rm -f *~
@@ -25,6 +25,6 @@ count:
 	wc -l include/*.hpp *.cc
 
 depend: *.cc
-	g++ $(CXXFLAGS) -MM *.cc > depend
+	g++ $(CXXFLAGS) -MM *.cc > dependencies
 
-include depend
+include dependencies
