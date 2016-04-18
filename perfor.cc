@@ -41,7 +41,7 @@ main (int argc, const char* argv[])
 
   // The number of seeds, i.e., simulation runs for the given
   // parameters.
-  a.seeds = 1000;
+  a.seeds = 200;
 
   sim<graph> s(a, cout);
 
