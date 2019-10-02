@@ -22,7 +22,7 @@ Or you can use git:
 
 ## Author, Affiliation and License
 
-The software was written and is maintained by Ireneusz Szcześniak, as
-part of the responsibilities at the [Częstochowa University of
-Technology](http://pcz.pl). This software is licensed under the
+The software was written by Ireneusz Szcześniak, as part of the
+responsibilities at the [AGH University of Science and
+Technology](http://agh.edu.pl). This software is licensed under the
 General Public License.
