@@ -8,9 +8,11 @@ Performance of interoperator fixed-mobile network sharing, 21st
 International Conference on Optical Network Design and Modeling, ONDM
 2017, Budapest, Hungary, May 2017
 
-<http://irkos.org/publications/ondm2017.pdf>
+<https://doi.org/10.23919/ONDM.2017.7958548>
 
-<http://irkos.org/publications/ondm2017-presentation.pdf>
+<https://irkos.org/pubs/ondm2017.pdf>
+
+<https://irkos.org/pubs/ondm2017-presentation.pdf>
 
 ## Download
 
